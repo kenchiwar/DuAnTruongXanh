@@ -4,16 +4,16 @@ import { HttpClient } from "@angular/common/http";
 import { catchError, lastValueFrom, of } from "rxjs";
 import { UrlApi } from "./baseurl.services";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { ChuyenBay } from "../models/chuyenbay.models";
 
-import { ConvertDate } from "./convertDate.services";
 
 
 
 @Injectable()
 export class ChuyenBayServices {
 
-  constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private convert:ConvertDate) {}
+  constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder) {
+   // private convert:ConvertDate
+  }
 
 
   async getAll(){
@@ -33,11 +33,11 @@ export class ChuyenBayServices {
 
       });
   }
-  getFormGroupData(data:ChuyenBay):FormGroup{
+  getFormGroupData(data :any):FormGroup{
       return this.formBuilder.group({
         macb : data.macb,
         tencb :data.tencb,
-        ngaydi :this.convert.convert(data.ngaydi),
+       // ngaydi :this.convert.convert(data.ngaydi),
         sogheloai1 :data.sogheloai1,
         giagheloai1:data.giagheloai1,
         giagheloai2:data.giagheloai2,
