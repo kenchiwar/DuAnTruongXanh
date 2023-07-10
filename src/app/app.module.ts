@@ -13,6 +13,13 @@ import { DepartmentsServices } from './services/departments.service';
 import { RequestServices } from './services/request.service';
 import { RoleClaimsServices } from './services/roleclaims.service';
 import { RoleServices } from './services/role.service';
+import { IndexAccountComponent } from './admin/account/indexaccount.component';
+import { UpdateAccountComponent } from './admin/account/updateaccount.component';
+import { DetailAccountComponent } from './admin/account/detailaccount.component';
+import { CreateDepartmentComponent } from './admin/department/createdepartment.component';
+import { IndexDepartmentComponent } from './admin/department/indexdepartment.component';
+import { UpdateDepartmentComponent } from './admin/department/updatedepartment.component';
+import { DetailDepartmentComponent } from './admin/department/detaildepartment.component';
 
 
 @NgModule({
@@ -21,6 +28,13 @@ import { RoleServices } from './services/role.service';
     IndexHomeComponent,
     IndexAdminComponent,
     CreateAccountComponent,
+    IndexAccountComponent,
+    UpdateAccountComponent,
+    DetailAccountComponent,
+   CreateDepartmentComponent,
+   IndexDepartmentComponent,
+   UpdateDepartmentComponent,
+   DetailDepartmentComponent
   ],
   imports: [
     BrowserModule,

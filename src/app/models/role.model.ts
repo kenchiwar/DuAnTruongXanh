@@ -4,5 +4,5 @@ export interface Role {
   id: number;
   name?: string;
   describe?: string;
-  accounts: Account[];
+  accounts?: Account[];
 }

@@ -5,5 +5,5 @@ export interface RoleClaim {
   name?: string;
   describe?: string;
   claim?: number;
-  idAccounts: Account[];
+  idAccounts?: Account[];
 }

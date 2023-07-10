@@ -1,5 +1,5 @@
 import { Account } from "./account.model";
-import { Department } from "./department.model copy";
+import { Department } from "./department.model";
 import { RequestFile } from "./requestfile.model";
 import { Requetsdetailed } from "./requetsdetailed.model";
 
@@ -14,9 +14,9 @@ export interface Requet {
   sentDate?: Date;
   endDate?: Date;
   priority?: number;
-  idComplainNavigation: Account;
-  idDepartmentNavigation: Department;
+  idComplainNavigation?: Account;
+  idDepartmentNavigation?: Department;
   idHandleNavigation?: Account;
-  requestFiles: RequestFile[];
-  requetsdetaileds: Requetsdetailed[];
+  requestFiles?: RequestFile[];
+  requetsdetaileds?: Requetsdetailed[];
 }

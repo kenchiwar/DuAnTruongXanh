@@ -1,4 +1,4 @@
-import { Department } from "./department.model copy";
+import { Department } from "./department.model";
 import { Requet } from "./request.model";
 import { Role } from "./role.model";
 import { RoleClaim } from "./roleclaim.model";
@@ -22,11 +22,11 @@ export class Account {
     public schoolyear?: string;
     public degree?: string;
     public academicrank?: string;
-    public idDepartmentNavigation: Department;
-    public idRoleNavigation: Role;
-    public requetIdComplainNavigations: Requet[];
-    public requetIdHandleNavigations: Requet[];
-    public idRoleClaims: RoleClaim[];
+    public idDepartmentNavigation?: Department;
+    public idRoleNavigation?: Role;
+    public requetIdComplainNavigations?: Requet[];
+    public requetIdHandleNavigations?: Requet[];
+    public idRoleClaims?: RoleClaim[];
     // constructor() {
     //     this.id = 0;
     //     this.username = '';

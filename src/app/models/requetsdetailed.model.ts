@@ -7,7 +7,7 @@ export class Requetsdetailed {
   reason?: string;
   status?: number;
   reply?: string;
-  idRequest: number;
-  idRequestNavigation: Requet;
+  idRequest?: number;
+  idRequestNavigation?: Requet;
 }
 
