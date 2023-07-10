@@ -14,6 +14,14 @@ import { CreateRequestComponent } from './admin/request/createrequest.component'
 import { DetailRequestComponent } from './admin/request/detailrequest.component';
 import { UpdateRequestComponent } from './admin/request/updaterequest.component';
 import { IndexRequestComponent } from './admin/request/indexrequest.component';
+import { CreateRoleComponent } from './admin/role/createrole.component';
+import { IndexRoleComponent } from './admin/role/indexrole.component';
+import { UpdateRoleComponent } from './admin/role/updaterole.component';
+import { DetailRoleComponent } from './admin/role/detailrole.component';
+import { CreateRoleClaimComponent } from './admin/roleclaim/createroleclaim.component';
+import { DetailRoleClaimComponent } from './admin/roleclaim/detailroleclaim.component';
+import { UpdateRoleClaimComponent } from './admin/roleclaim/updateroleclaim.component';
+import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.component';
 
 const routes: Routes = [
   {path: '', component:IndexHomeComponent},
@@ -30,6 +38,14 @@ const routes: Routes = [
     {path: 'request/detail', component:DetailRequestComponent},
     {path: 'request/update', component:UpdateRequestComponent},
     {path: 'request/index', component:IndexRequestComponent},
+    {path: 'role/create', component:CreateRoleComponent},
+    {path: 'role/detail', component:DetailRoleComponent},
+    {path: 'role/update', component:UpdateRoleComponent},
+    {path: 'role/index', component:IndexRoleComponent},
+    {path: 'roleclaim/create', component:CreateRoleClaimComponent},
+    {path: 'roleclaim/detail', component:DetailRoleClaimComponent},
+    {path: 'roleclaim/update', component:UpdateRoleClaimComponent},
+    {path: 'roleclaim/index', component:IndexRoleClaimComponent},
     // {path: '', component:DashboardComponent},
   ]} ,
 ];
