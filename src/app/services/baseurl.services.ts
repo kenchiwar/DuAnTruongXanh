@@ -9,7 +9,12 @@ import { UrlService } from "./url.services";
 export class UrlApi{
   readonly urlService = new UrlService();
    readonly  baseUrl  : string = this.urlService.baseUrl ;
-   readonly  baseChuyenBayUrl:string = this.baseUrl+"/api/ChuyenBays";
+   readonly  baseChuyenBayUrl:string = this.baseUrl+"api/Accounts";
+   readonly  baseAccountsUrl:string = this.baseUrl+"api/Accounts";
+   readonly  baseDepartments:string = this.baseUrl+"api/Departments";
+   readonly  baseRequetsUrl:string = this.baseUrl+"api/Requets";
+   readonly  baseRoleClaimsUrl:string = this.baseUrl+"api/RoleClaims";
+   readonly  baseRolesUrl:string = this.baseUrl+"api/Roles";
    readonly  baseVeUrl:string = this.baseUrl+"/api/Ves";
 
 }

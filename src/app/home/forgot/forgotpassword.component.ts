@@ -1,10 +1,10 @@
 import { Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 @Component({
-       
-       templateUrl : './indexhome.component.html'
+        selector : 'layout-content',
+       templateUrl : './forgotpassword.component.html'
 })
-export class IndexHomeComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
    
     constructor(
         private router :Router,

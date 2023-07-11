@@ -97,7 +97,7 @@ getFormGroupData(data :any):FormGroup{
 
     async GetAccount(id:string){
 
-    return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/account/getaccount/"+id));
+    return await lastValueFrom(this.http.get(this.url.baseUrl+"/get"+id));
   }
 
   async PostAccount(data:any){

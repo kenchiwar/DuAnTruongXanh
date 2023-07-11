@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IndexHomeComponent } from './home/indehome.component';
+import { IndexHomeComponent } from './home/index/indexhome.component';
 import { IndexAdminComponent } from './admin/indeadmin.component';
 import { CreateAccountComponent } from './admin/account/createaccount.component';
 import { DetailAccountComponent } from './admin/account/detailaccount.component';
@@ -22,9 +22,14 @@ import { CreateRoleClaimComponent } from './admin/roleclaim/createroleclaim.comp
 import { DetailRoleClaimComponent } from './admin/roleclaim/detailroleclaim.component';
 import { UpdateRoleClaimComponent } from './admin/roleclaim/updateroleclaim.component';
 import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.component';
+import { LayoutHomeComponent } from './home/layouthome.component';
+import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
 
 const routes: Routes = [
-  {path: '', component:IndexHomeComponent},
+  {path: '', component:LayoutHomeComponent,children: [
+    {path: '', component:IndexHomeComponent},
+    {path: 'forgot', component:ForgotPasswordComponent},
+  ]},
   {path: 'admin', component:IndexAdminComponent,children: [
     {path: 'account/create', component:CreateAccountComponent},
     {path: 'account/detail', component:DetailAccountComponent},

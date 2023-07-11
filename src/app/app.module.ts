@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UrlApi } from './services/baseurl.services';
-import { IndexHomeComponent } from './home/indehome.component';
+import { IndexHomeComponent } from './home/index/indexhome.component';
 import { IndexAdminComponent } from './admin/indeadmin.component';
 import { CreateAccountComponent } from './admin/account/createaccount.component';
 import { AccountService } from './services/account.service';
@@ -32,6 +32,8 @@ import { CreateRoleClaimComponent } from './admin/roleclaim/createroleclaim.comp
 import { UpdateRoleClaimComponent } from './admin/roleclaim/updateroleclaim.component';
 import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.component';
 import { DetailRoleClaimComponent } from './admin/roleclaim/detailroleclaim.component';
+import { LayoutHomeComponent } from './home/layouthome.component';
+import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { DetailRoleClaimComponent } from './admin/roleclaim/detailroleclaim.comp
     CreateRoleClaimComponent,
     UpdateRoleClaimComponent,
     IndexRoleClaimComponent,
-    DetailRoleClaimComponent
+    DetailRoleClaimComponent,
+    LayoutHomeComponent,
+    ForgotPasswordComponent,
 
   ],
   imports: [
