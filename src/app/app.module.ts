@@ -34,6 +34,10 @@ import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.compon
 import { DetailRoleClaimComponent } from './admin/roleclaim/detailroleclaim.component';
 import { LayoutHomeComponent } from './home/layouthome.component';
 import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
+import { RegexApi } from './services/regex.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ValidatorData } from './services/validatorData.service';
 
 
 @NgModule({
@@ -68,7 +72,10 @@ import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-   
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+
   ],
   providers: [
     UrlApi,
@@ -77,7 +84,10 @@ import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component'
     DepartmentsServices,
     RequestServices,
     RoleClaimsServices,
-    RoleServices
+    RoleServices,
+    RegexApi,
+    ValidatorData
+
   ],
   bootstrap: [AppComponent]
 })

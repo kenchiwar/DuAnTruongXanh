@@ -1,18 +1,23 @@
-import { HttpClient } from "@angular/common/http";
+
 import { Component, OnInit, } from "@angular/core";
-import { Router } from "@angular/router";
+import {  FormGroup } from "@angular/forms";
+
+import { AccountService } from "src/app/services/account.service";
 @Component({
        templateUrl : './createaccout.component.html'
-       
+
 })
 export class CreateAccountComponent implements OnInit {
-   
+
     constructor(
-        private router :Router,
-        
+      private accountService: AccountService,
     ){}
+       formGroup : FormGroup;
     ngOnInit(): void {
-        
+      this.formGroup=this.accountService.getFormGroup();
+
     }
-    
+    onSubmit(){
+
+    }
 }
