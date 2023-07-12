@@ -82,6 +82,7 @@ input.form-control.form-control-sidebar {
     color: #ffffff;
 }
 
+.account-create-form .account-create-item select.invalid,
 .account-create-form .account-create-item input.invalid {
     border-color: var(--color-main) !important;
 }
@@ -93,8 +94,28 @@ input.form-control.form-control-sidebar {
     margin-top: 5px;
 }
 
+.create-account .title h1 {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 40px;
+}
+
+.create-account .title {
+    display: block;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     .account-create-form .account-create-item {
         width: 100%;
     }
+}
+
+.account-create-form .account-create-item .item-audio {
+    display: block;
+    width: 100%;
+}
+
+.account-create-form .account-create-item .item-audio>div {
+    display: inline-block;
 }
