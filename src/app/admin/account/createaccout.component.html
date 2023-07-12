@@ -1,103 +1,114 @@
 <h3>Create</h3>
 <ng-container *ngIf="formGroup!=null">
-        <form [formGroup]="formGroup">
-          <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" [ngClass]="{'invalid': formGroup.get('username').invalid && (formGroup.get('username').dirty || formGroup.get('username').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'username') && (formGroup.get('username').dirty || formGroup.get('username').touched)">Username is required.</div>
-          </div>
-          <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': formGroup.get('password').invalid && (formGroup.get('password').dirty || formGroup.get('password').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'password') && (formGroup.get('password').dirty || formGroup.get('password').touched)">Password is required.</div>
-            <div *ngIf="formGroup.hasError('minlength', 'password') && (formGroup.get('password').dirty || formGroup.get('password').touched)">Password must be at least 8 characters long.</div>
-          </div>
-          <div>
-            <label for="idRole">Role:</label>
-            <select id="idRole" formControlName="idRole" [ngClass]="{'invalid': formGroup.get('idRole').invalid && (formGroup.get('idRole').dirty || formGroup.get('idRole').touched)}">
-              <option value="">-- Select a role --</option>
-              <option value="1">Role 1</option>
-              <option value="2">Role 2</option>
-              <option value="3">Role 3</option>
-            </select>
-            <div *ngIf="formGroup.hasError('required', 'idRole') && (formGroup.get('idRole').dirty || formGroup.get('idRole').touched)">Role is required.</div>
-          </div>
-          <div>
-            <label for="idDepartment">Department:</label>
-            <select id="idDepartment" formControlName="idDepartment" [ngClass]="{'invalid': formGroup.get('idDepartment').invalid && (formGroup.get('idDepartment').dirty || formGroup.get('idDepartment').touched)}">
-              <option value="">-- Select a department --</option>
-              <option value="1">Department 1</option>
-              <option value="2">Department 2</option>
-              <option value="3">Department 3</option>
-            </select>
-            <div *ngIf="formGroup.hasError('required', 'idDepartment') && (formGroup.get('idDepartment').dirty || formGroup.get('idDepartment').touched)">Department is required.</div>
-          </div>
-          <div>
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" formControlName="fullname" [ngClass]="{'invalid': formGroup.get('fullname').invalid && (formGroup.get('fullname').dirty || formGroup.get('fullname').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'fullname') && (formGroup.get('fullname').dirty || formGroup.get('fullname').touched)">Full name is required.</div>
-          </div>
-          <div>
-            <label for="emailaddress">Email Address:</label>
-            <input type="email" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': formGroup.get('emailaddress').invalid && (formGroup.get('emailaddress').dirty || formGroup.get('emailaddress').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'emailaddress') && (formGroup.get('emailaddress').dirty || formGroup.get('emailaddress').touched)">Email address is required.</div>
-            <div *ngIf="formGroup.hasError('email', 'emailaddress') && (formGroup.get('emailaddress').dirty || formGroup.get('emailaddress').touched)">Invalid email address.</div>
-          </div>
-          <div>
-            <label for="phonenumber">Phone Number:</label>
-            <input type="text" id="phonenumber" formControlName="phonenumber" [ngClass]="{'invalid': formGroup.get('phonenumber').invalid && (formGroup.get('phonenumber').dirty || formGroup.get('phonenumber').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'phonenumber') && (formGroup.get('phonenumber').dirty || formGroup.get('phonenumber').touched)">Phone number is required.</div>
-            <div *ngIf="formGroup.hasError('validatePhone', 'phonenumber') && (formGroup.get('phonenumber').dirty || formGroup.get('phonenumber').touched)">Invalid phone number.</div>
-          </div>
-          <div>
-            <label for="address">Address:</label>
-            <input type="text" id="address" formControlName="address" [ngClass]="{'invalid': formGroup.get('address').invalid && (formGroup.get('address').dirty || formGroup.get('address').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'address') && (formGroup.get('address').dirty || formGroup.get('address').touched)">Address is required.</div>
-          </div>
-          <div>
-            <label for="citizenidentification">Citizen Identification:</label>
-            <input type="text" id="citizenidentification" formControlName="citizenidentification" [ngClass]="{'invalid': formGroup.get('citizenidentification').invalid && (formGroup.get('citizenidentification').dirty || formGroup.get('citizenidentification').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'citizenidentification') && (formGroup.get('citizenidentification').dirty || formGroup.get('citizenidentification').touched)">Citizen identification is required.</div>
-          </div>
-          <div>
-            <label for="dateofbirth">Date of Birth:</label>
-            <input type="date" id="dateofbirth" formControlName="dateofbirth" [ngClass]="{'invalid': formGroup.get('dateofbirth').invalid && (formGroup.get('dateofbirth').dirty || formGroup.get('dateofbirth').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'dateofbirth') && (formGroup.get('dateofbirth').dirty || formGroup.get('dateofbirth').touched)">Date of birth is required.</div>
-          </div>
-          <div>
-            <label for="sex">Sex:</label>
-            <input type="radio" id="male" name="sex" value="male" formControlName="sex">Male
-            <input type="radio" id="female" name="sex" value="female" formControlName="sex">Female
-            <div *ngIf="formGroup.hasError('required', 'sex') && (formGroup.get('sex').dirty || formGroup.get('sex').touched)">Sex is required.</div>
-          </div>
-          <div>
-            <label for="status">Status:</label>
-            <input type="radio" id="single" name="status" value="single" formControlName="status">Single
-            <input type="radio" id="married" name="status" value="married" formControlName="status">Married
-            <div *ngIf="formGroup.hasError('required', 'status') && (formGroup.get('status').dirty || formGroup.get('status').touched)">Status is required.</div>
-          </div>
-          <div>
-            <label for="role">Role:</label>
-            <input type="text" id="role" formControlName="role" [ngClass]="{'invalid': formGroup.get('role').invalid && (formGroup.get('role').dirty || formGroup.get('role').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'role') && (formGroup.get('role').dirty || formGroup.get('role').touched)">Role is required.</div>
-          </div>
-          <div>
-            <label for="class">Class:</label>
-            <input type="text" id="class" formControlName="class" [ngClass]="{'invalid': formGroup.get('class').invalid && (formGroup.get('class').dirty || formGroup.get('class').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'class') && (formGroup.get('class').dirty || formGroup.get('class').touched)">Class is required.</div>
-          </div>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" [ngClass]="{'invalid': validationService.getErrorAddClass('username', formGroup)}">
+      <div *ngIf="validationService.getErrorText('username', 'username', formGroup)">{{ validationService.getErrorText('username', 'username', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroup)}">
+      <div *ngIf="validationService.getErrorText('password', 'password', formGroup)">{{ validationService.getErrorText('password', 'password', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="idRole">Role:</label>
+      <select id="idRole" formControlName="idRole" [ngClass]="{'invalid': validationService.getErrorAddClass('idRole', formGroup)}">
+        <option value="">-- Select role --</option>
+        <option value="1">Admin</option>
+        <option value="2">User</option>
+      </select>
+      <div *ngIf="validationService.getErrorText('idRole', 'idRole', formGroup)">{{ validationService.getErrorText('idRole', 'idRole', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="idDepartment">Department:</label>
+      <select id="idDepartment" formControlName="idDepartment" [ngClass]="{'invalid': validationService.getErrorAddClass('idDepartment', formGroup)}">
+        <option value="">-- Select department --</option>
+        <option value="1">Sales</option>
+        <option value="2">Marketing</option>
+        <option value="3">Human Resources</option>
+      </select>
+      <div *ngIf="validationService.getErrorText('idDepartment', 'idDepartment', formGroup)">{{ validationService.getErrorText('idDepartment', 'idDepartment', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="fullname">Fullname:</label>
+      <input type="text" id="fullname" formControlName="fullname" [ngClass]="{'invalid': validationService.getErrorAddClass('fullname', formGroup)}">
+      <div *ngIf="validationService.getErrorText('fullname', 'fullname', formGroup)">{{ validationService.getErrorText('fullname', 'fullname', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="emailaddress">Email Address:</label>
+      <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroup)}">
+      <div *ngIf="validationService.getErrorText('emailaddress', 'emailaddress', formGroup)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="phonenumber">Phone Number:</label>
+      <input type="text" id="phonenumber" formControlName="phonenumber" [ngClass]="{'invalid': validationService.getErrorAddClass('phonenumber', formGroup)}">
+      <div *ngIf="validationService.getErrorText('phonenumber', 'phonenumber', formGroup)">{{ validationService.getErrorText('phonenumber', 'phonenumber', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="address">Address:</label>
+      <input type="text" id="address" formControlName="address" [ngClass]="{'invalid': validationService.getErrorAddClass('address', formGroup)}">
+      <div *ngIf="validationService.getErrorText('address', 'address', formGroup)">{{ validationService.getErrorText('address', 'address', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="citizenidentification">Citizen Identification:</label>
+      <input type="text" id="citizenidentification" formControlName="citizenidentification" [ngClass]="{'invalid': validationService.getErrorAddClass('citizenidentification', formGroup)}">
+      <div *ngIf="validationService.getErrorText('citizenidentification', 'citizenidentification', formGroup)">{{ validationService.getErrorText('citizenidentification', 'citizenidentification', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="dateofbirth">Date of Birth:</label>
+      <input type="date" id="dateofbirth" formControlName="dateofbirth" [ngClass]="{'invalid': validationService.getErrorAddClass('dateofbirth', formGroup)}">
+      <div *ngIf="validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup)">{{ validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup) }}</div>
+    </div>
+    <div>
+      <label>Sex:</label>
+      <div>
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="sex" value="male" formControlName="sex">
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="sex" value="female" formControlName="sex">
+      </div>
+      <div *ngIf="validationService.getErrorText('sex', 'sex', formGroup)">{{ validationService.getErrorText('sex', 'sex', formGroup) }}</div>
+    </div>
+    <div>
+      <label>Status:&nbsp; &nbsp; </label>
 
-          <div>
-            <label for="degree">Degree:</label>
-            <input type="text" id="degree" formControlName="degree" [ngClass]="{'invalid': formGroup.get('degree').invalid && (formGroup.get('degree').dirty || formGroup.get('degree').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'degree') && (formGroup.get('degree').dirty || formGroup.get('degree').touched)">Degree is required.</div>
-          </div>
-          <div>
-            <label for="academicrank">Academic Rank:</label>
-            <input type="text" id="academicrank" formControlName="academicrank" [ngClass]="{'invalid': formGroup.get('academicrank').invalid && (formGroup.get('academicrank').dirty || formGroup.get('academicrank').touched)}">
-            <div *ngIf="formGroup.hasError('required', 'academicrank') && (formGroup.get('academicrank').dirty || formGroup.get('academicrank').touched)">Academic rank is required.</div>
-          </div>
-          <button type="submit">Submit</button>
+        <label for="active"> &nbsp; Active &nbsp; </label>
+        <input type="radio" id="active" name="status" value="active" formControlName="status">
+        <label for="inactive"> &nbsp; Inactive &nbsp; </label>
+        <input type="radio" id="inactive" name="status" value="inactive" formControlName="status">
 
-        </form>
+      <div *ngIf="validationService.getErrorText('status', 'status', formGroup)">{{ validationService.getErrorText('status', 'status', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role" [ngClass]="{'invalid': validationService.getErrorAddClass('role', formGroup)}">
+        <option value="">-- Select role --</option>
+        <option value="Admin">Admin</option>
+        <option value="User">User</option>
+      </select>
+      <div *ngIf="validationService.getErrorText('role', 'role', formGroup)">{{ validationService.getErrorText('role', 'role', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="class">Class:</label>
+      <input type="text" id="class" formControlName="class" [ngClass]="{'invalid': validationService.getErrorAddClass('class', formGroup)}">
+      <div *ngIf="validationService.getErrorText('class', 'class', formGroup)">{{ validationService.getErrorText('class', 'class', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="schoolyear">School Year:</label>
+      <input type="text" id="schoolyear" formControlName="schoolyear" [ngClass]="{'invalid': validationService.getErrorAddClass('schoolyear', formGroup)}" (keydown)="false">
+      <div *ngIf="validationService.getErrorText('schoolyear', 'schoolyear', formGroup)">{{ validationService.getErrorText('schoolyear', 'schoolyear', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="degree">Degree:</label>
+      <input type="text" id="degree" formControlName="degree" [ngClass]="{'invalid': validationService.getErrorAddClass('degree', formGroup)}">
+      <div *ngIf="validationService.getErrorText('degree', 'degree', formGroup)">{{ validationService.getErrorText('degree', 'degree', formGroup) }}</div>
+    </div>
+    <div>
+      <label for="academicrank">Academic Rank:</label>
+      <input type="text" id="academicrank" formControlName="academicrank" [ngClass]="{'invalid': validationService.getErrorAddClass('academicrank', formGroup)}">
+      <div *ngIf="validationService.getErrorText('academicrank', 'academicrank', formGroup)">{{ validationService.getErrorText('academicrank', 'academicrank', formGroup) }}</div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
 </ng-container>
