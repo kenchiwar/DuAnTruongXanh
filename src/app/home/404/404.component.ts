@@ -1,12 +1,10 @@
-import { CssSelector } from "@angular/compiler";
 import { Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 @Component({
-      
-       templateUrl : './layouthome.component.html',
-       styleUrls: ["../style.component.css"],
+        selector : 'layout-content',
+       templateUrl : './404.component.html'
 })
-export class LayoutHomeComponent implements OnInit {
+export class ErrorComponent implements OnInit {
    
     constructor(
         private router :Router,
