@@ -1,5 +1,9 @@
+:root {
+    --color-main: #dc3545;
+}
+
 .layout-fixed .main-sidebar {
-    background-color: #dc3545!important;
+    background-color: var(--color-main)!important;
 }
 
 input.form-control.form-control-sidebar {
@@ -13,4 +17,84 @@ input.form-control.form-control-sidebar {
 
 .wrapper {
     width: 100% !important;
+}
+
+.account-create-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: -20px;
+    padding: 20px;
+}
+
+.account-create-form .account-create-item {
+    width: 50%;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.account-create-form .account-create-item input[type=text],
+.account-create-form .account-create-item input[type=password],
+.account-create-form .account-create-item input[type=date],
+.account-create-form .account-create-item select {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #000000 !important;
+    height: 40px;
+    padding: 10px;
+}
+
+.account-create-form .account-create-item input[type=radio] {
+    vertical-align: middle;
+}
+
+.account-create-form .account-create-item>div input[type=radio] {
+    margin: 0 20px;
+}
+
+
+/* .account-create-form .account-create-item input[type=text]:focus,
+.account-create-form .account-create-item input[type=password]:focus, */
+
+.account-create-form .create-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.account-create-form .create-button button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    border: 1px solid var(--color-main);
+    background: unset !important;
+    transition: .2s;
+}
+
+.account-create-form .create-button button:hover {
+    background: var(--color-main) !important;
+    color: #ffffff;
+}
+
+.account-create-form .account-create-item input.invalid {
+    border-color: var(--color-main) !important;
+}
+
+.account-create-form .form-create-mess {
+    font-size: 18px;
+    color: var(--color-main) !important;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .account-create-form .account-create-item {
+        width: 100%;
+    }
 }
