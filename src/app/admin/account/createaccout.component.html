@@ -20,8 +20,8 @@
     </div> -->
     <div>
       <label for="emailaddress">Email and Username :</label>
-      <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroup)}">
-      <div *ngIf="validationService.getErrorText('emailaddress', 'emailaddress', formGroup)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroup) }}</div>
+      <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm}">
+      <div *ngIf="(validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroup) }} &emsp; &emsp; &emsp; {{this.isEmailConfirm?'Username is exists ! ':''}}  </div>
     </div>
     <div>
       <label for="password">Password:</label>
@@ -142,4 +142,5 @@
       {{ isLoading ? 'Loading...' : 'Submit' }}
     </button>
   </form>
+  <button type="button" (click)="reload()">Reset</button>
 </ng-container>

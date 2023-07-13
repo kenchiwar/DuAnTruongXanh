@@ -4,6 +4,7 @@ import {  FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Account } from "src/app/models/account.model";
 import { Department } from "src/app/models/department.model";
+import { ResultAPI } from "src/app/models/resultapi";
 import { Role } from "src/app/models/role.model";
 
 import { AccountService } from "src/app/services/account.service";
@@ -25,9 +26,11 @@ export class CreateAccountComponent implements OnInit {
        selectedFileUrl: string = '';
        fileData:File;
        accountLogin : Account;
-       isLoading : boolean = false;
+       isLoading : boolean ;
+        isEmailConfirm :boolean  ;
     ngOnInit(): void {
       this.isLoading = false ;
+      this.isEmailConfirm =false ;
       this.selectedFileUrl = '';
       this.accountService.GetAllDepartment().then((department=>{
         this.accountService.GetAllRoles().then(role=>{
@@ -66,17 +69,43 @@ export class CreateAccountComponent implements OnInit {
       // }
       // //kiểm tra coi
       // if (!this.formGroup.valid) return ;
-      this.isLoading=true;
-      if(!this.validationService.checkFormGroupSubmit(this.formGroup)) return;
 
-      this.accountService.PostAccount(this.formGroup.getRawValue() as Account,this.fileData)
-      .then(success=>{
 
-      }).finally(()=>{
-        setTimeout(()=>{
-          this.isLoading=false;
-        },2000);
-      });
+
+     if(!this.validationService.checkFormGroupSubmit(this.formGroup)) return;
+
+     this.isLoading=true;
+      var account = this.formGroup.value as Account ;
+      this.accountService.CheckEmailExists(account.username).then(resultEmail=>{
+        this.isEmailConfirm=resultEmail as boolean ;
+        if(!this.isEmailConfirm){
+          this.accountService.PostAccount(account,this.fileData)
+          .then(success=>{
+              var result = success as ResultAPI;
+              if(result.result){
+                this.reload();
+                this.validationService.getNotification(result.result,"Add Account Successufully?");
+              }else{
+                this.validationService.getNotification(result.result,"Add Account Error?");
+              }
+
+
+          }).finally(()=>{
+            setTimeout(()=>{
+              this.isLoading=false;
+            },2000);
+          });
+
+        }
+
+
+      }).catch(error=>{
+          setTimeout(()=>{
+            this.isLoading=false;
+          },2000);
+      })
+
+
 
 
 

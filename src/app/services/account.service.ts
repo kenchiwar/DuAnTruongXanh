@@ -36,7 +36,7 @@ export class AccountService {
           });
 
     }
-  getFormGroup():FormGroup{
+  getFormGroup(data?:Account):FormGroup{
 
     // return this.formBuilder.group({
     //   id : 0,
@@ -88,17 +88,48 @@ export class AccountService {
       sex: ['false', Validators.required],
       status: ['true', Validators.required],
       role: ['student', Validators.required],
-      class: [''],
-      schoolyear: [''],
-      degree: [''],
-      academicrank: [''],
+      class: ['',Validators.required],
+      schoolyear: ['',Validators.required],
+      degree: ['',Validators.required],
+      academicrank: ['',Validators.required],
 
     });
+    //cho email == username
     a.controls.emailaddress.valueChanges.subscribe(value=>{
       a.patchValue({
         username : value,
       })
-    })
+
+
+    });
+    //
+    a.controls.role.valueChanges.subscribe(value=>{
+        if(value==='student'){
+          a.controls.academicrank.disable() ;
+          a.controls.academicrank.setValue('');
+          a.controls.degree.disable();
+          a.controls.degree.setValue('');
+
+          a.controls.class.enable();
+          a.controls.schoolyear.enable();
+        }
+        else{
+          a.controls.class.disable() ;
+          a.controls.class.setValue('');
+          a.controls.schoolyear.disable();
+          a.controls.schoolyear.setValue('');
+
+          a.controls.degree.enable() ;
+          a.controls.academicrank.enable();
+        }
+    });
+    //trường hợp có data
+    if(data!=null) {
+
+    }else{
+      a.controls.role.setValue('student');
+      a.controls.password.disable();
+    }
 
     return a;
 }
@@ -144,7 +175,10 @@ getFormGroupData(data :any):FormGroup{
 
     });
 }
-
+  async CheckEmailExists(account:string ,id?:string ){
+    //checkEmailExists/adasdad@gmail.com
+    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+'/checkEmailExists/'+account+(id!=null?'/'+id:'')));
+  }
  async GetAllRoles(){
       return await    lastValueFrom(this.http.get(this.url.baseRolesUrl));
   }
