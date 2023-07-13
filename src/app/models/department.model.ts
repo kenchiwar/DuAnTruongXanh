@@ -9,7 +9,7 @@ export class Department {
     public status?: boolean;
     public accounts?: Account[];
     public requets?: Requet[];
-  
+
     // constructor() {
     //   this.id = 0;
     //   this.accounts = [];

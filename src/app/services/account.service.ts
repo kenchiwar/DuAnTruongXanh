@@ -1,9 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UrlApi } from "./baseurl.services";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Injectable } from "@angular/core";
 import {  lastValueFrom} from "rxjs";
 import { RegexApi } from "./regex.service";
+import { Account } from "../models/account.model";
 
 
 
@@ -19,6 +20,22 @@ export class AccountService {
 
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/account/getall"));
   }
+  //Nơi lưa trữ account login
+   GetAccountLogin() :Account{
+    var account = new Account();
+    account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
+    account.idRole=1;
+
+    return account;
+  }
+  //HttpHeaders
+    GetHttpHeaders(){
+          const account = this.GetAccountLogin();
+          return   new HttpHeaders({
+            'session-id':account.username+account.id,
+          });
+
+    }
   getFormGroup():FormGroup{
 
     // return this.formBuilder.group({
@@ -66,17 +83,22 @@ export class AccountService {
       emailaddress: ['', [Validators.required, Validators.email]],
       phonenumber: ['', [Validators.required, Validators.pattern(this.regex.PhoneNumber)]],
       address: ['', Validators.required],
-      citizenidentification: ['', Validators.required],
+      citizenidentification: [''],
       dateofbirth: ['', Validators.required],
-      sex: [false, Validators.required],
-      status: [false, Validators.required],
-      role: ['', Validators.required],
-      class: ['', Validators.required],
-      schoolyear: ['', Validators.required],
-      degree: ['', Validators.required],
-      academicrank: ['', Validators.required],
+      sex: ['false', Validators.required],
+      status: ['true', Validators.required],
+      role: ['student', Validators.required],
+      class: [''],
+      schoolyear: [''],
+      degree: [''],
+      academicrank: [''],
 
     });
+    a.controls.emailaddress.valueChanges.subscribe(value=>{
+      a.patchValue({
+        username : value,
+      })
+    })
 
     return a;
 }
@@ -134,8 +156,12 @@ getFormGroupData(data :any):FormGroup{
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/get"+id));
   }
 
-  async PostAccount(data:any){
-    return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/account/postaccount/",data));
+  async PostAccount(dataAccout:Account,dataFile:File){
+    console.log(dataAccout);
+    var formSubmit = new FormData();
+    formSubmit.append('file',dataFile);
+    formSubmit.append('dataAccount',JSON.stringify(dataAccout));
+  return await lastValueFrom(this.http.post(this.url.baseAccountsUrl,formSubmit));
   }
   async DeleteAccount(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/account/detaleaccount/"+id));

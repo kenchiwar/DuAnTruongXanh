@@ -3,6 +3,7 @@ import { FormGroup } from "@angular/forms";
 
 @Injectable()
 export class ValidatorData{
+  //fieldName là tên data,fileReality là tên bên ngoài hiện ra của nó , stringPattern là trường hợp regex pattern có lỗi thì bắt
   getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,stringPattern?:string){
     const field = formGroup.get(fieldName);
 
@@ -36,10 +37,28 @@ export class ValidatorData{
 
   return '';
   }
+ //kiểm tra tính hợp lệ của trường thuộc tính để add class chứ gì
   getErrorAddClass(fieldName: string, formGroup: FormGroup): boolean{
     const field = formGroup.get(fieldName);
     return field.invalid && (field.dirty || field.touched)
    // formGroup.get('class').invalid && (formGroup.get('class').dirty || formGroup.get('class').touched)
    // field.invalid && (field.dirty || field.touched)
   }
+  //các vấn đề cần kiểm tra formGroup trc khi submit 
+  checkFormGroupSubmit(formGroup: FormGroup): boolean{
+    for (const field in formGroup.controls) {
+      const control = formGroup.get(field);
+      control.markAsDirty();
+      control.markAsTouched();
+    }
+     return  formGroup.valid;
+  }
+  getErrorNotification(error:string ,id?:string ){
+
+  }
+  getErrorRouterChange(mess:string ,urlChange?:string ,urlNow?:string ){
+
+
+  }
+
 }
