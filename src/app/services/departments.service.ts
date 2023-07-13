@@ -49,13 +49,18 @@ getFormGroupData(data :any):FormGroup{
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/departments/getdepartment/"+id));
   }
 
-  async PostDepartment(data:any){
-    return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/departments/postdepartment/",data));
+  async PostDepartment(formData:FormData){
+    return await lastValueFrom(this.http.post(this.url.baseDepartments+ "/created", formData));
   }
+
+  
   async DeleteDepartment(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/departments/deletedepartment/"+id));
   }
   async PutDepartment(data:any,id:string){
     return await lastValueFrom(this.http.put(this.url.baseChuyenBayUrl+"/api/departments/putdepartment/"+id,data));
   }
+
+  //created department
+  
 }   
