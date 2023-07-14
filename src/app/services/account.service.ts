@@ -16,6 +16,9 @@ export class AccountService {
   constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi) {
    // private convert:ConvertDate
   }
+  async getAll(){
+    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl));
+  }
   async GetAccounts(){
 
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/account/getall"));
@@ -36,6 +39,7 @@ export class AccountService {
           });
 
     }
+
   getFormGroup(data?:Account):FormGroup{
 
     // return this.formBuilder.group({

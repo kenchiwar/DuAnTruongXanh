@@ -39,4 +39,4 @@ export class Account {
     //     this.requetIdHandleNavigations = [];
     //     this.idRoleClaims = [];
     //   }
-    }  
+    }

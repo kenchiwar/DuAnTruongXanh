@@ -90,20 +90,19 @@ export class CreateAccountComponent implements OnInit {
               }
 
 
-          }).finally(()=>{
-            setTimeout(()=>{
-              this.isLoading=false;
-            },2000);
           });
 
+        }else{
+          this.validationService.getNotification(this.isEmailConfirm,"UserName is Exists ");
         }
 
 
-      }).catch(error=>{
-          setTimeout(()=>{
-            this.isLoading=false;
-          },2000);
-      })
+      
+      }).finally(()=>{
+        setTimeout(()=>{
+          this.isLoading=false;
+        },2000);
+      });
 
 
 

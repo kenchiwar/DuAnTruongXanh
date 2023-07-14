@@ -1,2 +1,38 @@
 <h3>Index123</h3>
 <h1>Index12345</h1>
+<ng-container *ngIf="this.dataAccounts!=null">
+
+</ng-container>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Username</th>
+    <th>IdRole</th>
+    <th>IdDepartment</th>
+    <th>Fullname</th>
+    <th>Emailaddress</th>
+    <th>Phonenumber</th>
+    <th>Address</th>
+    <th>Citizenidentification</th>
+    <th>Dateofbirth</th>
+    <th>Sex</th>
+    <th>Status</th>
+    <th>Role</th>
+    <th>Class</th>
+    <th>Schoolyear</th>
+    <th>Degree</th>
+    <th>Academicrank</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let data of dataAccounts">
+    <td>{{data.id}}</td>
+    <td>{{data.username}}</td>
+    <td>{{data.idRole}}</td>
+    ... // Cùng cách hiển thị các trường còn lại
+    <td>
+      <button (click)="delete(data.id)">Delete</button>
+      <button (click)="update(data.id)">Update</button>
+      <button (click)="details(data.id)">Detail</button>
+    </td>
+  </tr>
+</table>
