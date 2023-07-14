@@ -1,1 +1,32 @@
 <h3>Update</h3>
+<form [formGroup]="formDepartment" (ngSubmit)="updatedDepartment()">
+    <table>
+        <tr>
+            <td>Choose department</td>
+            <select (change)="getDepartment($event)">
+                
+                <option *ngFor="let department of departments" value="{{department.id}}">{{department.tenDepartment}}</option>
+            </select>
+        </tr>
+        <tr>
+            <td>Name Department</td>
+            <td><input type="text" formControlName="tenDepartment"></td>
+        </tr>
+        <tr>
+            <td>Describe</td>
+            <td><input type="text" formControlName="describe"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" formControlName="address"></td>
+        </tr>
+        <tr>
+                <td>Status</td>
+                <td><input type="checkbox" formControlName="status"></td>
+        </tr>
+        <tr>
+            <td ><input type="submit" value="Save"></td>
+            <td><input type="hidden" formControlName="id"></td>
+        </tr>
+    </table>
+</form>
