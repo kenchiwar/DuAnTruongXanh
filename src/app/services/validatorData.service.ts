@@ -3,11 +3,21 @@ import { FormGroup } from "@angular/forms";
 
 @Injectable()
 export class ValidatorData{
-  getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,stringPattern?:string){
+    private readonly Required:string='required';
+    private readonly MinLength: string = 'minLength';
+  private readonly MaxLength: string = 'maxLength';
+  private readonly Pattern: string = 'pattern';
+  private readonly Email: string = 'email';
+  private readonly MatchPasswords: string = 'matchPasswords';
+  //fieldName là tên data,fileReality là tên bên ngoài hiện ra của nó , stringPattern là trường hợp regex pattern có lỗi thì bắt
+  getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,dictionary?:Record<string,number>){
     const field = formGroup.get(fieldName);
-
+   dictionary = dictionary as Record<string,number>;
   if (field.touched && field.invalid) {
     if (field.hasError('required')) {
+
+      //const myDictionary: Record<string, number> = { 'key1': 1, 'key2': 2 };
+      //console.log(myDictionary['key1']+'');
       return `${filedReality} is required.`;
     } else if (field.hasError('maxlength')) {
       const maxLength = field.getError('maxlength').requiredLength;
@@ -24,9 +34,9 @@ export class ValidatorData{
       const minValue = field.getError('min').min;
       return `${filedReality} must be greater than or equal to ${minValue}.`;
     } else if (field.hasError('pattern')) {
-      if(stringPattern!=null){
-        return stringPattern;
-      }
+      // if(stringPattern!=null){
+      //   return stringPattern;
+      // }
       const patternValue = field.getError('pattern').requiredPattern;
       return `${filedReality} must match the pattern ${patternValue}.`;
     } else if (field.hasError('matchPasswords')) {
@@ -36,10 +46,36 @@ export class ValidatorData{
 
   return '';
   }
+ //kiểm tra tính hợp lệ của trường thuộc tính để add class chứ gì
   getErrorAddClass(fieldName: string, formGroup: FormGroup): boolean{
     const field = formGroup.get(fieldName);
     return field.invalid && (field.dirty || field.touched)
    // formGroup.get('class').invalid && (formGroup.get('class').dirty || formGroup.get('class').touched)
    // field.invalid && (field.dirty || field.touched)
   }
+  //các vấn đề cần kiểm tra formGroup trc khi submit
+  checkFormGroupSubmit(formGroup: FormGroup): boolean{
+    for (const field in formGroup.controls) {
+      const control = formGroup.get(field);
+      if(!control.disabled){
+        control.markAsDirty();
+        control.markAsTouched();
+      }
+
+    }
+     return  formGroup.valid;
+  }
+  getNotification(status:boolean,mess:string ,id?:string ){
+    if(status){
+      alert(mess);
+    }else{
+      alert(mess); 
+    }
+
+  }
+  getErrorRouterChange(mess:string ,urlChange?:string ,urlNow?:string ){
+
+
+  }
+
 }

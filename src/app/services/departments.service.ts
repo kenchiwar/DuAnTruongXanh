@@ -18,7 +18,7 @@ export class DepartmentsServices {
 
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/departments/getdepartments"));
   }
-  getFormGroup():FormGroup{
+  getFormGroup(){
 
     return this.formBuilder.group({
       id:0,
@@ -26,8 +26,7 @@ export class DepartmentsServices {
       describe : '',
       address :'',
       status : false,
-      accounts : {bbbb:'',Bbb:0,},
-      requets : {bbbb:'',Bbb:0,},
+      
     });
 }
 
@@ -44,18 +43,26 @@ getFormGroupData(data :any):FormGroup{
     });
 }
 
-    async GetDepartment(id:string){
+async GetDepartment(){
+  return await lastValueFrom(this.http.get(this.url.baseDepartments));
+}
 
-    return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/departments/getdepartment/"+id));
+    async GetDepartmentById(id:string){
+    return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/" +id));
   }
 
-  async PostDepartment(data:any){
-    return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/departments/postdepartment/",data));
+  async PostDepartment(formData:FormData){
+    return await lastValueFrom(this.http.post(this.url.baseDepartments+ "/created", formData));
   }
+
+  
   async DeleteDepartment(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/departments/deletedepartment/"+id));
   }
-  async PutDepartment(data:any,id:string){
-    return await lastValueFrom(this.http.put(this.url.baseChuyenBayUrl+"/api/departments/putdepartment/"+id,data));
+  async PutDepartment(formData: FormData){
+    return await lastValueFrom(this.http.put(this.url.baseDepartments+ "/updated", formData));
   }
+
+  //created department
+  
 }   

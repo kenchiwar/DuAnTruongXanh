@@ -1,9 +1,10 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { UrlApi } from "./baseurl.services";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Injectable } from "@angular/core";
 import {  lastValueFrom} from "rxjs";
 import { RegexApi } from "./regex.service";
+import { Account } from "../models/account.model";
 
 
 
@@ -15,11 +16,31 @@ export class AccountService {
   constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi) {
    // private convert:ConvertDate
   }
+  async getAll(){
+    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl));
+  }
   async GetAccounts(){
 
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/account/getall"));
   }
-  getFormGroup():FormGroup{
+  //Nơi lưa trữ account login
+   GetAccountLogin() :Account{
+    var account = new Account();
+    account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
+    account.idRole=1;
+
+    return account;
+  }
+  //HttpHeaders
+    GetHttpHeaders(){
+          const account = this.GetAccountLogin();
+          return   new HttpHeaders({
+            'session-id':account.username+account.id,
+          });
+
+    }
+
+  getFormGroup(data?:Account):FormGroup{
 
     // return this.formBuilder.group({
     //   id : 0,
@@ -66,17 +87,53 @@ export class AccountService {
       emailaddress: ['', [Validators.required, Validators.email]],
       phonenumber: ['', [Validators.required, Validators.pattern(this.regex.PhoneNumber)]],
       address: ['', Validators.required],
-      citizenidentification: ['', Validators.required],
+      citizenidentification: [''],
       dateofbirth: ['', Validators.required],
-      sex: [false, Validators.required],
-      status: [false, Validators.required],
-      role: ['', Validators.required],
-      class: ['', Validators.required],
-      schoolyear: ['', Validators.required],
-      degree: ['', Validators.required],
-      academicrank: ['', Validators.required],
+      sex: ['false', Validators.required],
+      status: ['true', Validators.required],
+      role: ['student', Validators.required],
+      class: ['',Validators.required],
+      schoolyear: ['',Validators.required],
+      degree: ['',Validators.required],
+      academicrank: ['',Validators.required],
 
     });
+    //cho email == username
+    a.controls.emailaddress.valueChanges.subscribe(value=>{
+      a.patchValue({
+        username : value,
+      })
+
+
+    });
+    //
+    a.controls.role.valueChanges.subscribe(value=>{
+        if(value==='student'){
+          a.controls.academicrank.disable() ;
+          a.controls.academicrank.setValue('');
+          a.controls.degree.disable();
+          a.controls.degree.setValue('');
+
+          a.controls.class.enable();
+          a.controls.schoolyear.enable();
+        }
+        else{
+          a.controls.class.disable() ;
+          a.controls.class.setValue('');
+          a.controls.schoolyear.disable();
+          a.controls.schoolyear.setValue('');
+
+          a.controls.degree.enable() ;
+          a.controls.academicrank.enable();
+        }
+    });
+    //trường hợp có data
+    if(data!=null) {
+
+    }else{
+      a.controls.role.setValue('student');
+      a.controls.password.disable();
+    }
 
     return a;
 }
@@ -122,7 +179,10 @@ getFormGroupData(data :any):FormGroup{
 
     });
 }
-
+  async CheckEmailExists(account:string ,id?:string ){
+    //checkEmailExists/adasdad@gmail.com
+    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+'/checkEmailExists/'+account+(id!=null?'/'+id:'')));
+  }
  async GetAllRoles(){
       return await    lastValueFrom(this.http.get(this.url.baseRolesUrl));
   }
@@ -134,8 +194,12 @@ getFormGroupData(data :any):FormGroup{
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/get"+id));
   }
 
-  async PostAccount(data:any){
-    return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/account/postaccount/",data));
+  async PostAccount(dataAccout:Account,dataFile:File){
+    console.log(dataAccout);
+    var formSubmit = new FormData();
+    formSubmit.append('file',dataFile);
+    formSubmit.append('dataAccount',JSON.stringify(dataAccout));
+  return await lastValueFrom(this.http.post(this.url.baseAccountsUrl,formSubmit));
   }
   async DeleteAccount(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/account/detaleaccount/"+id));

@@ -19,7 +19,7 @@ input.form-control.form-control-sidebar {
     width: 100% !important;
 }
 
-.account-create-form {
+.admin-form {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -30,16 +30,32 @@ input.form-control.form-control-sidebar {
     padding: 20px;
 }
 
-.account-create-form .account-create-item {
+.admin-form .admin-form-item {
     width: 50%;
     padding-left: 20px;
     margin-bottom: 20px;
 }
 
-.account-create-form .account-create-item input[type=text],
-.account-create-form .account-create-item input[type=password],
-.account-create-form .account-create-item input[type=date],
-.account-create-form .account-create-item select {
+.admin-form table {
+    width: 70%;
+    margin: auto;
+}
+
+.admin-form table .admin-form-item select,
+.admin-form table .admin-form-item td:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+.admin-form table .admin-form-item td {
+    width: 100%;
+    display: block;
+}
+
+.admin-form .admin-form-item input[type=text],
+.admin-form .admin-form-item input[type=password],
+.admin-form .admin-form-item input[type=date],
+.admin-form .admin-form-item>button[type=button],
+.admin-form .admin-form-item select {
     display: block;
     width: 100%;
     border-radius: 20px;
@@ -48,25 +64,25 @@ input.form-control.form-control-sidebar {
     padding: 10px;
 }
 
-.account-create-form .account-create-item input[type=radio] {
+.admin-form .admin-form-item input[type=radio] {
     vertical-align: middle;
 }
 
-.account-create-form .account-create-item>div input[type=radio] {
+.admin-form .admin-form-item input[type=radio] {
     margin: 0 20px;
 }
 
 
-/* .account-create-form .account-create-item input[type=text]:focus,
-.account-create-form .account-create-item input[type=password]:focus, */
+/* .admin-form .admin-form-item input[type=text]:focus,
+.admin-form .admin-form-item input[type=password]:focus, */
 
-.account-create-form .create-button {
+.admin-form .form-button {
     display: block;
     width: 100%;
     text-align: center;
 }
 
-.account-create-form .create-button button {
+.admin-form .form-button .button-submit {
     padding: 10px 20px;
     border-radius: 20px;
     text-transform: uppercase;
@@ -75,19 +91,25 @@ input.form-control.form-control-sidebar {
     border: 1px solid var(--color-main);
     background: unset !important;
     transition: .2s;
+    color: var(--color-main);
 }
 
-.account-create-form .create-button button:hover {
+.admin-form .form-button .button-submit:hover {
     background: var(--color-main) !important;
     color: #ffffff;
 }
 
-.account-create-form .account-create-item select.invalid,
-.account-create-form .account-create-item input.invalid {
+.admin-form h2 {
+    display: block;
+    width: 100%;
+}
+
+.admin-form .admin-form-item select.invalid,
+.admin-form .admin-form-item input.invalid {
     border-color: var(--color-main) !important;
 }
 
-.account-create-form .form-create-mess {
+.admin-form .form-create-mess {
     font-size: 18px;
     color: var(--color-main) !important;
     text-transform: uppercase;
@@ -106,16 +128,39 @@ input.form-control.form-control-sidebar {
 }
 
 @media (max-width: 768px) {
-    .account-create-form .account-create-item {
+    .admin-form .admin-form-item {
         width: 100%;
     }
 }
 
-.account-create-form .account-create-item .item-audio {
+.admin-form .admin-form-item .item-audio {
     display: block;
     width: 100%;
 }
 
-.account-create-form .account-create-item .item-audio>div {
+.admin-form .admin-form-item .item-audio>div {
     display: inline-block;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 40px;
+    display: block;
+    text-align: center;
+}
+
+.admin-form input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.inline-block {
+    display: inline-block !important;
+    width: auto !important;
+}
+
+.mg-0 {
+    margin: 0 !important;
 }
