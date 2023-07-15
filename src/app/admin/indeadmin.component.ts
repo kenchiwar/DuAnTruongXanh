@@ -15,5 +15,10 @@ export class IndexAdminComponent implements OnInit {
     ngOnInit(): void {
         
     }
+    loadScript(url: string) {
+        const script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+      }
     
 }

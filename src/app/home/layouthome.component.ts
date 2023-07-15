@@ -12,7 +12,11 @@ export class LayoutHomeComponent implements OnInit {
         private router :Router,
     ){}
     ngOnInit(): void {
-       
+        this.loadScript('assets/filehome/js/main.js');
     }
-    
+    loadScript(url: string) {
+        const script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+      }
 }
