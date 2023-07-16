@@ -146,9 +146,9 @@ export class UpdateAccountComponent implements OnInit {
               var result = success as ResultAPI;
               if(result.result){
                 this.reload();
-                this.validationService.getNotification(result.result,"Add Account Successufully?");
+                this.validationService.getNotification(result.result,"Update  Account Successufully?");
               }else{
-                this.validationService.getNotification(result.result,"Add Account Error?");
+                this.validationService.getNotification(result.result,"Update Account Error?");
               }
 
 
