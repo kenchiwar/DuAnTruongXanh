@@ -80,7 +80,7 @@ export class ValidatorData{
     }
 
   }
-  getErrorRouterChange(mess:string ,urlChange?:string ,urlNow?:string ){
+  getErrorRouterChange(mess:string ,error?:any ,urlChange?:string ,urlNow?:string ){
 
     alert(mess);
 

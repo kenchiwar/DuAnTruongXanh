@@ -24,18 +24,62 @@ export class IndexAccountComponent implements OnInit {
     dataAccounts:Account[];
     dataAll:Account[];
       urlImg:string;
+      textSearch:string;
+      statusSearch:boolean;
+      accountLogin:Account;
+      isLoading:boolean;
     ngOnInit(): void {
+      this.textSearch='';
+      this.isLoading=false;
+      this.statusSearch=false;
       this.urlImg=this.urlApi.baseUrl;
         this.accountService.getAll().then(dataAccount=>{
           this.dataAll = dataAccount as Account[];
           this.dataAccounts=this.dataAll;
+          this.accountLogin=this.accountService.GetAccountLogin();
         }).catch(error => {
               this.validatorService.getErrorRouterChange("Can't load the data Account");
         });
 
 
     }
-    delete(id:number):void {
+    delete(id:number,mess:string ):void {
+        if(!confirm(`Are you sure you want to delete `+mess)) return ;
+        this.isLoading=true;
+        try {
+          var account = this.dataAccounts.find(a=>a.id==id);
+
+
+          if(!(this.accountLogin.idRole<account.idRole)) {
+            alert('Don\'t permission');
+            setTimeout(()=>{
+              this.isLoading=false;
+            },2000);
+              return ;
+          }
+          alert('ffff3');
+          this.accountService.DeleteAccount(id+'').then(success=>{
+                this.validatorService.getNotification(true,'Delete Success');
+          }).catch(error=>{
+            this.validatorService.getNotification(false,"Delete not succes",error);
+
+          })
+          .finally(()=>{
+            setTimeout(()=>{
+              this.isLoading=false;
+            },2000);
+
+          });
+        } catch (error) {
+
+          this.validatorService.getNotification(false,"Delete not succes",error);
+          setTimeout(()=>{
+            this.isLoading=false;
+          },2000);
+
+        }
+
+
 
     }
     update(id:number):void {
@@ -46,6 +90,12 @@ export class IndexAccountComponent implements OnInit {
 
 
     }
-   
+    search(){
+
+    }
+    reload(){
+      this.ngOnInit();
+    }
+
 
 }

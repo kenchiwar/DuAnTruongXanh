@@ -3,6 +3,11 @@
 
 
 <div class="table-responsive">
+  Search:<input type="text"[(ngModel)]="this.textSearch" placeholder="if search date search dd/MM/yyyy">
+  Search Include Delete : <input type="checkbox" [(ngModel)]="this.statusSearch">
+  <button type="button" (click)="search()">Serach</button>
+||||
+<button type="button" (click)="reload()">Reload </button>
   <table class="table table-bordered">
     <tr>
       <th>Id</th>
@@ -45,9 +50,13 @@
     <td>{{data.degree}}</td>
     <td>{{data.academicrank}}</td>
         <td>
-          <button (click)="delete(data.id)" >Delete</button>
+
+          <button type="button "(click)="delete(data.id,data.username)" class="btn btn-primary button-submit " [disabled]="isLoading ">
+            <span *ngIf="isLoading " class="spinner-border spinner-border-sm mr-2 "></span>
+            {{ isLoading ? 'Loading...' : 'Delete' }}
+        </button>
           <button type="button" [routerLink]="['/admin/account/update/',data.id]">Update</button>
-          <button [routerLink]="['/admin/account/detail',{id:data.id}]">Detail</button>
+          <button type="button" [routerLink]="['/admin/account/detail/',data.id]">Detail</button>
         </td>
       </tr>
     </ng-container>

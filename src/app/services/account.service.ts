@@ -236,6 +236,11 @@ getFormGroupData(data :any):FormGroup{
       const headers = ab;
     return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+"/"+id,{headers}));
   }
+  async GetAccountDetail(id:string){
+    const ab = this.GetHttpHeaders();
+    const headers = ab;
+  return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+"/detail/"+id,{headers}));
+}
 
   async PostAccount(dataAccout:Account,dataFile:File){
     console.log(dataAccout);
@@ -246,7 +251,7 @@ getFormGroupData(data :any):FormGroup{
   }
 
   async DeleteAccount(id:string){
-    return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/account/detaleaccount/"+id));
+    return await lastValueFrom(this.http.delete(this.url.baseAccountsUrl+'/'+id));
   }
   async PutAccount(dataAccount :any,dataFile:File,id:string,dataRoleClaim?:any ){
     var formSubmit = new FormData();
