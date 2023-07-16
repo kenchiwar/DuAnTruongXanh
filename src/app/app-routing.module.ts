@@ -24,11 +24,13 @@ import { UpdateRoleClaimComponent } from './admin/roleclaim/updateroleclaim.comp
 import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.component';
 import { LayoutHomeComponent } from './home/layouthome.component';
 import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
+import { ErrorComponent } from './home/404/404.component';
 
 const routes: Routes = [
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
+    {path: '404', component:ErrorComponent},
   ]},
   {path: 'admin', component:IndexAdminComponent,children: [
     {path:'',component:IndexAccountComponent},

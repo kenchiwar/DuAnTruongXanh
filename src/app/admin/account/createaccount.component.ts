@@ -52,7 +52,8 @@ export class CreateAccountComponent implements OnInit {
             this.validationService.getErrorRouterChange("Can not load this page ");
         });
           })).catch(error=>{
-            this.validationService.getErrorRouterChange("Can not load this page ");
+            this.validationService.getErrorRouterChange("Can not load thí page ");
+
           });
 
 
@@ -95,6 +96,8 @@ export class CreateAccountComponent implements OnInit {
         }else{
           this.validationService.getNotification(this.isEmailConfirm,"UserName is Exists ");
         }
+
+
 
 
 

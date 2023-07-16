@@ -38,6 +38,7 @@ import { RegexApi } from './services/regex.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ValidatorData } from './services/validatorData.service';
+import { ErrorComponent } from './home/404/404.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ValidatorData } from './services/validatorData.service';
     DetailRoleClaimComponent,
     LayoutHomeComponent,
     ForgotPasswordComponent,
+    ErrorComponent
 
   ],
   imports: [

@@ -1,1 +1,36 @@
-<h3>Update</h3>
+<section class="sec1-account-update">
+    <h3 class="title">Update</h3>
+    <form [formGroup]="formDepartment" (ngSubmit)="updatedDepartment()" class="admin-form ">
+        <table>
+            <tr class="admin-form-item ">
+                <td>Choose department</td>
+                <select (change)="getDepartment($event)">
+                
+                <option *ngFor="let department of departments" value="{{department.id}}">{{department.tenDepartment}}</option>
+            </select>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Name Department</td>
+                <td><input type="text" formControlName="tenDepartment"></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Describe</td>
+                <td><input type="text" formControlName="describe"></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Address</td>
+                <td><input type="text" formControlName="address"></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td class="inline-block">Status</td>
+                <td class="inline-block mg-0"><input type="checkbox" formControlName="status"></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td><input type="submit" value="Save" class="button-submit" /></td>
+                    <td><input type="hidden" formControlName="id"></td>
+                </div>
+            </tr>
+        </table>
+    </form>
+</section>

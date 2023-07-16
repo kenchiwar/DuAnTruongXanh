@@ -6,6 +6,7 @@ import {  lastValueFrom} from "rxjs";
 import { RegexApi } from "./regex.service";
 import { Account } from "../models/account.model";
 import { ValidatorData } from "./validatorData.service";
+import { DatePipe } from "@angular/common";
 
 
 
@@ -35,26 +36,15 @@ export class AccountService {
     return account;
   }
   //HttpHeaders
-    GetHttpHeaders():HttpHeaders{
+
+    GetHttpHeaders(){
+
           const account = this.GetAccountLogin();
           return   new HttpHeaders({
             'session-id':account.username+account.id,
           });
 
     }
-  getFormGroupRoleClaim(data?:Account):FormGroup{
-    var a = this.formBuilder.group({
-        Idrole :[['1','2'],[]]
-
-    })
-    var roleList = [];
-    //console.log(data);
-    //data.idRoleClaims?.forEach(role=>roleList.push(role.id+''));
-
-  //  a.controls.Idrole.setValue(roleList);
-    return a ;
-
-  }
   getFormGroup(data?:Account):FormGroup{
 
     // return this.formBuilder.group({
@@ -111,6 +101,7 @@ export class AccountService {
       schoolyear: ['',Validators.required],
       degree: ['',Validators.required],
       academicrank: ['',Validators.required],
+
       confirmPassword: ['',[]],
 
 
@@ -125,6 +116,7 @@ export class AccountService {
 
     });
     //phân biệt thuộc tính học sinh sinh viên
+
     a.controls.role.valueChanges.subscribe(value=>{
         if(value==='student'){
           a.controls.academicrank.disable() ;
@@ -147,6 +139,7 @@ export class AccountService {
     });
     //trường hợp có data
     if(data!=null) {
+
     a.controls.id.setValue(data.id);
     a.controls.username.setValue(data.username);
 
@@ -157,7 +150,8 @@ export class AccountService {
     a.controls.phonenumber.setValue(data.phonenumber);
     a.controls.address.setValue(data.address);
 
-    a.controls.dateofbirth.setValue(data.dateofbirth+"");
+    a.controls.dateofbirth.setValue(data.dateofbirth+'');
+
     a.controls.sex.setValue(data.sex+"");
     a.controls.status.setValue(data.status+"");
     a.controls.role.setValue(data.role);
@@ -168,11 +162,14 @@ export class AccountService {
     //Thêm disable tương ứng
     a.controls.citizenidentification.disable();
 
+
     }else{
       a.controls.role.setValue('student');
       a.controls.password.disable();
+
       a.controls.confirmPassword.disable();
       a.controls.citizenidentification.disable();
+
     }
 
     return a;

@@ -3,6 +3,7 @@ import { FormGroup, ValidatorFn } from "@angular/forms";
 
 @Injectable()
 export class ValidatorData{
+
     public readonly Required:string='required';
     public  readonly MinLength: string = 'minLength';
   public  readonly MaxLength: string = 'maxLength';
@@ -11,6 +12,7 @@ export class ValidatorData{
   public  readonly MatchPasswords: string = 'matchPasswords';
   public  readonly DateConvert:string ='dd/MM/yyyy';
   public  readonly DateConvertString:string ='';
+
   //fieldName là tên data,fileReality là tên bên ngoài hiện ra của nó , stringPattern là trường hợp regex pattern có lỗi thì bắt
   getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,dictionary?:Record<string,number>){
     const field = formGroup.get(fieldName);
@@ -72,11 +74,14 @@ export class ValidatorData{
     if(status){
       alert(mess);
     }else{
+
       alert(mess);
+
     }
 
   }
   getErrorRouterChange(mess:string ,urlChange?:string ,urlNow?:string ){
+
     alert(mess);
 
   }
@@ -95,4 +100,9 @@ export class ValidatorData{
   }
 
 
+
+
 }
+
+
+

@@ -1,33 +1,30 @@
-<h3>Create</h3>
-<form [formGroup]="formDepartment" (ngSubmit)="createdDepartment()">
+
+<h3 class="title">Create</h3>
+<form [formGroup]="formDepartment" (ngSubmit)="createdDepartment()" class="admin-form ">
     <table>
-        <tr>
+        <tr class="admin-form-item ">
             <td>Name Department</td>
-            <td><input type="text" formControlName="tendepartment"></td>tendepartment
+            <td><input type="text" formControlName="tenDepartment"></td>
         </tr>
-        <tr>
+        <tr class="admin-form-item ">
             <td>Describe</td>
             <td><input type="text" formControlName="describe"></td>
         </tr>
-        <tr>
+        <tr class="admin-form-item ">
             <td>Address</td>
             <td><input type="text" formControlName="address"></td>
         </tr>
-        <tr>
-                <td>Status</td>
-                <td><input type="checkbox" formControlName="status"></td>
+        <tr class="admin-form-item ">
+            <td class="inline-block">Status</td>
+            <td class="inline-block mg-0"><input type="checkbox" formControlName="status"></td>
         </tr>
-        <!-- <tr>
-            <td>Account</td>
-            <td><input type="text" formControlName="accounts"></td>
-    </tr>
-    <tr>
-        <td>request</td>
-        <td><input type="text" formControlName="requets"></td>
-</tr> -->
-        <tr>
-            <td ><input type="submit" value="Save"></td>
-            <td><input type="hidden" formControlName="id"></td>
+
+        <tr class="admin-form-item ">
+            <div class="form-button">
+                <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+                <td><input type="hidden" formControlName="id"></td>
+            </div>
+
         </tr>
     </table>
 </form>
