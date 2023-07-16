@@ -53,6 +53,7 @@ export class CreateAccountComponent implements OnInit {
         });
           })).catch(error=>{
             this.validationService.getErrorRouterChange("Can not load thí page ");
+
           });
 
 
@@ -97,7 +98,9 @@ export class CreateAccountComponent implements OnInit {
         }
 
 
-      
+
+
+
       }).finally(()=>{
         setTimeout(()=>{
           this.isLoading=false;

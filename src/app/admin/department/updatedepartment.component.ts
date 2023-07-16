@@ -2,7 +2,7 @@ import { Department } from './../../models/department.model';
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ResultAPI } from 'src/app/models/resultapi';
 import { DepartmentsServices } from 'src/app/services/departments.service';
 @Component({
@@ -16,6 +16,7 @@ export class UpdateDepartmentComponent implements OnInit {
     constructor(
         private departmentService : DepartmentsServices,
         private router :Router,
+        private activateRoute : ActivatedRoute
         
     ){}
     ngOnInit(): void {
@@ -27,6 +28,16 @@ export class UpdateDepartmentComponent implements OnInit {
             },err => {console.log(err);}
         );
         
+        this.activateRoute.paramMap.subscribe(params => {
+            var id = params.get('id');
+            this.departmentService.GetDepartmentById(id).then(
+                res => {
+                    this.department_ = res as Department;
+                    this.formDepartment = this.departmentService.getFormGroupData(this.department_);
+                },
+                err => {console.log(err);}
+            )
+        })
         
     }
 
@@ -39,11 +50,12 @@ export class UpdateDepartmentComponent implements OnInit {
             res => {
                 var resultAPI : ResultAPI = res as ResultAPI;
                 if(resultAPI.result){
-                    this.router.navigateByUrl('/admin/department/update', { skipLocationChange: true }).then(() => {
-                        this.router.navigate([this.router.url]);
-                      });
+                    // this.router.navigateByUrl('/admin/department/update',{ skipLocationChange: true }).then(() => {
+                    //     this.router.navigate([this.router.url]);
+                    //   });
+                    this.router.navigate(['/admin/department/update', department.id]);
                       
-                      this.ngOnInit();
+                    //   this.ngOnInit();
                 }else {
                     alert('Edit failed!');
                 }

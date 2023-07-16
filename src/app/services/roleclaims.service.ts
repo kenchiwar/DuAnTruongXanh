@@ -16,7 +16,7 @@ export class RoleClaimsServices {
   }
   async GetRoleClaims(){
 
-    return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/roleclaims/getroleclaims"));
+    return await lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl));
   }
   getFormGroup():FormGroup{
 
@@ -25,9 +25,6 @@ export class RoleClaimsServices {
       name: '',
       describe: '',
       claim: 0,
-      idAccounts: this.formBuilder.group({bbbb:'',Bbb:0}),   
-  
-      
     });
 }
 
@@ -40,24 +37,21 @@ getFormGroupData(data :any):FormGroup{
       name: data.name,
       describe: data.describe,
       claim: data.claim,
-      idAccounts: this.formBuilder.group({bbbb:'',Bbb:0}),   
-  
-  
     });
 }
 
-async GetRoleClaim(id:string){
+async GetRoleClaimById(id:string){
 
-  return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/roleclaims/getroleclaim/"+id));
+  return await lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl+"/"+id));
 }
 
-async PostRoleClaim(data:any){
-  return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/roleclaims/postroleclaim/",data));
+async PostRoleClaim(formData: FormData){
+  return await lastValueFrom(this.http.post(this.url.baseRoleClaimsUrl+"/created",formData));
 }
 async DeleteRoleClaim(id:string){
-  return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/roleclaims/deleteroleclaim/"+id));
+  return await lastValueFrom(this.http.delete(this.url.baseRoleClaimsUrl+"/"+id));
 }
-async PutRoleClaim(data:any,id:string){
-  return await lastValueFrom(this.http.put(this.url.baseChuyenBayUrl+"/api/roleclaims/putroleclaim/"+id,data));
+async PutRoleClaim(formData: FormData){
+  return await lastValueFrom(this.http.put(this.url.baseRoleClaimsUrl+"/updated",formData));
   }
 }   

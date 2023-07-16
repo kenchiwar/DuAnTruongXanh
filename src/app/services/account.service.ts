@@ -5,6 +5,8 @@ import { Injectable } from "@angular/core";
 import {  lastValueFrom} from "rxjs";
 import { RegexApi } from "./regex.service";
 import { Account } from "../models/account.model";
+import { ValidatorData } from "./validatorData.service";
+import { DatePipe } from "@angular/common";
 
 
 
@@ -13,7 +15,9 @@ import { Account } from "../models/account.model";
 export class AccountService {
     [x: string]: any;
 
-  constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi) {
+  constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi,
+  private validatorData:ValidatorData
+    ) {
    // private convert:ConvertDate
   }
   async getAll(){
@@ -32,14 +36,15 @@ export class AccountService {
     return account;
   }
   //HttpHeaders
+
     GetHttpHeaders(){
+
           const account = this.GetAccountLogin();
           return   new HttpHeaders({
             'session-id':account.username+account.id,
           });
 
     }
-
   getFormGroup(data?:Account):FormGroup{
 
     // return this.formBuilder.group({
@@ -78,9 +83,9 @@ export class AccountService {
     //     idRoleClaims: this.formBuilder.group({bbbb:'',Bbb:0}),
     // });
     var a = this.formBuilder.group({
-      Id:0 ,
+      id:0 ,
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.minLength(8)]],
       idRole: ['3', Validators.required],
       idDepartment: ['1', Validators.required],
       fullname: ['', Validators.required],
@@ -97,7 +102,11 @@ export class AccountService {
       degree: ['',Validators.required],
       academicrank: ['',Validators.required],
 
-    });
+      confirmPassword: ['',[]],
+
+
+    },{validators:this.validatorData.matchPasswordsValidator('confirmPassword','password')}
+    );
     //cho email == username
     a.controls.emailaddress.valueChanges.subscribe(value=>{
       a.patchValue({
@@ -106,7 +115,8 @@ export class AccountService {
 
 
     });
-    //
+    //phân biệt thuộc tính học sinh sinh viên
+
     a.controls.role.valueChanges.subscribe(value=>{
         if(value==='student'){
           a.controls.academicrank.disable() ;
@@ -130,9 +140,36 @@ export class AccountService {
     //trường hợp có data
     if(data!=null) {
 
+    a.controls.id.setValue(data.id);
+    a.controls.username.setValue(data.username);
+
+    a.controls.idRole.setValue(data.idRole+"");
+    a.controls.idDepartment.setValue(data.idDepartment+"");
+    a.controls.fullname.setValue(data.fullname);
+    a.controls.emailaddress.setValue(data.emailaddress);
+    a.controls.phonenumber.setValue(data.phonenumber);
+    a.controls.address.setValue(data.address);
+
+    a.controls.dateofbirth.setValue(data.dateofbirth+'');
+
+    a.controls.sex.setValue(data.sex+"");
+    a.controls.status.setValue(data.status+"");
+    a.controls.role.setValue(data.role);
+    a.controls.class.setValue(data.class);
+    a.controls.schoolyear.setValue(data.schoolyear);
+    a.controls.degree.setValue(data.degree);
+    a.controls.academicrank.setValue(data.academicrank);
+    //Thêm disable tương ứng
+    a.controls.citizenidentification.disable();
+
+
     }else{
       a.controls.role.setValue('student');
       a.controls.password.disable();
+
+      a.controls.confirmPassword.disable();
+      a.controls.citizenidentification.disable();
+
     }
 
     return a;
@@ -184,14 +221,20 @@ getFormGroupData(data :any):FormGroup{
     return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+'/checkEmailExists/'+account+(id!=null?'/'+id:'')));
   }
  async GetAllRoles(){
-      return await    lastValueFrom(this.http.get(this.url.baseRolesUrl));
+    const ab = this.GetHttpHeaders();
+    const headers = ab;
+      return await    lastValueFrom(this.http.get(this.url.baseRolesUrl,{headers}));
   }
   async GetAllDepartment(){
     return await    lastValueFrom(this.http.get(this.url.baseDepartments));
   }
+  async getAllRoleCliam(){
+    return await    lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl));
+  }
     async GetAccount(id:string){
-
-    return await lastValueFrom(this.http.get(this.url.baseUrl+"/get"+id));
+      const ab = this.GetHttpHeaders();
+      const headers = ab;
+    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+"/"+id,{headers}));
   }
 
   async PostAccount(dataAccout:Account,dataFile:File){
@@ -201,11 +244,18 @@ getFormGroupData(data :any):FormGroup{
     formSubmit.append('dataAccount',JSON.stringify(dataAccout));
   return await lastValueFrom(this.http.post(this.url.baseAccountsUrl,formSubmit));
   }
+
   async DeleteAccount(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/account/detaleaccount/"+id));
   }
-  async PutAccount(data:any,id:string){
-    return await lastValueFrom(this.http.put(this.url.baseChuyenBayUrl+"/api/account/postaccount/"+id,data));
+  async PutAccount(dataAccount :any,dataFile:File,id:string,dataRoleClaim?:any ){
+    var formSubmit = new FormData();
+    formSubmit.append('file',dataFile);
+    formSubmit.append('dataAccount',JSON.stringify(dataAccount));
+    formSubmit.append('dataRoleClaim',JSON.stringify(dataRoleClaim));
+    const ab = this.GetHttpHeaders();
+    const headers = ab;
+    return await lastValueFrom(this.http.put(this.url.baseAccountsUrl+"/"+id,formSubmit,{headers}));
   }
 
 }

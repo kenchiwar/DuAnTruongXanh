@@ -26,7 +26,6 @@ export class DepartmentsServices {
       describe : '',
       address :'',
       status : false,
-      
     });
 }
 
@@ -44,11 +43,11 @@ getFormGroupData(data :any):FormGroup{
 }
 
 async GetDepartment(){
-  return await lastValueFrom(this.http.get(this.url.baseDepartments));
+  return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/getDepartment"));
 }
 
     async GetDepartmentById(id:string){
-    return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/" +id));
+    return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/getDepartmentById/" +id));
   }
 
   async PostDepartment(formData:FormData){
@@ -57,12 +56,10 @@ async GetDepartment(){
 
   
   async DeleteDepartment(id:string){
-    return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/departments/deletedepartment/"+id));
+    return await lastValueFrom(this.http.delete(this.url.baseDepartments+"/"+id));
   }
   async PutDepartment(formData: FormData){
     return await lastValueFrom(this.http.put(this.url.baseDepartments+ "/updated", formData));
   }
 
-  //created department
-  
 }   

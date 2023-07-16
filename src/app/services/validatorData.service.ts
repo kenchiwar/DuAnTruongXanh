@@ -1,14 +1,18 @@
 import { Injectable } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, ValidatorFn } from "@angular/forms";
 
 @Injectable()
 export class ValidatorData{
-    private readonly Required:string='required';
-    private readonly MinLength: string = 'minLength';
-  private readonly MaxLength: string = 'maxLength';
-  private readonly Pattern: string = 'pattern';
-  private readonly Email: string = 'email';
-  private readonly MatchPasswords: string = 'matchPasswords';
+
+    public readonly Required:string='required';
+    public  readonly MinLength: string = 'minLength';
+  public  readonly MaxLength: string = 'maxLength';
+  public  readonly Pattern: string = 'pattern';
+  public  readonly Email: string = 'email';
+  public  readonly MatchPasswords: string = 'matchPasswords';
+  public  readonly DateConvert:string ='dd/MM/yyyy';
+  public  readonly DateConvertString:string ='';
+
   //fieldName là tên data,fileReality là tên bên ngoài hiện ra của nó , stringPattern là trường hợp regex pattern có lỗi thì bắt
   getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,dictionary?:Record<string,number>){
     const field = formGroup.get(fieldName);
@@ -65,17 +69,40 @@ export class ValidatorData{
     }
      return  formGroup.valid;
   }
+
   getNotification(status:boolean,mess:string ,id?:string ){
     if(status){
       alert(mess);
     }else{
-      alert(mess); 
+
+      alert(mess);
+
     }
 
   }
   getErrorRouterChange(mess:string ,urlChange?:string ,urlNow?:string ){
 
+    alert(mess);
 
   }
+   matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
+    return (formGroup: FormGroup): { [key: string]: any } | null => {
+      const password = formGroup.get(passwordKey).value;
+      const confirmPassword = formGroup.get(confirmPasswordKey).value;
+      if (password !== confirmPassword) {
+        formGroup.get(confirmPasswordKey).setErrors({ matchPasswords: true });
+        return { matchPasswords: true };
+      } else {
+        formGroup.get(confirmPasswordKey).setErrors(null);
+        return null;
+      }
+    };
+  }
+
+
+
 
 }
+
+
+

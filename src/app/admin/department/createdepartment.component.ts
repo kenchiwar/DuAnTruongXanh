@@ -7,7 +7,7 @@ import { ResultAPI } from "src/app/models/resultapi";
 import { DepartmentsServices } from "src/app/services/departments.service";
 @Component({
        templateUrl : './createdepartment.component.html'
-       
+
 })
 export class CreateDepartmentComponent implements OnInit {
     formDepartment: FormGroup;
@@ -17,12 +17,16 @@ export class CreateDepartmentComponent implements OnInit {
         private router :Router,
         private departmentService : DepartmentsServices,
         private formBuilder: FormBuilder
-        
+
     ){}
     ngOnInit(): void {
+
        this.formDepartment = this.departmentService.getFormGroup();
+        this.departmentService.GetDepartment().then(
+            res => {this.departments = res as Department[];},
+            err => {console.log(err);})
     }
-    
+
     createdDepartment(){
         var department : Department = this.formDepartment.value as Department;
         var formData = new FormData();
