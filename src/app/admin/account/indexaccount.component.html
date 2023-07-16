@@ -1,38 +1,55 @@
 <h3>Index123</h3>
 <h1>Index12345</h1>
-<ng-container *ngIf="this.dataAccounts!=null">
 
-</ng-container>
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Username</th>
-    <th>IdRole</th>
-    <th>IdDepartment</th>
-    <th>Fullname</th>
-    <th>Emailaddress</th>
-    <th>Phonenumber</th>
-    <th>Address</th>
-    <th>Citizenidentification</th>
-    <th>Dateofbirth</th>
-    <th>Sex</th>
-    <th>Status</th>
-    <th>Role</th>
-    <th>Class</th>
-    <th>Schoolyear</th>
-    <th>Degree</th>
-    <th>Academicrank</th>
-    <th>Action</th>
-  </tr>
-  <tr *ngFor="let data of dataAccounts">
-    <td>{{data.id}}</td>
-    <td>{{data.username}}</td>
-    <td>{{data.idRole}}</td>
-    ... // Cùng cách hiển thị các trường còn lại
-    <td>
-      <button (click)="delete(data.id)">Delete</button>
-      <button (click)="update(data.id)">Update</button>
-      <button (click)="details(data.id)">Detail</button>
-    </td>
-  </tr>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>Id</th>
+      <th>Username</th>
+      <th>Role Admin</th>
+      <th>Department</th>
+      <th>Fullname</th>
+      <th>Emailaddress</th>
+      <th>Phonenumber</th>
+      <th>Address</th>
+      <th>Img File</th>
+      <th>Dateofbirth</th>
+      <th>Sex</th>
+      <th>Status</th>
+      <th>Role School</th>
+      <th>Class</th>
+      <th>Schoolyear</th>
+      <th>Degree</th>
+      <th>Academicrank</th>
+      <th>Action</th>
+    </tr>
+    <ng-container *ngIf="this.dataAccounts!=null">
+      <tr *ngFor="let data of dataAccounts">
+        <td>{{data.id}}</td>
+        <td>{{data.username}}</td>
+
+        <td>{{data.idRoleNavigation.name}}</td>
+    <td>{{data.idDepartmentNavigation.tenDepartment}}</td>
+    <td>{{data.fullname}}</td>
+    <td>{{data.emailaddress}}</td>
+    <td>{{data.phonenumber}}</td>
+    <td>{{data.address}}</td>
+    <td><img src="{{(data.citizenidentification!=null&&data.citizenidentification!='')?this.urlImg+data.citizenidentification:'assets/fileadmin/dist/img/user2-160x160.jpg'}}"></td>
+    <td>{{data.dateofbirth | date: this.validatorService.DateConvert }}</td>
+    <td>{{data.sex ? 'Male' : 'Female'}}</td>
+    <td>{{data.status ? 'Active' : 'Inactive'}}</td>
+    <td>{{data.role}}</td>
+    <td>{{data.class}}</td>
+    <td>{{data.schoolyear | date: this.validatorService.DateConvert}}</td>
+    <td>{{data.degree}}</td>
+    <td>{{data.academicrank}}</td>
+        <td>
+          <button (click)="delete(data.id)" >Delete</button>
+          <button type="button" [routerLink]="['/admin/account/update/',data.id]">Update</button>
+          <button [routerLink]="['/admin/account/detail',{id:data.id}]">Detail</button>
+        </td>
+      </tr>
+    </ng-container>
+
+  </table>
+</div>

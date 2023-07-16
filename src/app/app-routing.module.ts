@@ -34,8 +34,8 @@ const routes: Routes = [
     {path:'',component:IndexAccountComponent},
     {path:'account',children: [
       {path: 'create', component:CreateAccountComponent},
-      {path: 'detail', component:DetailAccountComponent},
-      {path: 'update', component:UpdateAccountComponent},
+      {path: 'detail/:id', component:DetailAccountComponent},
+      {path: 'update/:id', component:UpdateAccountComponent},
       {path: 'index', component:IndexAccountComponent},
       {path:'',component:IndexAccountComponent},
     ]},
