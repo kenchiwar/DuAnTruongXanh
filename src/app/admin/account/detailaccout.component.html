@@ -88,6 +88,8 @@
         <td>{{handle.sentDate}}</td>
         <td>{{handle.endDate}}</td>
         <td>{{handle.priority}}</td>
+
+          <td>    <button type="button" [routerLink]="['/admin/reques/detail/',handle.id]">Detail</button></td>
       </tr>
     </tbody>
   </table>
@@ -119,6 +121,8 @@
         <td>{{request.sentDate}}</td>
        <td>{{request.endDate}}</td>
         <td>{{request.priority}}</td>
+        <td>    <button type="button" [routerLink]="['/admin/reques/detail/',request.id]">Detail</button></td>
+
       </tr>
     </tbody>
   </table>

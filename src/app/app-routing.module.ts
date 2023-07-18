@@ -50,8 +50,8 @@ const routes: Routes = [
     ]},
     {path:'request',children: [
       {path: 'create', component:CreateRequestComponent},
-      {path: 'detail', component:DetailRequestComponent},
-      {path: 'update', component:UpdateRequestComponent},
+      {path: 'detail/:id', component:DetailRequestComponent},
+      {path: 'update/:id', component:UpdateRequestComponent},
       {path: 'index', component:IndexRequestComponent},
       {path: '', component:IndexRequestComponent},
     ]},
