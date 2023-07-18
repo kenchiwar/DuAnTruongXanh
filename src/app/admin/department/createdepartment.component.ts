@@ -22,7 +22,9 @@ export class CreateDepartmentComponent implements OnInit {
     ngOnInit(): void {
 
        this.formDepartment = this.departmentService.getFormGroup();
-
+        this.departmentService.GetDepartment().then(
+            res => {this.departments = res as Department[];},
+            err => {console.log(err);})
     }
 
     createdDepartment(){
@@ -33,12 +35,10 @@ export class CreateDepartmentComponent implements OnInit {
             res => {
                 var resultApi : ResultAPI = res as ResultAPI;
                 if(resultApi.result){
-
                     this.router.navigateByUrl('/admin/department/create', { skipLocationChange: true }).then(() => {
                         this.router.navigate([this.router.url]);
                       });
                       this.ngOnInit();
-
                 }else alert("Add Department failed!");
             },
             err => {console.log(err);}

@@ -42,6 +42,7 @@ import { ErrorComponent } from './home/404/404.component';
 import { loginAccount } from './admin/account/login/loginAccount.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,8 +79,7 @@ import { loginAccount } from './admin/account/login/loginAccount.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
   providers: [
     UrlApi,
