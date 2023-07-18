@@ -85,6 +85,9 @@ export class ValidatorData{
     alert(mess);
 
   }
+  getRouterChange(url:string,mess?:string){
+    alert(mess);
+  }
    matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (formGroup: FormGroup): { [key: string]: any } | null => {
       const password = formGroup.get(passwordKey).value;

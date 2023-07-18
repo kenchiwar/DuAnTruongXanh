@@ -39,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ValidatorData } from './services/validatorData.service';
 import { ErrorComponent } from './home/404/404.component';
+import { loginAccount } from './admin/account/login/loginAccount.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ErrorComponent } from './home/404/404.component';
     DetailRoleClaimComponent,
     LayoutHomeComponent,
     ForgotPasswordComponent,
-    ErrorComponent
+    ErrorComponent,
+    loginAccount
 
   ],
   imports: [

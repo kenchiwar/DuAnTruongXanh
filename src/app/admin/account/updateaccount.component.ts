@@ -116,16 +116,14 @@ export class UpdateAccountComponent implements OnInit {
  //    this.validationService.getErrorText('username','username',this.formGroup);
     }
     onSubmit(){
-      for (const field in this.formGroup.controls) {
-        const control = this.formGroup.get(field);
-        control.markAsDirty();
-        control.markAsTouched();
-      }
+
       //kiểm tra coi
-      if (!this.formGroup.valid) return ;
 
 
-     if(!this.validationService.checkFormGroupSubmit(this.formGroup)) return;
+
+     if(!this.validationService.checkFormGroupSubmit(this.formGroup)) {
+      alert('SomeThing Wrong ');
+      return;}
 
      this.isLoading=true;
       var account = this.formGroup.value as Account ;
@@ -165,7 +163,7 @@ export class UpdateAccountComponent implements OnInit {
           this.isLoading=false;
         },2000);
       });
-
+      
 
 
 

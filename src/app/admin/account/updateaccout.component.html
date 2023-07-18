@@ -26,13 +26,13 @@
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('confirmPassword', formGroup)}">
-      <div *ngIf="validationService.getErrorAddClass('confirmPassword', formGroup)">{{ validationService.getErrorText('confirmPassword', 'password', formGroup) }}</div>
+      <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroup)}">
+      <div *ngIf="validationService.getErrorAddClass('password', formGroup)">{{ validationService.getErrorText('password', 'password', formGroup) }}</div>
     </div>
     <div>
       <label for="password">Password Confirm :</label>
-      <input type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroup)}">
-      <div *ngIf="validationService.getErrorText('password', 'password', formGroup)">{{ validationService.getErrorText('password', 'password', formGroup) }}</div>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{'invalid': validationService.getErrorAddClass('confirmPassword', formGroup)}">
+      <div *ngIf="validationService.getErrorText('confirmPassword', 'confirmPassword', formGroup)">{{ validationService.getErrorText('confirmPassword', 'Password', formGroup) }}</div>
     </div>
     <div>
 

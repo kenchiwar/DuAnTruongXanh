@@ -29,20 +29,44 @@ export class AccountService {
   }
   //Nơi lưa trữ account login
    GetAccountLogin() :Account{
-    var account = new Account();
-    account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
-    account.idRole=1;
+     var account = new Account();
+    // account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
+    // account.idRole=1;
 
-    return account;
+    // return account;
+    var data = localStorage.getItem('account');
+
+    account = JSON.parse(data) as Account;
+
+    return account??null;
   }
   //HttpHeaders
 
     GetHttpHeaders(){
 
           const account = this.GetAccountLogin();
+          console.log(account);
           return   new HttpHeaders({
-            'session-id':account.username+account.id,
+            'username':account.username??'',
+            'password':account.password??''
           });
+
+    }
+    async SendApi(type:string ,url :string , formData?:FormData){
+      const ab = this.GetHttpHeaders();
+      const headers = ab;
+
+      switch(type.toLowerCase()){
+
+          case 'get':
+            return await lastValueFrom(this.http.get(url,{headers}));
+          case 'post':
+            return await lastValueFrom(this.http.post(url,formData,{headers}));
+            case 'put':return await lastValueFrom(this.http.put(url,formData,{headers}));
+            case 'delete':return await lastValueFrom(this.http.delete(url,{headers}));
+        }
+
+        return await lastValueFrom(this.http.get(url));
 
     }
   getFormGroup(data?:Account):FormGroup{
@@ -105,7 +129,7 @@ export class AccountService {
       confirmPassword: ['',[]],
 
 
-    },{validators:this.validatorData.matchPasswordsValidator('confirmPassword','password')}
+    },{validators:this.validatorData.matchPasswordsValidator('password','confirmPassword')}
     );
     //cho email == username
     a.controls.emailaddress.valueChanges.subscribe(value=>{
@@ -216,6 +240,46 @@ getFormGroupData(data :any):FormGroup{
 
     });
 }
+  getFormGroupLogin(data?:string[]):FormGroup{
+    var a = this.formBuilder.group({
+
+      emailaddress: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required,Validators.minLength(8)]],
+      confirmPassword: ['',[]],
+      input1:['', [Validators.required]],
+      input2:['', [Validators.required]],
+      input3:['', [Validators.required]],
+      input4:['', [Validators.required]],
+      input5:['', [Validators.required]],
+      input6:['', [Validators.required]],
+
+
+    },{validators:this.validatorData.matchPasswordsValidator('password','confirmPassword')}
+    );
+
+
+      for (const field in a.controls) {
+        const control = a.get(field);
+        control.disable();
+      }
+
+    if(data==null){
+      a.controls.input1.enable();
+      a.controls.input2.enable();
+      a.controls.input3.enable();
+      a.controls.input4.enable();
+      a.controls.input5.enable();
+      a.controls.input6.enable();
+    }else{
+
+      data.forEach(da=>{
+        a.get(da).enable();
+      });
+    }
+
+    return a;
+  }
+
   async CheckEmailExists(account:string ,id?:string ){
     //checkEmailExists/adasdad@gmail.com
     return await lastValueFrom(this.http.get(this.url.baseAccountsUrl+'/checkEmailExists/'+account+(id!=null?'/'+id:'')));
@@ -262,5 +326,18 @@ getFormGroupData(data :any):FormGroup{
     const headers = ab;
     return await lastValueFrom(this.http.put(this.url.baseAccountsUrl+"/"+id,formSubmit,{headers}));
   }
+  async Login(username:string,password:string){
+      return await this.SendApi('get',this.url.baseAccountLoginUrl+"/login/"+username+'/'+password);
+  }
+  async getCodeSecurity(username:string){
+
+    return await lastValueFrom(this.http.get("https://localhost:7007/api/AccountLogin/sendChangPass/"+username));
+    // return await this.SendApi('get',this.url.baseAccountLoginUrl+"/sendChangPass");
+  }
+  async ChangPass(username:string,password:string)
+  {
+    return await this.SendApi('get',this.url.baseAccountLoginUrl+"/changePass/"+username+'/'+password);
+  }
+
 
 }

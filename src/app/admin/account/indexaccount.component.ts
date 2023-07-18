@@ -57,7 +57,7 @@ export class IndexAccountComponent implements OnInit {
             },2000);
               return ;
           }
-          alert('ffff3');
+
           this.accountService.DeleteAccount(id+'').then(success=>{
                 this.validatorService.getNotification(true,'Delete Success');
           }).catch(error=>{
@@ -96,6 +96,8 @@ export class IndexAccountComponent implements OnInit {
     reload(){
       this.ngOnInit();
     }
+
+
 
 
 }
