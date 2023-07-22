@@ -269,10 +269,9 @@ export class loginAccount implements OnInit {
 
     }
     viewChildPage(username:string){
+      this.inputSecurityPage();
       this.isViewChild=true;
       this.usernameForget = username;
-
-      this.comfirmPasswordPage();
       this.reSend();
 
     }

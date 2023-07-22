@@ -29,27 +29,42 @@ export class AccountService {
   }
   //Nơi lưa trữ account login
    GetAccountLogin() :Account{
-     var account = new Account();
+
     // account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
     // account.idRole=1;
 
     // return account;
     var data = localStorage.getItem('account');
+    try {
+      var account = JSON.parse(data) as Account;
+      return account;
+    } catch (error) {
+      account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
+    account.idRole=1;
 
-    account = JSON.parse(data) as Account;
+    return account;
+   
+    }
 
-    return account??null;
+
+
   }
   //HttpHeaders
 
-    GetHttpHeaders(){
-
+    GetHttpHeaders():HttpHeaders{
+        try {
           const account = this.GetAccountLogin();
           console.log(account);
           return   new HttpHeaders({
-            'username':account.username??'',
-            'password':account.password??''
+            'username':account?.username??'',
+            'password':account?.password??''
           });
+        } catch (error) {
+          return   new HttpHeaders({
+
+          });
+        }
+
 
     }
     async SendApi(type:string ,url :string , formData?:FormData){

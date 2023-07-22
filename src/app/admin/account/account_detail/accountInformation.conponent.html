@@ -1,0 +1,152 @@
+<h1>Account Detail</h1>
+<button type="button" class="btn btn-primary" [routerLink]="['/admin/account']"> return </button>
+<ng-container *ngIf="this.dataAccount!=null">
+  <button type="button" [routerLink]="['/admin/account/update/',dataAccount.id]">Update</button>
+
+  <div>
+    <p><strong>Id:</strong> {{ dataAccount.id }}</p>
+    <p><strong>Username:</strong> {{ dataAccount.username }}</p>
+    <!-- <p><strong>Role Admin :</strong> {{  this.dataAccount.idRoleNavigation.name}}</p> -->
+    <p><strong>Department:</strong> {{ dataAccount.idDepartmentNavigation.tenDepartment }}</p>
+    <p><strong>Fullname:</strong> {{ dataAccount.fullname }}</p>
+    <p><strong>Email Address:</strong> {{ dataAccount.emailaddress }}</p>
+    <p><strong>Phone Number:</strong> {{ dataAccount.phonenumber }}</p>
+    <p><strong>Address:</strong> {{ dataAccount.address  }}</p>
+    <p><strong>Img FIle :</strong><img [src]="this.selectedFileUrl"></p>
+    <p><strong>Date of birth:</strong> {{ dataAccount.dateofbirth | date: this.validationService.DateConvert}}</p>
+    <p><strong>Sex:</strong> {{ dataAccount.sex ? 'Male' : 'Female' }}</p>
+    <p><strong>Status:</strong> {{ dataAccount.status ? 'Active' : 'Inactive' }}</p>
+    <p><strong>Role Shool:</strong> {{ dataAccount.role  }}</p>
+
+    <h1>ở đây có điều kiện ng container chỉnh html xong thì 2 thuộc tính vô</h1>
+    <ng-container *ngIf="this.dataAccount.role 'student'" ></ng-container>
+      <p><strong>Class:</strong> {{ dataAccount.class }}</p>
+      <p><strong>School Year:</strong> {{ dataAccount.schoolyear  | date:this.validationService.DateConvert}}</p>
+
+
+      <h1>ở đây có điều kiện ng container chỉnh html xong thì bỏ 2 thuọc tính  vô </h1>
+      <ng-container *ngIf="this.dataAccount.role 'teacher'" ></ng-container>
+    <p><strong>Degree:</strong> {{ dataAccount.degree }}</p>
+    <p><strong>Academic Rank:</strong> {{ dataAccount.academicrank }}</p>
+  </div>
+  <!-- <ul>
+    <li *ngFor="let roleClaim of dataAccount.idRoleClaims">{{ roleClaim.name }} - {{ roleClaim.describe }}</li>
+  </ul>
+  <p><strong>Complains:</strong></p>
+  <ul>
+    <li *ngFor="let complain of dataAccount.requetIdComplainNavigations">{{ complain.title }} - {{ complain.status ? 'Active' : 'Inactive' }}</li>
+  </ul>
+  <p><strong>Handles:</strong></p>
+  <ul>
+    <li *ngFor="let handle of dataAccount.requetIdHandleNavigations">{{ handle.title }} - {{ handle.status ? 'Active' : 'Inactive' }}</li>
+  </ul> -->
+  <ng-container *ngif="this.dataAccount.idRole <=2">
+    <h1>idRoleClaims</h1>
+    <table>
+      <tbody>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>describe</th>
+          <th>claim</th>
+        </tr>
+        <tr *ngFor="let claim of dataAccount.idRoleClaims">
+          <td>{{claim.id}}</td>
+          <td>{{claim.name}}</td>
+          <td>{{claim.describe}}</td>
+          <td>{{claim.claim}}</td>
+        </tr>
+
+
+
+
+      </tbody>
+    </table>
+
+
+
+  </ng-container>
+
+<button (click)="changePassword()"> Chang Password</button>
+<ng-container *ngIf="this.changePass">
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" [(ngModel)]="this.password"   [ngClass]="{'invalid': !this.checkPassword}">
+    <div *ngIf="!this.checkPassword"> password is not correct </div>
+  </div>
+
+  <button (click)="checkPass()"> Submit </button>
+      <ng-container *ngIf="this.accountChangPass">
+          <account-login #met></account-login>
+      </ng-container>
+</ng-container>
+
+  <h1>requetIdComplainNavigations</h1>
+  Search<input type="text" (keyup)="searchrequetIdComplainNavigations($event)">
+  <table>
+    <tbody>
+      <tr>
+        <th>id</th>
+        <th>idComplain</th>
+        <th>idDepartment</th>
+        <th>idHandle</th>
+        <th>title</th>
+        <th>status</th>
+        <th>level</th>
+        <th>sentDate</th>
+        <th>endDate</th>
+        <th>priority</th>
+      </tr>
+      <tr *ngFor="let handle of  this.requetIdComplainNavigations">
+        <td>{{handle.id}}</td>
+        <td>{{handle.idComplain}}</td>
+        <td>{{handle.idDepartment}}</td>
+        <td>{{handle.idHandle}}</td>
+        <td>{{handle.title}}</td>
+        <td>{{handle.status}}</td>
+        <td>{{handle.level}}</td>
+        <td>{{handle.sentDate}}</td>
+        <td>{{handle.endDate}}</td>
+        <td>{{handle.priority}}</td>
+
+          <td>    <button type="button" [routerLink]="['/admin/request/detail/',handle.id]">Detail</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-container *ngif="this.dataAccount.idRole <=2">
+    <h1>requetIdHandlainNavigations</h1>
+    Search <input type="text" (keyup)="seracrrequetIdHandleNavigations($event)">
+    <table>
+      <tbody>
+        <tr>
+          <th>id</th>
+          <th>idComplain</th>
+          <th>idDepartment</th>
+          <th>idHandle</th>
+          <th>title</th>
+          <th>status</th>
+          <th>level</th>
+          <th>sentDate</th>
+          <th>endDate</th>
+          <th>priority</th>
+        </tr>
+        <tr *ngFor="let request of this.requetIdHandleNavigations">
+
+          <td>{{request.id}}</td>
+          <td>{{request.idComplain}}</td>
+          <td>{{request.idDepartment}}</td>
+          <td>{{request.idHandle}}</td>
+          <td>{{request.title}}</td>
+          <td>{{request.status}}</td>
+          <td>{{request.level}}</td>
+          <td>{{request.sentDate}}</td>
+        <td>{{request.endDate}}</td>
+          <td>{{request.priority}}</td>
+          <td>    <button type="button" [routerLink]="['/admin/request/detail/',request.id]">Detail</button></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</ng-container>
