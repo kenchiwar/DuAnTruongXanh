@@ -29,7 +29,7 @@ export class AccountService {
   }
   //Nơi lưa trữ account login
    GetAccountLogin() :Account{
-     var account = new Account();
+
     // account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
     // account.idRole=1;
 
@@ -53,14 +53,20 @@ export class AccountService {
   }
   //HttpHeaders
 
-    GetHttpHeaders(){
-
+    GetHttpHeaders():HttpHeaders{
+        try {
           const account = this.GetAccountLogin();
           console.log(account);
           return   new HttpHeaders({
             'username':account?.username??'',
             'password':account?.password??''
           });
+        } catch (error) {
+          return   new HttpHeaders({
+
+          });
+        }
+
 
     }
     async SendApi(type:string ,url :string , formData?:FormData){
