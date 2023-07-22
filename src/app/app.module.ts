@@ -40,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ValidatorData } from './services/validatorData.service';
 import { ErrorComponent } from './home/404/404.component';
 import { loginAccount } from './admin/account/login/loginAccount.component';
+import { DetailAccountInformationComponent } from './admin/account/account_detail/accountInformation.component';
 
 
 
@@ -71,7 +72,8 @@ import { loginAccount } from './admin/account/login/loginAccount.component';
     LayoutHomeComponent,
     ForgotPasswordComponent,
     ErrorComponent,
-    loginAccount
+    loginAccount,
+    DetailAccountInformationComponent,
 
   ],
   imports: [
