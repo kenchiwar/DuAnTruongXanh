@@ -1,23 +1,24 @@
 <h3>Index</h3>
 <ng-container *ngIf="departments != null">
     <form>
-    <table border="1">
-        <tr>
-            <td>Name Department</td>
-            <td>Describe</td>
-            <td>Address</td>
-            <td>Status</td>
-            <td>Action</td>
-        </tr>
-        <tr *ngFor="let department of departments">
-            <td>{{department.tenDepartment}}</td>
-            <td>{{department.describe}}</td>
-            <td>{{department.address}}</td>
-            <td>{{department.status}}</td>
-            <td><a [routerLink]="['/admin/department/detail', {id: department.id}]">Detail</a> | 
-                <a [routerLink]="['/admin/department/update', {id: department.id}]">Update</a> | 
-                <a [routerLink]="['/admin/department/delete', {id: department.id}]" (click)="delete(department.id)">Delete</a></td>
-        </tr>
-    </table>
-</form>
+
+        <table border="1">
+            <tr>
+                <td>Name Department</td>
+                <td>Describe</td>
+                <td>Address</td>
+                <td>Status</td>
+                <td>Action</td>
+            </tr>
+            <tr *ngFor="let department of departments">
+                <td>{{department.tenDepartment}}</td>
+                <td>{{department.describe}}</td>
+                <td>{{department.address}}</td>
+                <td>{{department.status}}</td>
+                <td><a [routerLink]="['/admin/department/detail', {id: department.id}]">Detail</a> |
+                    <a [routerLink]="['/admin/department/update', {id: department.id}]">Update</a> |
+                    <a [routerLink]="['/admin/department/delete', {id: department.id}]" (click)="delete(department.id)">Delete</a></td>
+            </tr>
+        </table>
+    </form>
 </ng-container>

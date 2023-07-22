@@ -1,28 +1,30 @@
 <h1>Login</h1>
 <ng-container *ngIf="this.isPageLogin">
-<ng-container *ngIf="this.formGroupLogin!=null" >
-  <form [formGroup]="this.formGroupLogin" (ngSubmit)="submit()">
-    <div>
-      <label for="emailaddress">Email and Username :</label>
-      <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroupLogin) }">
-      <div *ngIf="(validationService.getErrorAddClass('emailaddress', formGroupLogin) )">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroupLogin) }} </div>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroupLogin)}">
-      <div *ngIf="validationService.getErrorAddClass('password', formGroupLogin)">{{ validationService.getErrorText('password', 'password', formGroupLogin) }}</div>
-    </div>
+    <ng-container *ngIf="this.formGroupLogin!=null">
+        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submit()" class="admin-form ">
+            <div class="admin-form-items">
+                <div class="admin-form-item ">
+                    <label for="emailaddress">Email and Username :</label>
+                    <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroupLogin) }">
+                    <div class="form-create-mess" *ngIf="(validationService.getErrorAddClass('emailaddress', formGroupLogin) )">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroupLogin) }} </div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroupLogin)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorAddClass('password', formGroupLogin)">{{ validationService.getErrorText('password', 'password', formGroupLogin) }}</div>
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary button-submit" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+          {{ isLoading ? 'Loading...' : 'Login' }}
+        </button>
+                    <button type="button" (click)="forgetPasswordPage()" [disabled]="isLoading || !this.isPageLogin" class="btn btn-primary button-submit">forgetPassword</button>
+                </div>
+            </div>
+        </form>
 
-    <button type="submit" class="btn btn-primary" [disabled]="isLoading">
-      <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
-      {{ isLoading ? 'Loading...' : 'Login' }}
-    </button>
-  ||||||
-    <button type="button" (click)="forgetPasswordPage()"  [disabled]="isLoading || !this.isPageLogin" class="btn btn-primary" >forgetPassword</button>
-</form>
-
- <!-- Page forget pass password -->
-</ng-container>
+        <!-- Page forget pass password -->
+    </ng-container>
 </ng-container>
 
 
@@ -31,22 +33,24 @@
 
 <!-- ///isPageForgetPassword -->
 <ng-container *ngIf="this.isPageForgetPassword">
-  <ng-container *ngIf="this.formGroupLogin!=null" >
-    <form [formGroup]="this.formGroupLogin" (ngSubmit)="submitForget()">
-      <div>
-        <label for="emailaddress">Email and Username :</label>
-        <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroupLogin) || this.isEmailConfirm}">
-        <div *ngIf="(validationService.getErrorAddClass('emailaddress', formGroupLogin) || this.isEmailConfirm)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroupLogin) }} &emsp; &emsp; &emsp; {{this.isEmailConfirm?'Username is dont exists ! ':''}}  </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
-        <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
-        {{ isLoading ? 'Loading...' : 'Submit' }}
-      </button>
-    ||||||
-    <button type="button" (click)="forgetPasswordPage()" class="btn btn-primary" [disabled]="isLoading">Return</button>
-  </form>
-  </ng-container>
+    <ng-container *ngIf="this.formGroupLogin!=null">
+        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitForget()">
+            <div class="admin-form-items">
+                <div class="admin-form-item ">
+                    <label for="emailaddress">Email and Username :</label>
+                    <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroupLogin) || this.isEmailConfirm}">
+                    <div class="form-create-mess" *ngIf="(validationService.getErrorAddClass('emailaddress', formGroupLogin) || this.isEmailConfirm)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroupLogin) }} &emsp; &emsp; &emsp; {{this.isEmailConfirm?'Username is dont exists ! ':''}} </div>
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary button-submit" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+          {{ isLoading ? 'Loading...' : 'Submit' }}
+        </button>
+                    <button type="button" (click)="forgetPasswordPage()" class="btn btn-primary button-submit" [disabled]="isLoading">Return</button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
 
 </ng-container>
 
@@ -54,81 +58,77 @@
 
 <!-- trang input security code  -->
 <ng-container *ngIf="this.isInputSecurityPage">
-  <ng-container *ngIf="this.formGroupLogin!=null" >
-    <form [formGroup]="this.formGroupLogin" (ngSubmit)="submitInputSecurityCode()">
-      <div>
-        <input type="text" id="input1" formControlName="input1"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input1', formGroupLogin)}">
-      </div>
-      <div>
-        <input type="text" id="input2" formControlName="input2"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input2', formGroupLogin)}">
-      </div>
-      <div>
-        <input type="text" id="input3" formControlName="input3"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input3', formGroupLogin)}">
-      </div>
-      <div>
-        <input type="text" id="input4" formControlName="input4"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input4', formGroupLogin)}">
-      </div>
-      <div>
-        <input type="text" id="input5" formControlName="input5"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input5', formGroupLogin)}">
-      </div>
-      <div>
-        <input type="text" id="input6" formControlName="input6"
-         [ngClass]="{'invalid': validationService.getErrorAddClass('input6', formGroupLogin)}">
-      </div>
+    <ng-container *ngIf="this.formGroupLogin!=null">
+        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitInputSecurityCode()" id="verificationForm">
+            <div class="admin-form-items">
+                <div class="admin-form-item-code">
+                    <input type="text" maxlength="1" class="verificationInput" id="input1" formControlName="input1" [ngClass]="{'invalid': validationService.getErrorAddClass('input1', formGroupLogin)}">
+                </div>
+                <div class="admin-form-item-code ">
+                    <input type="text" maxlength="1" class="verificationInput" id="input2" formControlName="input2" [ngClass]="{'invalid': validationService.getErrorAddClass('input2', formGroupLogin)}">
+                </div>
+                <div class="admin-form-item-code ">
+                    <input type="text" maxlength="1" class="verificationInput" id="input3" formControlName="input3" [ngClass]="{'invalid': validationService.getErrorAddClass('input3', formGroupLogin)}">
+                </div>
+                <div class="admin-form-item-code">
+                    <input type="text" maxlength="1" class="verificationInput" id="input4" formControlName="input4" [ngClass]="{'invalid': validationService.getErrorAddClass('input4', formGroupLogin)}">
+                </div>
+                <div class="admin-form-item-code ">
+                    <input type="text" maxlength="1" class="verificationInput" id="input5" formControlName="input5" [ngClass]="{'invalid': validationService.getErrorAddClass('input5', formGroupLogin)}">
+                </div>
+                <div class="admin-form-item-code ">
+                    <input type="text" maxlength="1" class="verificationInput" id="input6" formControlName="input6" [ngClass]="{'invalid': validationService.getErrorAddClass('input6', formGroupLogin)}">
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary button-submit" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
+          {{ isLoading ? 'Loading...' : 'Submit' }}
+        </button>
+                    <ng-container *ngIf="!this.isViewChild">
+                        <button type="button" (click)="loginPage()" class="btn btn-primary button-submit" [disabled]="isLoading">Return
+            Login</button>
+                    </ng-container>
 
-      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
-        <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
-        {{ isLoading ? 'Loading...' : 'Submit' }}
-      </button>
-    ||||||
-  <ng-container *ngIf="!this.isViewChild">
-    <button type="button" (click)="loginPage()" class="btn btn-primary" [disabled]="isLoading">Return Login</button>
-  </ng-container>
 
-     |||
-     <button type="button" (click)="reSend()" class="btn btn-primary" [disabled]="isLoading"><span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
-      {{ isLoading ? 'Loading...' : 'Resend' }}</button>
-
-  </form>
-  </ng-container>
+                    <button type="button" (click)="reSend()" class="btn btn-primary button-submit" [disabled]="isLoading"><span *ngIf="isLoading"
+            class="spinner-border spinner-border-sm mr-2"></span>
+          {{ isLoading ? 'Loading...' : 'Resend' }}</button>
+                </div>
+            </div>
+        </form>
+    </ng-container>
 
 </ng-container>
- <!-- ConfirmPassPage G -->
- <ng-container *ngIf="this.isComfirmPassPage">
-  <ng-container *ngIf="this.formGroupLogin!=null" >
-    <form [formGroup]="this.formGroupLogin" (ngSubmit)="submitConfirmPass()">
-
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroupLogin)}">
-        <div *ngIf="validationService.getErrorAddClass('password', formGroupLogin)">{{ validationService.getErrorText('password', 'password', formGroupLogin) }}</div>
-      </div>
-      <div>
-        <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{'invalid': validationService.getErrorAddClass('confirmPassword', formGroupLogin)}">
-        <div *ngIf="validationService.getErrorAddClass('confirmPassword', formGroupLogin)">{{ validationService.getErrorText('confirmPassword', 'Confirm Password', formGroupLogin) }}</div>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+<!-- ConfirmPassPage G -->
+<ng-container *ngIf="this.isComfirmPassPage">
+    <ng-container *ngIf="this.formGroupLogin!=null">
+        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitConfirmPass()">
+            <div class="admin-form-items">
+                <div class="admin-form-item ">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroupLogin)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorAddClass('password', formGroupLogin)">{{ validationService.getErrorText('password', 'password', formGroupLogin) }}</div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{'invalid': validationService.getErrorAddClass('confirmPassword', formGroupLogin)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorAddClass('confirmPassword', formGroupLogin)">{{ validationService.getErrorText('confirmPassword', 'Confirm Password', formGroupLogin) }}</div>
+                </div>
+                <div class="form-button">
+                    <button type="submit" class="btn btn-primary button-submit" [disabled]="isLoading">
         <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
         {{ isLoading ? 'Loading...' : 'Submit' }}
       </button>
-    ||||||
+                    <ng-container *ngIf="!this.isViewChild">
+                        <button type="button" (click)="loginPage()" class="btn btn-primary button-submit" [disabled]="isLoading">Return Login</button>
+                    </ng-container>
+                </div>
+            </div>
+        </form>
 
-      |||
-      <ng-container *ngIf="!this.isViewChild">
-        <button type="button" (click)="loginPage()" class="btn btn-primary" [disabled]="isLoading">Return Login</button>
-      </ng-container>
-  </form>
-
-   <!-- Page forget pass password -->
-  </ng-container>
-
+        <!-- Page forget pass password -->
+    </ng-container>
 
 
- </ng-container>
 
+</ng-container>

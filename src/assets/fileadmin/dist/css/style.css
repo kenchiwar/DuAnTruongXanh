@@ -1,5 +1,8 @@
 :root {
     --color-main: #dc3545;
+    --color-blue: #1c95fa;
+    --color-green: #2dd269;
+    --color-orange: #e61704;
 }
 
 .layout-fixed .main-sidebar {
@@ -8,6 +11,19 @@
 
 input.form-control.form-control-sidebar {
     background-color: #ffffff !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.fz-30 {
+    font-size: 30px !important;
+    font-weight: 700 !important;
+}
+
+.block {
+    display: block !important;
 }
 
 
@@ -19,21 +35,38 @@ input.form-control.form-control-sidebar {
     width: 100% !important;
 }
 
-.admin-form {
+.admin-form .admin-form-items {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-content: center;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: -20px;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(41, 41, 42, 0.07);
+    width: 90%;
+    margin: 50px auto;
 }
 
 .admin-form .admin-form-item {
     width: 50%;
     padding-left: 20px;
     margin-bottom: 20px;
+}
+
+.admin-form .admin-form-item button label {
+    width: 100% !important;
+}
+
+.admin-form .admin-form-item img {
+    max-width: 100%;
+    width: auto;
+}
+
+.admin-form .admin-form-item:not(:nth-child(even)) {
+    margin-left: -20px;
 }
 
 .admin-form table {
@@ -88,14 +121,15 @@ input.form-control.form-control-sidebar {
     text-transform: uppercase;
     font-size: 18px;
     font-weight: 700;
-    border: 1px solid var(--color-main);
+    border: 1px solid var((--color-blue));
     background: unset !important;
     transition: .2s;
-    color: var(--color-main);
+    color: var(--color-blue);
+    margin: 0 20px 20px 0;
 }
 
 .admin-form .form-button .button-submit:hover {
-    background: var(--color-main) !important;
+    background: var(--color-blue) !important;
     color: #ffffff;
 }
 
@@ -131,6 +165,9 @@ input.form-control.form-control-sidebar {
     .admin-form .admin-form-item {
         width: 100%;
     }
+    .admin-form .admin-form-item:nth-child(even) {
+        margin-left: -20px;
+    }
 }
 
 .admin-form .admin-form-item .item-audio {
@@ -163,4 +200,188 @@ input.form-control.form-control-sidebar {
 
 .mg-0 {
     margin: 0 !important;
+}
+
+.admin-form-item-code {
+    width: 40px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-form-item-code input {
+    max-width: 40px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.table {
+    margin: 20px;
+}
+
+.box-search {
+    width: 100%;
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.box-search input {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.box-search input[type=text] {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #000000 !important;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.box-search input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.box-search input:focus {
+    border-color: var(--color-main)
+}
+
+.box-search button {
+    padding: 5px 10px;
+    border: 1px solid #000000 !important;
+    border-radius: 20px;
+    margin-left: 20px;
+    font-size: 18px;
+    color: #fff;
+    border-color: var(--color-blue) !important;
+    background: var(--color-blue) !important;
+    transition: .2s;
+}
+
+.box-search button:hover {
+    color: var(--color-blue) !important;
+    background: unset !important;
+}
+
+.box-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: -20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(41, 41, 42, 0.07);
+    width: 90%;
+    margin: 50px auto;
+}
+
+.box-info:nth-last-child(1) {
+    margin-bottom: 0 !important;
+}
+
+.box-info img {
+    max-width: 200px;
+    max-height: 200px
+}
+
+.box-info h1 {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.box-info>p strong {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.box-info>p {
+    width: 50%;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 500
+}
+
+.box-info table {
+    width: 100%;
+}
+
+.content-wrapper {
+    padding: 50px 0;
+}
+
+.box-info table button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-delete {
+    background: var(--color-orange);
+    border: 1px solid var(--color-orange);
+    color: #fff !important;
+}
+
+.btn-delete:hover {
+    background: unset !important;
+    border: 1px solid var(--color-orange);
+    color: var(--color-orange) !important;
+}
+
+.btn-update {
+    background: var(--color-green);
+    border: 1px solid var(--color-green);
+    color: #fff !important;
+}
+
+.btn-update:hover {
+    background: unset !important;
+    border: 1px solid var(--color-green);
+    color: var(--color-green) !important;
+}
+
+.btn-detail {
+    background: var(--color-blue);
+    border: 1px solid var(--color-blue);
+    color: #fff !important;
+}
+
+.btn-detail:hover {
+    background: unset !important;
+    border: 1px solid var(--color-blue);
+    color: var(--color-blue) !important;
+}
+
+.box-buttons {
+    display: block;
+    text-align: center;
+}
+
+.box-buttons button:not(:nth-child(1)) {
+    margin-left: 20px;
+}
+
+.input-search {
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid var(--color-blue);
+    color: #000000;
+    font-size: 18px;
 }

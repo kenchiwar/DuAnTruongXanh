@@ -7,12 +7,13 @@ import { Router } from "@angular/router";
 
 })
 export class IndexAdminComponent implements OnInit {
-
+    
     constructor(
         private router :Router,
 
     ){}
     ngOnInit(): void {
+      this.loadScript('assets/fileadmin/dist/js/demo.js');
       // setInterval(function() {
       //   const expiration = localStorage.getItem('username_expiration');
       //   if (expiration && Date.now() > parseInt(expiration)) {

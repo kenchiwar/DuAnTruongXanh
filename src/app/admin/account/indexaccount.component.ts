@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, } from "@angular/core";
+import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { isEmpty } from "rxjs";
@@ -13,6 +13,7 @@ import { ValidatorData } from "src/app/services/validatorData.service";
 
 })
 export class IndexAccountComponent implements OnInit {
+  [x: string]: any;
 
     constructor(
         private router :Router,
@@ -29,6 +30,7 @@ export class IndexAccountComponent implements OnInit {
       accountLogin:Account;
       isLoading:boolean;
     ngOnInit(): void {
+      this.loadScript('assets/fileadmin/dist/js/main.js');
       this.textSearch='';
       this.isLoading=false;
       this.statusSearch=false;
@@ -96,8 +98,13 @@ export class IndexAccountComponent implements OnInit {
     reload(){
       this.ngOnInit();
     }
-
-
-
-
+  
+   
+  loadScript(url: string) {
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
+    }
+  
+  
 }

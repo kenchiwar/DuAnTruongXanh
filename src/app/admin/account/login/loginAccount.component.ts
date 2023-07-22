@@ -12,7 +12,7 @@ import { ValidatorData } from "src/app/services/validatorData.service";
 
 })
 export class loginAccount implements OnInit {
-
+  
     constructor(
       private   accountService:AccountService,
       public  validationService: ValidatorData,
@@ -276,7 +276,7 @@ export class loginAccount implements OnInit {
       this.reSend();
 
     }
+  
 
-
-
+    
 }

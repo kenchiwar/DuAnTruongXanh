@@ -72,7 +72,7 @@ import { loginAccount } from './admin/account/login/loginAccount.component';
     ForgotPasswordComponent,
     ErrorComponent,
     loginAccount
-
+    
   ],
   imports: [
     BrowserModule,

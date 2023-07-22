@@ -34,11 +34,22 @@ export class AccountService {
     // account.idRole=1;
 
     // return account;
+    // var data = localStorage.getItem('account');
+
+    // account = JSON.parse(data) as Account;
+
+    // return account??null;
     var data = localStorage.getItem('account');
+    try {
+      var account = JSON.parse(data) as Account;
+      return account;
+    } catch (error) {
+      account = {id:1,fullname:'fdsfsf',username:'met@gmail.com', password:'123456789'};
+    account.idRole=1;
 
-    account = JSON.parse(data) as Account;
-
-    return account??null;
+    return account;
+   
+    }
   }
   //HttpHeaders
 
@@ -47,8 +58,8 @@ export class AccountService {
           const account = this.GetAccountLogin();
           console.log(account);
           return   new HttpHeaders({
-            'username':account.username??'',
-            'password':account.password??''
+            'username':account?.username??'',
+            'password':account?.password??''
           });
 
     }
