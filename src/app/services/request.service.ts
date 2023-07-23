@@ -3,6 +3,8 @@ import { UrlApi } from "./baseurl.services";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Injectable } from "@angular/core";
 import { catchError, lastValueFrom, of} from "rxjs";
+import { AccountService } from "./account.service";
+import { Account } from "../models/account.model";
 
 
 
@@ -18,22 +20,21 @@ export class RequestServices {
 
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequest"));
   }
-  getFormGroup(data?:Request):FormGroup{
-
-    var a =  this.formBuilder.group({
-        id: 0,
-        idComplain: '',
-        idDepartment: '2',
-        idHandle: '',
-        title: '',
-        status: '0',
-        level: '0',
-        sentDate: '',
-        endDate: '',
-        priority: '0',
-    });
+  getFormGroup(){
+    var form = this.formBuilder.group({
+      id: 0,
+      idComplain: '1',
+      idDepartment: '2',
+      idHandle: '',
+      title: '',
+      status: '0',
+      level: '0',
+      sentDate: '',
+      endDate: '',
+      priority: '1',
+  });
     
-    return a;
+    return form;
     // return this.formBuilder.group({
     //   id: 0,
     //   idComplain: 0,
@@ -97,9 +98,17 @@ export class RequestServices {
     // });
 }
 
-// requetIdComplainNavigations: {bbbb:'',Bbb:0,},
-// requetIdHandleNavigations: {bbbb:'',Bbb:0,},  
-// idRoleClaims: {bbbb:'',Bbb:0,},  
+getFormGroupFile(){
+
+  var requestFileForm =  this.formBuilder.group({
+      id: 0,
+      name: '',
+      idRequest: '1',
+  });
+  return requestFileForm;
+}
+
+
 getFormGroupData(data :any):FormGroup{
     return this.formBuilder.group({
       id: data.id,
@@ -167,8 +176,11 @@ getFormGroupData(data :any):FormGroup{
     return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/request/getrequet/"+id));
   }
 
-  async PostRequet(data:any){
-    return await lastValueFrom(this.http.post(this.url.baseChuyenBayUrl+"/api/request/postrequet/",data));
+  async PostRequest(formData: FormData){
+    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/created", formData));
+  }
+  async PostRequestFile(formData: FormData){
+    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/requestFile", formData));
   }
   async DeleteRequet(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/request/deleterequet/"+id));

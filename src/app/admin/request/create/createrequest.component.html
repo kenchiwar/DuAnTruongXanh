@@ -1,0 +1,61 @@
+<h3>Create</h3>
+<ng-container *ngIf="requests != null">
+    <form [formGroup]="formRequest" (ngSubmit)="createdRequest()" class="admin-form ">
+        <table>            
+            <tr class="admin-form-item ">
+                <td>Complainer</td>
+                <td><input type="text" value="{{account.fullname}}" readonly></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Department</td>
+                <td>
+                    <select formControlName="idDepartment">
+                        <option *ngFor="let dpm of departments" value="{{dpm.id}}">{{dpm.tenDepartment}}</option>
+                    </select>
+                </td>
+            </tr>
+            
+                <tr class="admin-form-item ">
+                <td>Title</td>
+                <td>
+                    <input formControlName="title" type="text" >
+                </td>
+            </tr>
+            <ng-container [formGroup]="formRequestFile">
+                 <tr class="admin-form-item ">
+                <td>File</td>
+                <td>
+                    <input type="file" multiple (change)="selectFile($event)">
+                    <input formControlName="idRequest" type="hidden" >
+                </td>
+            </tr>
+            </ng-container>            
+           
+            <tr class="admin-form-item ">
+                <td class="inline-block">Priority</td>
+                <td class="inline-block mg-0">
+                    <select formControlName="priority">
+                        <option value="1">1</option>
+                        <option value="1">2</option>
+                        <option value="1">3</option>
+                    </select>
+                </td>
+            </tr>
+    
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+                    
+                </div>
+    
+            </tr>
+        </table>
+        <input type="hidden" formControlName="idComplain" value="{{account.id}}">
+        <td><input type="hidden" formControlName="id"></td>
+        <!-- <input type="hidden" formControlName="status">
+        <input type="hidden" formControlName="endDate">
+        <input type="hidden" formControlName="idHandle">
+        
+        <input type="hidden" formControlName="level"> -->
+    </form>
+</ng-container>
