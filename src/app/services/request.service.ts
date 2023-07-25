@@ -13,17 +13,19 @@ import { Account } from "../models/account.model";
 export class RequestServices {
     [x: string]: any;
 
-  constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder) {
+  constructor(
+    private http:HttpClient,
+    private url:UrlApi,
+    private formBuilder:FormBuilder,
+    private accountService : AccountService
+    ) {
    // private convert:ConvertDate
   }
-  async GetRequets(){
 
-    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequest"));
-  }
   getFormGroup(){
     var form = this.formBuilder.group({
       id: 0,
-      idComplain: '1',
+      idComplain: this.accountService.GetAccountLogin().id,
       idDepartment: '2',
       idHandle: '',
       title: '',
@@ -32,8 +34,8 @@ export class RequestServices {
       sentDate: '',
       endDate: '',
       priority: '1',
+      reason: '',
   });
-    
     return form;
     // return this.formBuilder.group({
     //   id: 0,
@@ -108,6 +110,20 @@ getFormGroupFile(){
   return requestFileForm;
 }
 
+getFormGroupDetail(){
+
+  var requestDetailForm =  this.formBuilder.group({
+    id: 0,
+    sentdate: '',
+    payday: '',
+    reason: '',
+    status: '',
+    reply: '',
+    idRequest: '1',
+  });
+  return requestDetailForm;
+}
+
 
 getFormGroupData(data :any):FormGroup{
     return this.formBuilder.group({
@@ -167,17 +183,28 @@ getFormGroupData(data :any):FormGroup{
         schoolyear:'',
         degree:'',
         academicrank:'',
+        
     }),
     });
 }
 
-    async GetRequest(id:string){
+async GetRequets(){
 
-    return await lastValueFrom(this.http.get(this.url.baseUrl+"/api/request/getrequet/"+id));
+  return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequest"));
+}
+
+async GetRequetsIndex(){
+
+  return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequestIndex"));
+}
+
+    async GetRequestById(id:string){
+
+    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestById/"+id));
   }
 
   async PostRequest(formData: FormData){
-    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/created", formData));
+    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/createRequestWithFile", formData));
   }
   async PostRequestFile(formData: FormData){
     return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/requestFile", formData));
@@ -185,7 +212,7 @@ getFormGroupData(data :any):FormGroup{
   async DeleteRequet(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/request/deleterequet/"+id));
   }
-  async PutRequet(data:any,id:string){
-    return await lastValueFrom(this.http.put(this.url.baseChuyenBayUrl+"/api/request/putrequet/"+id,data));
+  async PutRequet(formData : FormData,id:string){
+    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+id,formData));
   }
 }   

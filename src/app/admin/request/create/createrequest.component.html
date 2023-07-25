@@ -1,4 +1,3 @@
-<h3>Create</h3>
 <ng-container *ngIf="requests != null">
     <form [formGroup]="formRequest" (ngSubmit)="createdRequest()" class="admin-form ">
         <table>            
@@ -14,23 +13,25 @@
                     </select>
                 </td>
             </tr>
-            
                 <tr class="admin-form-item ">
                 <td>Title</td>
                 <td>
                     <input formControlName="title" type="text" >
                 </td>
             </tr>
-            <ng-container [formGroup]="formRequestFile">
+                <tr class="admin-form-item ">
+                <td>Reason</td>
+                <td>
+                    <input formControlName="reason" type="text">
+                </td>
+            </tr>            
                  <tr class="admin-form-item ">
                 <td>File</td>
                 <td>
                     <input type="file" multiple (change)="selectFile($event)">
-                    <input formControlName="idRequest" type="hidden" >
+                    
                 </td>
-            </tr>
-            </ng-container>            
-           
+            </tr>          
             <tr class="admin-form-item ">
                 <td class="inline-block">Priority</td>
                 <td class="inline-block mg-0">

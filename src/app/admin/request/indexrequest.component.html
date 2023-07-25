@@ -1,1 +1,26 @@
 <h3>Index</h3>
+<ng-container *ngIf="requests != null">
+        <table border="1">
+        <tr>
+            <th>Complainer</th>
+            <th>Department</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>SentDate</th>
+            <th>Priority</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let request of requests">
+            <td>{{request.idComplain}}</td>
+            <td>{{request.idDepartment}}</td>
+            <td>{{request.title}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.sentDate}}</td>
+            <td>{{request.priority}}</td>
+            <td>
+                <a [routerLink]="['/admin/request/detail/',request.id]">Detail</a> |
+                <input type="button" (click)="accept(request.id)" value="Accept">
+            </td>
+        </tr>
+    </table>    
+</ng-container>

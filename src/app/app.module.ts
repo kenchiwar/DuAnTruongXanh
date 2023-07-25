@@ -42,6 +42,7 @@ import { loginAccount } from './admin/account/login/loginAccount.component';
 import { DetailAccountInformationComponent } from './admin/account/account_detail/accountInformation.component';
 import { RequestFileService } from './services/requestFile.service';
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
+import { _CreateRequestComponent } from './admin/request/createRequest.component';
 
 
 
@@ -75,7 +76,7 @@ import { CreateRequestComponent } from './admin/request/create/createrequest.com
     ErrorComponent,
     loginAccount,
     DetailAccountInformationComponent,
-
+    _CreateRequestComponent
   ],
   imports: [
     BrowserModule,
