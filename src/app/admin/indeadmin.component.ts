@@ -1,17 +1,37 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, } from "@angular/core";
+import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 @Component({
        templateUrl : './indexadmin.component.html',
        styleUrls: ["./style.component.css"],
 
 })
-export class IndexAdminComponent implements OnInit {
+export class IndexAdminComponent implements OnInit,AfterViewInit {
     
     constructor(
         private router :Router,
 
     ){}
+  ngAfterViewInit(): void {
+    
+    // const scriptUrls = [
+    //   'assets/fileadmin/plugins/chart.js/Chart.min.js',
+    //   'assets/fileadmin/dist/js/chart.js',
+     
+    // ];
+
+    // scriptUrls.forEach(url => {
+    //   const script = document.createElement('script');
+    //   script.type = 'text/javascript';
+    //   script.src = url;
+    //   script.async=true;
+    //   // script.defer = true;  //trường hợp đặc biệt sau file
+    //   //../node_modules/Maxim/assets/
+    //  // this.elementRef.nativeElement.appendChild(script);
+    //  document.body.appendChild(script);
+    // });
+
+  }
     ngOnInit(): void {
       this.loadScript('assets/fileadmin/dist/js/demo.js');
       // setInterval(function() {

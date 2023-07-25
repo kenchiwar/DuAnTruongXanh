@@ -27,10 +27,10 @@ import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component'
 import { ErrorComponent } from './home/404/404.component';
 
 const routes: Routes = [
+  {path: 'error', component:ErrorComponent},
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
-    {path: '404', component:ErrorComponent},
   ]},
   {path: 'admin', component:IndexAdminComponent,children: [
     {path:'',component:IndexAccountComponent},

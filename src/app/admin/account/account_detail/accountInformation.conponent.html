@@ -20,13 +20,13 @@
         <p><strong>Status:</strong> {{ dataAccount.status ? 'Active' : 'Inactive' }}</p>
         <p><strong>Role Shool:</strong> {{ dataAccount.role }}</p>
 
-        <h1>ở đây có điều kiện ng container chỉnh html xong thì 2 thuộc tính vô</h1>
+
         <ng-container *ngIf="this.dataAccount.role 'student'"></ng-container>
         <p><strong>Class:</strong> {{ dataAccount.class }}</p>
         <p><strong>School Year:</strong> {{ dataAccount.schoolyear | date:this.validationService.DateConvert}}</p>
 
 
-        <h1>ở đây có điều kiện ng container chỉnh html xong thì bỏ 2 thuọc tính vô </h1>
+
         <ng-container *ngIf="this.dataAccount.role 'teacher'"></ng-container>
         <p><strong>Degree:</strong> {{ dataAccount.degree }}</p>
         <p><strong>Academic Rank:</strong> {{ dataAccount.academicrank }}</p>
@@ -76,13 +76,18 @@
     <div class="box-buttons">
         <button (click)="changePassword()" class="btn btn-primary btn-update"> Chang Password</button>
         <ng-container *ngIf="this.changePass">
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" [(ngModel)]="this.password" [ngClass]="{'invalid': !this.checkPassword}">
-                <div *ngIf="!this.checkPassword"> password is not correct </div>
+            <div class="admin-form">
+                <div class="admin-form-items">
+                    <div class="admin-form-item">
+                        <label for="password">Password:</label>
+                        <input type="password" [(ngModel)]="this.password" [ngClass]="{'invalid': !this.checkPassword}">
+                        <div *ngIf="!this.checkPassword"> password is not correct </div>
+                        <div class="form-button" style="margin-top:20px">
+                            <button (click)="checkPass()" class="btn btn-primary button-submit"> Submit </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <button (click)="checkPass()"> Submit </button>
             <ng-container *ngIf="this.accountChangPass">
                 <account-login #met></account-login>
             </ng-container>

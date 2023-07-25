@@ -1,21 +1,26 @@
-<h3>Index</h3>
+<h3 class="fz-30 block text-center">Index</h3>
 <ng-container *ngIf="roleClaims != null">
+    <div class="box-info">
 
-    <table border="1">
-        <tr>
-            <td>Name RoleClaim</td>
-            <td>Describe</td>
-            <td>Claim</td>
-            <td>Action</td>
-        </tr>
-        <tr *ngFor="let roleClaim of roleClaims">
-            <td>{{roleClaim.name}}</td>
-            <td>{{roleClaim.describe}}</td>
-            <td>{{roleClaim.claim}}</td>
-            <td>
-                <a [routerLink]="['/admin/roleclaim/update', {id: roleClaim.id}]">Update</a> |
-                <a [routerLink]="['/admin/roleclaim/detail', {id: roleClaim.id}]">Detail</a>
-            </td>
-        </tr>
-    </table>
+        <table class="table table-bordered table-striped dataTable dtr-inline">
+
+            <thead>
+                <th>Name RoleClaim</th>
+                <th>Describe</th>
+                <th>Claim</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let roleClaim of roleClaims">
+                    <td>{{roleClaim.name}}</td>
+                    <td>{{roleClaim.describe}}</td>
+                    <td>{{roleClaim.claim}}</td>
+                    <td>
+                        <a [routerLink]="['/admin/roleclaim/update', {id: roleClaim.id}]" class="button btn btn-primary btn-update">Update</a>
+                        <a [routerLink]="['/admin/roleclaim/detail', {id: roleClaim.id}]" class="button btn btn-primary btn-detail">Detail</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </ng-container>

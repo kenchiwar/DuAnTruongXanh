@@ -1,24 +1,27 @@
-<h3>Index</h3>
+<h3 class="fz-30 text-center block">Index</h3>
 <ng-container *ngIf="departments != null">
-    <form>
+    <div class="box-info">
 
-        <table border="1">
-            <tr>
-                <td>Name Department</td>
-                <td>Describe</td>
-                <td>Address</td>
-                <td>Status</td>
-                <td>Action</td>
-            </tr>
-            <tr *ngFor="let department of departments">
-                <td>{{department.tenDepartment}}</td>
-                <td>{{department.describe}}</td>
-                <td>{{department.address}}</td>
-                <td>{{department.status}}</td>
-                <td><a [routerLink]="['/admin/department/detail', {id: department.id}]">Detail</a> |
-                    <a [routerLink]="['/admin/department/update', {id: department.id}]">Update</a> |
-                    <a [routerLink]="['/admin/department/delete', {id: department.id}]" (click)="delete(department.id)">Delete</a></td>
-            </tr>
+        <table class="table table-bordered table-striped dataTable dtr-inline">
+            <thead>
+                <th>Name Department</th>
+                <th>Describe</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let department of departments">
+                    <td>{{department.tenDepartment}}</td>
+                    <td>{{department.describe}}</td>
+                    <td>{{department.address}}</td>
+                    <td>{{department.status}}</td>
+                    <td><a [routerLink]="['/admin/department/detail', {id: department.id}]" class="button btn btn-primary btn-detail">Detail</a>
+                        <a [routerLink]="['/admin/department/update', {id: department.id}]" class="button btn btn-primary btn-update">Update</a>
+                        <a [routerLink]="['/admin/department/delete', {id: department.id}]" (click)="delete(department.id)" class="button btn btn-primary btn-delete">Delete</a></td>
+                </tr>
+            </tbody>
         </table>
-    </form>
+
+    </div>
 </ng-container>
