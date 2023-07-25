@@ -1,16 +1,18 @@
 import { HttpClient } from "@angular/common/http";
 import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
+import { AccountService } from "../services/account.service";
 @Component({
        templateUrl : './indexadmin.component.html',
        styleUrls: ["./style.component.css"],
 
 })
 export class IndexAdminComponent implements OnInit,AfterViewInit {
-    
+    username : string;
+    photo : string;
     constructor(
         private router :Router,
-
+        private accountService : AccountService
     ){}
   ngAfterViewInit(): void {
     
@@ -34,6 +36,7 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
   }
     ngOnInit(): void {
       this.loadScript('assets/fileadmin/dist/js/demo.js');
+      this.loadScript('assets/fileadmin/dist/js/main.js');
       // setInterval(function() {
       //   const expiration = localStorage.getItem('username_expiration');
       //   if (expiration && Date.now() > parseInt(expiration)) {
@@ -41,7 +44,8 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
       //     localStorage.removeItem('username_expiration');
       //   }
       // }, 10000);
-
+      this.username = this.accountService.GetAccountLogin().username;
+      this.photo = this.accountService.GetAccountLogin().citizenidentification;
     }
     loadScript(url: string) {
         const script = document.createElement('script');
