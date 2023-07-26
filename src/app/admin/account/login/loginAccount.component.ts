@@ -174,7 +174,7 @@ export class loginAccount implements OnInit {
         localStorage.setItem('username_expiration',Date.now()+12 * 60 * 60 * 1000 +'');
 
         console.log(this.accountService.GetAccountLogin());
-       alert('success');
+      //  alert('success');
         if(account.idRole<=2) {
           this.validationService.getRouterChange("/admin","");
         }else{

@@ -44,6 +44,8 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,7 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
     ErrorComponent,
     loginAccount,
     DetailAccountInformationComponent,
+    
   ],
   imports: [
     BrowserModule,

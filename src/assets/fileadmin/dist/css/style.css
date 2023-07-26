@@ -423,3 +423,51 @@ td {
     z-index: 99999;
     background: var(--color-main) !important;
 }
+
+.alert {
+    left: unset !important;
+    right: -20px;
+}
+
+#toast {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 99999;
+}
+
+.alert {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+    padding: 20px !important;
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.alert .toast-body {
+    margin-right: 30px;
+}
+
+.alert .toast-close {
+    cursor: pointer;
+}
+
+@keyframes slideToast {
+    from {
+        opacity: 0;
+        transform: translateX(calc(100% + 30px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0;
+    }
+}

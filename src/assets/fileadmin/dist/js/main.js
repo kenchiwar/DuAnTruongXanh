@@ -68,3 +68,65 @@ function smoothScrollToTop() {
         window.scrollTo(0, currentScroll - currentScroll / 8);
     }
 }
+
+function toasts({
+    title = '',
+    message = '',
+    type = 'info',
+    duration = 3000
+}) {
+    const main = document.getElementById('toast');
+    if (main) {
+        const toast = document.createElement('div');
+        const autoclosetoast = setTimeout(function() {
+            main.removeChild(toast);
+        }, duration + 1000);
+        const delay = (duration / 1000).toFixed(2);
+        toast.classList.add('alert');
+        if (type == "warning") {
+            toast.classList.add('alert-warning');
+        } else {
+            toast.classList.add('alert-success');
+        }
+        toast.onclick = function(e) {
+            if (e.target.closest('.toast-close')) {
+                main.removeChild(toast);
+                clearTimeout(autoclosetoast);
+            }
+        }
+        toast.style.animation = 'slideToast ease .3s, fadeout linear 1s ${delay}s forwards';
+        toast.innerHTML = `
+        <div class="head-toast">
+
+        </div>
+        <div class="toast-body">
+            <h4>${title}</h4>
+            <p>${message}</p>
+        </div>
+        <div class="toast-close">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        `;
+        main.appendChild(toast);
+
+    }
+};
+
+
+function showSuccess() {
+    toasts({
+        title: 'Success!',
+        message: 'You should check in on some of those fields below.',
+        type: 'success',
+        duration: 2000,
+    });
+};
+
+function showWarning() {
+    toasts({
+        title: 'Warning!',
+        message: 'You should check in on some of those fields below.',
+        type: 'warning',
+        duration: 3000,
+    });
+};

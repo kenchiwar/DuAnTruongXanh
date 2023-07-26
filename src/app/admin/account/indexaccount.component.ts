@@ -30,7 +30,7 @@ export class IndexAccountComponent implements OnInit {
       accountLogin:Account;
       isLoading:boolean;
     ngOnInit(): void {
-      this.loadScript('assets/fileadmin/dist/js/main.js');
+     
       // this.loadScript('assets/fileadmin/dist/js/chart.js');
       this.textSearch='';
       this.isLoading=false;
