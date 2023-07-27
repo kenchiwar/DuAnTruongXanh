@@ -130,61 +130,61 @@ getFormGroupData(data :any):FormGroup{
       id: data.id,
       idComplain: data.idComplain,
       idDepartment: data.idDepartment,
-      idHandle: data.idHandle,
+      idHandle: this.accountService.GetAccountLogin().id,
       title: data.title,
       status: data.status,
       level: data.level,
       sentDate: data.sentDate,
       endDate: data.endDate,
       priority: data.priority,
-      idComplainNavigation: this.formBuilder.group({
-        id : 0,
-        username :'',
-        password :'',
-        idRole :0,
-        idDepartment:0 ,
-        fullname:'',
-        emailaddress:'',
-        phonenumber : '',
-        address:'',
-        citizenidentification:'',
-        dateofbirth:'',
-        sex :false,
-        status : false,
-        role:'',
-        class:'',
-        schoolyear:'',
-        degree:'',
-        academicrank:'',
-    }),
-      idDepartmentNavigation: this.formBuilder.group({
-        id:0,
-        tenDepartment:'',
-        describe : '',
-        address :'',
-        status : false,
-    }),
-      idHandleNavigation:this.formBuilder.group({
-        id : 0,
-        username :'',
-        password :'',
-        idRole :0,
-        idDepartment:0 ,
-        fullname:'',
-        emailaddress:'',
-        phonenumber : '',
-        address:'',
-        citizenidentification:'',
-        dateofbirth:'',
-        sex :false,
-        status : false,
-        role:'',
-        class:'',
-        schoolyear:'',
-        degree:'',
-        academicrank:'',
+    //   idComplainNavigation: this.formBuilder.group({
+    //     id : 0,
+    //     username :'',
+    //     password :'',
+    //     idRole :0,
+    //     idDepartment:0 ,
+    //     fullname:'',
+    //     emailaddress:'',
+    //     phonenumber : '',
+    //     address:'',
+    //     citizenidentification:'',
+    //     dateofbirth:'',
+    //     sex :false,
+    //     status : false,
+    //     role:'',
+    //     class:'',
+    //     schoolyear:'',
+    //     degree:'',
+    //     academicrank:'',
+    // }),
+    //   idDepartmentNavigation: this.formBuilder.group({
+    //     id:0,
+    //     tenDepartment:'',
+    //     describe : '',
+    //     address :'',
+    //     status : false,
+    // }),
+    //   idHandleNavigation:this.formBuilder.group({
+    //     id : 0,
+    //     username :'',
+    //     password :'',
+    //     idRole :0,
+    //     idDepartment:0 ,
+    //     fullname:'',
+    //     emailaddress:'',
+    //     phonenumber : '',
+    //     address:'',
+    //     citizenidentification:'',
+    //     dateofbirth:'',
+    //     sex :false,
+    //     status : false,
+    //     role:'',
+    //     class:'',
+    //     schoolyear:'',
+    //     degree:'',
+    //     academicrank:'',
         
-    }),
+    // }),
     });
 }
 
@@ -203,7 +203,13 @@ async GetRequetsIndex(){
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestById/"+id));
   }
 
+  async GetRequestDetail(id:string){
+
+    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestDetail/"+id));
+  }
+
   async PostRequest(formData: FormData){
+    console.log(formData); 
     return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/createRequestWithFile", formData));
   }
   async PostRequestFile(formData: FormData){
@@ -212,7 +218,12 @@ async GetRequetsIndex(){
   async DeleteRequet(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/request/deleterequet/"+id));
   }
-  async PutRequet(formData : FormData,id:string){
-    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+id,formData));
+  async PutRequet(id: string){
+    
+    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/",id));
+  }
+
+  async PostAccount (formData : FormData){
+    return await this.accountService.SendApi('post',this.url.baseRequetsUrl+"/createRequestWithFile",formData);
   }
 }   

@@ -1,0 +1,34 @@
+<ng-container *ngIf="requests != null">
+    <table border="1">
+        <thead>
+          <tr>
+            <th>Complainer</th>
+            <th>Department</th>
+            <th>Handle</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>SentDate</th>
+            <th>Priority</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }">
+            <td>{{request.idComplain}}</td>
+            <td>{{request.idDepartment}}</td>
+            <td>{{request.idHandle}}</td>
+            <td>{{request.title}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.sentDate}}</td>
+            <td>{{request.priority}}</td>
+            <td>
+              <a [routerLink]="['/admin/request/detail/',request.id]">Detail</a> |
+              <input type="button" (click)="accept(request.id)" value="Accept">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+</ng-container>

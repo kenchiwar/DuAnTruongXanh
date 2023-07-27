@@ -43,6 +43,10 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
 import { RequestFileService } from './services/requestFile.service';
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
 import { _CreateRequestComponent } from './admin/request/createRequest.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { IndexRequest_1Component } from './admin/request/index/indexRequest_1.component';
+import { IndexRequest_2Component } from './admin/request/index/indexRequest_2.component';
+import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
 
 
 
@@ -76,7 +80,10 @@ import { _CreateRequestComponent } from './admin/request/createRequest.component
     ErrorComponent,
     loginAccount,
     DetailAccountInformationComponent,
-    _CreateRequestComponent
+    _CreateRequestComponent,
+    IndexRequest_1Component,
+    IndexRequest_2Component,
+    IndexRequest_3Component,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +91,7 @@ import { _CreateRequestComponent } from './admin/request/createRequest.component
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     UrlApi,

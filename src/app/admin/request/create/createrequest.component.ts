@@ -25,7 +25,8 @@ export class CreateRequestComponent implements OnInit {
     account : Account
     departments : Department[]
     selectOption: string = '0'
-    file : File
+    file : File 
+    files : File[]
     constructor(
         private router :Router,
         private requestService : RequestServices,
@@ -56,22 +57,30 @@ createdRequest(){
     var request : Request = this.formRequest.value as Request;
     var requestDetail : Requetsdetailed = this.formRequestDetail.value as Requetsdetailed;
     var formData = new FormData();
+    var formData_ = new FormData();
     if(this.file != null){
-        formData.append('file', this.file);
+    
+   for (let index = 0; index < this.files.length; index++) {
+    this.file = this.files[index];
+    formData.append('files', this.file);
+   }
+
     }
     formData.append('strRequest', JSON.stringify(request));
-    formData.append('strRequest', JSON.stringify(request));
-    this.requestService.PostRequest(formData).then(
-        res => {
-            var resultAPI : ResultAPI = res as ResultAPI;
-            if(resultAPI.result){
-                this.router.navigate(['/admin/request/create']);
-                this.ngOnInit();
-            }else{
-                alert('Failed!');
-            }
-        }, err => {console.log(err);}
-    )
+    // formData.append('strRequest', JSON.stringify(requestDetail));
+    this.requestService.PostAccount(formData);
+    // this.requestService.PostAccount(formData_);
+    // this.requestService.PostRequest(formData).then(
+    //     res => {
+    //         var resultAPI : ResultAPI = res as ResultAPI;
+    //         if(resultAPI.result){
+    //             this.router.navigate(['/admin/request/create']);
+    //             this.ngOnInit();
+    //         }else{
+    //             alert('Failed!');
+    //         }
+    //     }, err => {console.log(err);}
+    // )
 }
 
     
@@ -127,6 +136,11 @@ createdRequest(){
     //     }
     // }
     selectFile(evt : any){
+        
         this.file = evt.target.files[0];
+     
+        this.files =evt.target.files;
+      
+     
     }
 }

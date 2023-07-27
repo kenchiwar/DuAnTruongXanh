@@ -19,7 +19,7 @@
                     <input formControlName="title" type="text" >
                 </td>
             </tr>
-                <tr class="admin-form-item ">
+                <tr class="admin-form-item">
                 <td>Reason</td>
                 <td>
                     <input formControlName="reason" type="text">
@@ -28,7 +28,7 @@
                  <tr class="admin-form-item ">
                 <td>File</td>
                 <td>
-                    <input type="file" multiple (change)="selectFile($event)">
+                    <input type="file" multiple="multiple" (change)="selectFile($event)">
                     
                 </td>
             </tr>          
@@ -37,8 +37,8 @@
                 <td class="inline-block mg-0">
                     <select formControlName="priority">
                         <option value="1">1</option>
-                        <option value="1">2</option>
-                        <option value="1">3</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 </td>
             </tr>
