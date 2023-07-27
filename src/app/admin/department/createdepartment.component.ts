@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Department } from "src/app/models/department.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { DepartmentsServices } from "src/app/services/departments.service";
+declare var $ : any;
 @Component({
        templateUrl : './createdepartment.component.html'
 

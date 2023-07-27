@@ -147,8 +147,7 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
         }
         
       });
-    
-    
+        
       document.body.appendChild(script);
     });
   }

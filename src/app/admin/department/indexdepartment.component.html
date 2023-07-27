@@ -1,14 +1,16 @@
 <h3 class="fz-30 text-center block">Index</h3>
 <ng-container *ngIf="departments != null">
-    <div class="box-info">
+    <div class="box-info justify-center">
 
-        <table class="table table-bordered table-striped dataTable dtr-inline">
+        <table class="table table-bordered table-striped" id="department-index-table">
             <thead>
-                <th>Name Department</th>
-                <th>Describe</th>
-                <th>Address</th>
-                <th>Status</th>
-                <th>Action</th>
+                <tr>
+                    <th>Name Department</th>
+                    <th>Describe</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let department of departments">

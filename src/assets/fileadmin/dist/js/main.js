@@ -120,12 +120,12 @@ function toasts({
 };
 
 
-function showSuccess(message, title, type, delay) {
-    if (message.length < 1) {
+function showSuccess(message, title) {
+    if (message === undefined || message.length < 1) {
         message = 'warning';
     }
-    if (title.length < 1) {
-        message = 'Warning!';
+    if (title === undefined || title.length < 1) {
+        title = 'Warning!';
     }
     toasts({
         title: title,
@@ -137,11 +137,11 @@ function showSuccess(message, title, type, delay) {
 };
 
 function showWarning(message, title) {
-    if (message.length < 1) {
+    if (message === undefined || message.length < 1) {
         message = 'warning';
     }
-    if (title.length < 1) {
-        message = 'Warning!';
+    if (title === undefined || title.length < 1) {
+        title = 'Warning!';
     }
     toasts({
         title: title,
@@ -151,3 +151,16 @@ function showWarning(message, title) {
 
     });
 };
+
+$(function() {
+
+    $('#myTable').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});

@@ -13,6 +13,7 @@ import { AccountService } from "src/app/services/account.service";
 import { UrlApi } from "src/app/services/baseurl.services";
 import { RegexApi } from "src/app/services/regex.service";
 import { ValidatorData } from "src/app/services/validatorData.service";
+declare var $ : any;
 @Component({
        templateUrl : './detailaccout.component.html'
 
@@ -51,6 +52,38 @@ export class DetailAccountComponent implements OnInit {
     this.requetIdHandleNavigations=[];
     //Lấy id
    this.id = this.router.snapshot.paramMap.get('id') ;
+   setTimeout(()=>{
+    $('#detail-account-role-claims').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,          
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#detail-account-request1').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,          
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#detail-account-request2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,          
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  },1000);
    //Kiểm tra id có đúng là int ko
    if(!this.regex.Interger.test(this.id)) this.validationService.getErrorRouterChange("Url can not  found");
 

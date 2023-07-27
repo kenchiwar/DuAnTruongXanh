@@ -1,13 +1,15 @@
 <h3 class="fz-30 block text-center">Index</h3>
 <ng-container *ngIf="roleClaims != null">
-    <div class="box-info">
+    <div class="box-info justify-center">
 
-        <table class="table table-bordered table-striped dataTable dtr-inline">
+        <table class="table table-bordered table-striped " id="roleclaim-index-table">
             <thead>
-                <th>Name RoleClaim</th>
-                <th>Describe</th>
-                <th>Claim</th>
-                <th>Action</th>
+                <tr>
+                    <th>Name RoleClaim</th>
+                    <th>Describe</th>
+                    <th>Claim</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let roleClaim of roleClaims">

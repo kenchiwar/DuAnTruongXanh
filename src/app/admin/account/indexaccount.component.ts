@@ -8,12 +8,12 @@ import { AccountService } from "src/app/services/account.service";
 import { UrlApi } from "src/app/services/baseurl.services";
 
 import { ValidatorData } from "src/app/services/validatorData.service";
-
+declare var $ : any;
 @Component({
        templateUrl : './indexaccount.component.html'
 
 })
-export class IndexAccountComponent implements OnInit {
+export class IndexAccountComponent implements OnInit ,AfterViewInit{
   [x: string]: any;
 
     constructor(
@@ -23,6 +23,9 @@ export class IndexAccountComponent implements OnInit {
         public validatorService:ValidatorData,
         private urlApi:UrlApi,
     ){}
+  ngAfterViewInit(): void {
+  
+  }
     dataAccounts:Account[];
     dataAll:Account[];
       urlImg:string;
@@ -41,6 +44,20 @@ export class IndexAccountComponent implements OnInit {
           this.dataAll = dataAccount as Account[];
           this.dataAccounts=this.dataAll;
           this.accountLogin=this.accountService.GetAccountLogin();
+          setTimeout(()=>{
+            $('#TableAccount').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          },1000);
+       
+         
         }).catch(error => {
               this.validatorService.getErrorRouterChange("Can't load the data Account");
         });

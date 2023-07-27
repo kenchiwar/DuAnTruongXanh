@@ -26,6 +26,10 @@ input.form-control.form-control-sidebar {
     display: block !important;
 }
 
+.justify-center {
+    justify-content: center !important;
+}
+
 
 /* .main-footer {
         background-color: #dc3545!important;
@@ -330,6 +334,7 @@ input.form-control.form-control-sidebar {
     border-radius: 20px;
     margin-bottom: 20px;
     text-align: center;
+    display: block;
 }
 
 .box-info table .button {
