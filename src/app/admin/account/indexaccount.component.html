@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-primary" onclick="showSuccess()">Show success</button>
-<button type="button" class="btn btn-primary" onclick="showWarning()">Show warning</button>
+<button type="button" class="btn btn-primary" onclick="showSuccess('You should check in on some of those fields below.','Success!')">Show success</button>
+<button type="button" class="btn btn-primary" onclick="showWarning('','Warning!')">Show warning</button>
 <div class="admin-form">
     <div class="admin-form-items">
         <div class="card card-success">
@@ -7,11 +7,11 @@
                 <h3 class="card-title">Stacked Bar Chart</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
-        <i class="fas fa-minus"></i>
-        </button>
+                        <i class="fas fa-minus"></i>
+                    </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove">
-        <i class="fas fa-times"></i>
-        </button>
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -24,7 +24,10 @@
                             <div class=""></div>
                         </div>
                     </div>
-                    <canvas id="myChart" #myChart style="min-height: 450px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 652px; margin: 0 auto;" width="1304" height="500" class="chartjs-render-monitor"></canvas>
+                    <div class="chart-canvas">
+                        <canvas id="myChart1" style="max-width: 800px;"></canvas>
+                        <canvas id="myChart2" style="max-width: 400px; max-height: 400px; margin:50px auto;"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -38,7 +41,7 @@
     <div class="box-search">
         Search:<input type="text" [(ngModel)]="this.textSearch" placeholder="if search date search dd/MM/yyyy" class="input-search"> Search Include Delete : <input type="checkbox" [(ngModel)]="this.statusSearch">
         <button type="button" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i>
-      Serach</button>
+            Serach</button>
         <button type="button" (click)="reload()">Reload </button>
     </div>
     <div class="table-responsive">
@@ -89,8 +92,8 @@
                         <td>
 
                             <button type="button" (click)="delete(data.id,data.username)" class="btn btn-primary button-submit btn-delete" [disabled]="isLoading ">
-                            <span *ngIf="isLoading " class="spinner-border spinner-border-sm mr-2 "></span>
-                            {{ isLoading ? 'Loading...' : 'Delete' }}
+                                <span *ngIf="isLoading " class="spinner-border spinner-border-sm mr-2 "></span>
+                                {{ isLoading ? 'Loading...' : 'Delete' }}
                             </button>
                             <button type="button " [routerLink]="['/admin/account/update/',data.id]" class="btn btn-primary button-submit btn-update">Update</button>
                             <button type="button " [routerLink]="['/admin/account/detail/',data.id]" class="btn btn-primary button-submit btn-detail">Detail</button>

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UrlApi } from './services/baseurl.services';
 import { IndexHomeComponent } from './home/index/indexhome.component';
-import { IndexAdminComponent } from './admin/indeadmin.component';
+import { IndexAdminComponent } from './admin/indexadmin.component';
 import { CreateAccountComponent } from './admin/account/createaccount.component';
 import { AccountService } from './services/account.service';
 import { UrlService } from './services/url.services';

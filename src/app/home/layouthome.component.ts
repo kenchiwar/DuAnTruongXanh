@@ -18,11 +18,11 @@ export class LayoutHomeComponent implements OnInit,AfterViewInit {
         const scriptUrls = [
         // 'assets/filehome/vendor/aos/aos.js',
         // 'assets/filehome/vendor/bootstrap/js/bootstrap.bundle.min.js',
-        // 'assets/filehome/vendor/glightbox/js/glightbox.min.js',
-        // 'assets/filehome/vendor/isotope-layout/isotope.pkgd.min.js',
+        'assets/filehome/vendor/glightbox/js/glightbox.min.js',
+        'assets/filehome/vendor/isotope-layout/isotope.pkgd.min.js',
         // 'assets/filehome/vendor/swiper/swiper-bundle.min.js',
         // 'assets/filehome/vendor/php-email-form/validate.js',
-        // 'assets/filehome/js/main.js',
+        'assets/filehome/js/main.js',
 
     ];
     scriptUrls.forEach(url => {

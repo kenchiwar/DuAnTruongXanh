@@ -16,24 +16,31 @@ $(function() {
     });
 });
 
-const verificationInputs = document.querySelectorAll('.verificationInput');
-verificationInputs.forEach((input, index) => {
+const inputs = document.querySelectorAll('.verificationInput');
+const maxInputLength = 1;
+
+inputs.forEach((input, index) => {
     input.addEventListener('input', (event) => {
-        const currentInput = event.target;
-        if (currentInput.value.length === 1) {
-            if (index < verificationInputs.length - 1) {
-                verificationInputs[index + 1].focus();
-            } else {
-                verificationInputs[index].blur();
+        const value = event.target.value;
+        const nextIndex = index + 1;
+
+        if (value.length >= maxInputLength) {
+            if (nextIndex < inputs.length) {
+                inputs[nextIndex].focus();
             }
-        } else if (currentInput.value.length === 0 && index > 0) {
-            verificationInputs[index - 1].focus();
         }
+
+        // Additional logic if needed
+
     });
 
     input.addEventListener('keydown', (event) => {
-        if (event.key === 'Backspace' && input.value.length === 0 && index > 0) {
-            verificationInputs[index - 1].focus();
+        const prevIndex = index - 1;
+
+        if (event.key === 'Backspace' && input.value.length === 0) {
+            if (prevIndex >= 0) {
+                inputs[prevIndex].focus();
+            }
         }
     });
 });
@@ -68,11 +75,11 @@ function smoothScrollToTop() {
         window.scrollTo(0, currentScroll - currentScroll / 8);
     }
 }
-
+// thong bao trang thai
 function toasts({
-    title = '',
+    title = 'Success!',
     message = '',
-    type = 'info',
+    type = 'success',
     duration = 3000
 }) {
     const main = document.getElementById('toast');
@@ -84,7 +91,7 @@ function toasts({
         const delay = (duration / 1000).toFixed(2);
         toast.classList.add('alert');
         if (type == "warning") {
-            toast.classList.add('alert-warning');
+            toast.classList.add('alert-danger');
         } else {
             toast.classList.add('alert-success');
         }
@@ -113,20 +120,34 @@ function toasts({
 };
 
 
-function showSuccess() {
+function showSuccess(message, title, type, delay) {
+    if (message.length < 1) {
+        message = 'warning';
+    }
+    if (title.length < 1) {
+        message = 'Warning!';
+    }
     toasts({
-        title: 'Success!',
-        message: 'You should check in on some of those fields below.',
+        title: title,
+        message: message,
         type: 'success',
-        duration: 2000,
+        duration: 3000,
+
     });
 };
 
-function showWarning() {
+function showWarning(message, title) {
+    if (message.length < 1) {
+        message = 'warning';
+    }
+    if (title.length < 1) {
+        message = 'Warning!';
+    }
     toasts({
-        title: 'Warning!',
-        message: 'You should check in on some of those fields below.',
+        title: title,
+        message: message,
         type: 'warning',
-        duration: 3000,
+        duration: 1000,
+
     });
 };

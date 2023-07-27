@@ -8,6 +8,7 @@ import { AccountService } from "src/app/services/account.service";
 import { UrlApi } from "src/app/services/baseurl.services";
 
 import { ValidatorData } from "src/app/services/validatorData.service";
+
 @Component({
        templateUrl : './indexaccount.component.html'
 

@@ -9,6 +9,8 @@ import { Role } from "src/app/models/role.model";
 
 import { AccountService } from "src/app/services/account.service";
 import { ValidatorData } from "src/app/services/validatorData.service";
+
+
 @Component({
        templateUrl : './createaccout.component.html'
 
@@ -86,8 +88,10 @@ export class CreateAccountComponent implements OnInit {
               if(result.result){
                 this.reload();
                 this.validationService.getNotification(result.result,"Add Account Successufully?");
+                
               }else{
                 this.validationService.getNotification(result.result,"Add Account Error?");
+                
               }
 
 

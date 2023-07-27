@@ -6,6 +6,7 @@ import { Account } from "src/app/models/account.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { AccountService } from "src/app/services/account.service";
 import { ValidatorData } from "src/app/services/validatorData.service";
+declare var showSuccess: any;
 @Component({
        templateUrl : './loginAccount.component.html',
         selector:'<account-login></account-login>'
@@ -254,6 +255,10 @@ export class loginAccount implements OnInit {
         var result = success as ResultAPI;
         if(result.result){
           alert("ChangePass suucess fully");
+          showSuccess({title: 'Warning!',
+          message: 'You should check in on some of those fields below.',
+          type: 'warning',
+          duration: 3000,});
           this.loginPage();
           }else{
             alert("ChangePass error");

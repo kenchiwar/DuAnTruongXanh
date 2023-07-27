@@ -58,53 +58,96 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
       script.src = url;//urrl 
       script.async=true;
       // Chart.register(ChartjsPluginStacked100.default);
-      const ctx = document.getElementById('myChart');
-      new Chart(ctx, {
-        type: 'bar',
-       
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-            label: 'test 1',
-            data: [12, 19, 3, 5, 15, 3],
-            borderWidth: 1,
-            borderColor: '#36A2EB',
-            backgroundColor:
-              'red',            
-          },{
-          label: 'test2',
-          data: [9, 12, 3, 5, 20, 3],
-          borderWidth: 1,
-          borderColor: '#36A2EB',
-          backgroundColor:
-            'yellow'
-        },{
-          label: 'test3',
-          data: [10, 14, 3, 5, 10, 3],
-          borderWidth: 1,
-          borderColor: '#36A2EB',
-          backgroundColor:
-            'blue',
-        }
-        ],
-        },
-        options: {
-          plugins:{
-            stacked100:{
-              enabled: true,
-            }
+      const data1 = {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            data: [10, 15, 20, 25, 30],
           },
+          {
+            label: 'Dataset 2',
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            data: [5, 10, 15, 20, 25],
+          },
+          {
+            label: 'Dataset 3',
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            data: [15, 20, 10, 5, 0],
+          },
+        ],
+      };
+      var color2=[
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(128, 98, 214)',
+          'rgb(255, 210, 215)',
+          'rgb(145, 200, 228)',
+          'rgb(241, 26, 123)',
+          'rgb(152, 33, 118)',
+          'rgb(255, 176, 127)',
+          'rgb(231, 177, 10)',
+
+      ];
+      
+      const data2 = {
+        labels: [
+          'Red',
+          'Blue',
+          'Yellow',
+          '32121'
+        ],
+       
+        datasets: [{
+          label: 'My First Dataset',
+          data: [300, 50, 100,33],
+          backgroundColor:color2,
+          hoverOffset: 4
+        }]
+      };
+    
+      // Get the canvas element
+      const ctx1 = document.getElementById('myChart1');
+      const ctx2 = document.getElementById('myChart2');
+    
+      // Create the stacked bar chart
+      const stackedChart = new Chart(ctx1, {
+        type: 'bar',
+        data: data1,
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Chart.js Bar Chart - Stacked'
+            },
+          },
+          responsive: true,
           scales: {
             x: {
               stacked: true,
             },
             y: {
-              beginAtZero : true,
               stacked: true
             }
           }
         }
       });
+      const stackedChart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: data2,  
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Chart.js pie Chart - Stacked'
+            },
+          },
+        }
+        
+      });
+    
     
       document.body.appendChild(script);
     });
