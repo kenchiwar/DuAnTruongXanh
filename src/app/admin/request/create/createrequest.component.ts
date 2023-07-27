@@ -55,9 +55,7 @@ export class CreateRequestComponent implements OnInit {
 
 createdRequest(){
     var request : Request = this.formRequest.value as Request;
-    var requestDetail : Requetsdetailed = this.formRequestDetail.value as Requetsdetailed;
     var formData = new FormData();
-    var formData_ = new FormData();
     if(this.file != null){
     
    for (let index = 0; index < this.files.length; index++) {
@@ -67,20 +65,10 @@ createdRequest(){
 
     }
     formData.append('strRequest', JSON.stringify(request));
-    // formData.append('strRequest', JSON.stringify(requestDetail));
+   
+    //nho .then()
     this.requestService.PostAccount(formData);
-    // this.requestService.PostAccount(formData_);
-    // this.requestService.PostRequest(formData).then(
-    //     res => {
-    //         var resultAPI : ResultAPI = res as ResultAPI;
-    //         if(resultAPI.result){
-    //             this.router.navigate(['/admin/request/create']);
-    //             this.ngOnInit();
-    //         }else{
-    //             alert('Failed!');
-    //         }
-    //     }, err => {console.log(err);}
-    // )
+   
 }
 
     
