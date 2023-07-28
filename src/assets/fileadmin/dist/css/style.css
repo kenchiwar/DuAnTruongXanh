@@ -177,9 +177,14 @@ input.form-control.form-control-sidebar {
     .input-search {
         width: 100% !important;
     }
-    .box-info table .button {
+    /* .box-info table .button {
         margin-left: auto !important;
         margin-right: auto !important;
+    } */
+    .box-info {
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-content: flex-start !important;
     }
 }
 
@@ -407,9 +412,9 @@ input.form-control.form-control-sidebar {
     margin-left: 20px;
 }
 
-.input-search {
+input.form-control.form-control-sm {
     height: 40px;
-    width: 400px;
+    width: 400px !important;
     border-radius: 10px;
     border: 1px solid var(--color-blue);
     color: #000000;
@@ -476,4 +481,51 @@ td {
     to {
         opacity: 0;
     }
+}
+
+.dataTables_wrapper .row:first-child {
+    flex-direction: row-reverse;
+}
+
+.dataTables_wrapper .row:first-child .dataTables_filter {
+    text-align: left !important;
+    font-size: 20px;
+    font-weight: bold !important;
+}
+
+.sidebar .name {
+    font-size: 18px;
+}
+
+.admin-form.box-login {}
+
+.admin-form.box-login .admin-form-items {
+    max-width: 400px;
+    flex-direction: column;
+    margin: 0 auto;
+    background: var(--secondary);
+    padding: 50px 20px;
+    background-color: #fff;
+    color: #666;
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form.box-login .admin-form-item {
+    width: 100%;
+}
+
+.vertifycode {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.vertifycode>input {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }

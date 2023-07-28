@@ -2,8 +2,11 @@
     <ng-container *ngIf="this.isPageLogin">
 
         <ng-container *ngIf="this.formGroupLogin!=null">
-            <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submit()" class="admin-form ">
+            <form class="admin-form box-login" [formGroup]="this.formGroupLogin" (ngSubmit)="submit()">
                 <div class="admin-form-items">
+                    <div class="admin-form-item ">
+                        <h2 class="fz-30px text-center block" style="margin: unset !important;">LOGIN</h2>
+                    </div>
                     <div class="admin-form-item ">
                         <label for="emailaddress">Email and Username :</label>
                         <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroupLogin) }">
@@ -35,7 +38,7 @@
 <!-- ///isPageForgetPassword -->
 <ng-container *ngIf="this.isPageForgetPassword">
     <ng-container *ngIf="this.formGroupLogin!=null">
-        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitForget()">
+        <form class="admin-form box-login" [formGroup]="this.formGroupLogin" (ngSubmit)="submitForget()">
             <div class="admin-form-items">
                 <div class="admin-form-item ">
                     <label for="emailaddress">Email and Username :</label>
@@ -60,26 +63,20 @@
 <!-- trang input security code  -->
 <ng-container *ngIf="this.isInputSecurityPage">
     <ng-container *ngIf="this.formGroupLogin!=null">
-        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitInputSecurityCode()" id="verificationForm">
-            <div class="admin-form-items">
-                <div class="admin-form-item-code">
-                    <input type="text" maxlength="1" class="verificationInput" id="input1" formControlName="input1" [ngClass]="{'invalid': validationService.getErrorAddClass('input1', formGroupLogin)}">
-                </div>
-                <div class="admin-form-item-code ">
-                    <input type="text" maxlength="1" class="verificationInput" id="input2" formControlName="input2" [ngClass]="{'invalid': validationService.getErrorAddClass('input2', formGroupLogin)}">
-                </div>
-                <div class="admin-form-item-code ">
-                    <input type="text" maxlength="1" class="verificationInput" id="input3" formControlName="input3" [ngClass]="{'invalid': validationService.getErrorAddClass('input3', formGroupLogin)}">
-                </div>
-                <div class="admin-form-item-code">
-                    <input type="text" maxlength="1" class="verificationInput" id="input4" formControlName="input4" [ngClass]="{'invalid': validationService.getErrorAddClass('input4', formGroupLogin)}">
-                </div>
-                <div class="admin-form-item-code ">
-                    <input type="text" maxlength="1" class="verificationInput" id="input5" formControlName="input5" [ngClass]="{'invalid': validationService.getErrorAddClass('input5', formGroupLogin)}">
-                </div>
-                <div class="admin-form-item-code ">
-                    <input type="text" maxlength="1" class="verificationInput" id="input6" formControlName="input6" [ngClass]="{'invalid': validationService.getErrorAddClass('input6', formGroupLogin)}">
-                </div>
+        <form class="admin-form box-login" [formGroup]="this.formGroupLogin" (ngSubmit)="submitInputSecurityCode()" id="verificationForm">
+            <div class="admin-form-items vertifycode" style="flex-direction:row !important">
+                <input type="text" maxlength="1" class="verify-code-input" id="input1" formControlName="input1" [ngClass]="{'invalid': validationService.getErrorAddClass('input1', formGroupLogin)}" autofocus>
+
+                <input type="text" maxlength="1" class="verify-code-input" id="input2" formControlName="input2" [ngClass]="{'invalid': validationService.getErrorAddClass('input2', formGroupLogin)}">
+
+                <input type="text" maxlength="1" class="verify-code-input" id="input3" formControlName="input3" [ngClass]="{'invalid': validationService.getErrorAddClass('input3', formGroupLogin)}">
+
+                <input type="text" maxlength="1" class="verify-code-input" id="input4" formControlName="input4" [ngClass]="{'invalid': validationService.getErrorAddClass('input4', formGroupLogin)}">
+
+                <input type="text" maxlength="1" class="verify-code-input" id="input5" formControlName="input5" [ngClass]="{'invalid': validationService.getErrorAddClass('input5', formGroupLogin)}">
+
+                <input type="text" maxlength="1" class="verify-code-input" id="input6" formControlName="input6" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'input6', formGroupLogin)} ">
+
                 <div class="form-button">
                     <button type="submit" class="btn btn-primary button-submit" [disabled]="isLoading">
           <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2"></span>
@@ -103,7 +100,7 @@
 <!-- ConfirmPassPage G -->
 <ng-container *ngIf="this.isComfirmPassPage">
     <ng-container *ngIf="this.formGroupLogin!=null">
-        <form class="admin-form " [formGroup]="this.formGroupLogin" (ngSubmit)="submitConfirmPass()">
+        <form class="admin-form box-login" [formGroup]="this.formGroupLogin" (ngSubmit)="submitConfirmPass()">
             <div class="admin-form-items">
                 <div class="admin-form-item ">
                     <label for="password">Password:</label>

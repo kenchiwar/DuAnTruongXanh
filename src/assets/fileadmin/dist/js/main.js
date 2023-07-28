@@ -1,49 +1,23 @@
-$(function() {
-    $("#example1").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
+const verifyCodeInputs = document.querySelectorAll('.verify-code-input');
 
-const inputs = document.querySelectorAll('.verificationInput');
-const maxInputLength = 1;
+console.log(verifyCodeInputs)
 
-inputs.forEach((input, index) => {
-    input.addEventListener('input', (event) => {
-        const value = event.target.value;
-        const nextIndex = index + 1;
+// Event listener for the verify code inputs
+for (let i = 0; i < verifyCodeInputs.length; i++) {
+    verifyCodeInputs[i].addEventListener('input', function() {
+        console.log('3' +
+            verifyCodeInputs[i])
 
-        if (value.length >= maxInputLength) {
-            if (nextIndex < inputs.length) {
-                inputs[nextIndex].focus();
-            }
-        }
-
-        // Additional logic if needed
-
-    });
-
-    input.addEventListener('keydown', (event) => {
-        const prevIndex = index - 1;
-
-        if (event.key === 'Backspace' && input.value.length === 0) {
-            if (prevIndex >= 0) {
-                inputs[prevIndex].focus();
+        if (this.value.length === this.maxLength) {
+            if (i < verifyCodeInputs.length - 1) {
+                verifyCodeInputs[i + 1].focus();
+            } else {
+                // Last input reached, do something with the complete verify code here
             }
         }
     });
-});
+}
+
 
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
