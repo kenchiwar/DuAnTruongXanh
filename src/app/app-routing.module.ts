@@ -10,7 +10,6 @@ import { CreateDepartmentComponent } from './admin/department/createdepartment.c
 import { DetailDepartmentComponent } from './admin/department/detaildepartment.component';
 import { UpdateDepartmentComponent } from './admin/department/updatedepartment.component';
 import { IndexDepartmentComponent } from './admin/department/indexdepartment.component';
-import { CreateRequestComponent } from './admin/request/createrequest.component';
 import { DetailRequestComponent } from './admin/request/detailrequest.component';
 import { UpdateRequestComponent } from './admin/request/updaterequest.component';
 import { IndexRequestComponent } from './admin/request/indexrequest.component';
@@ -25,8 +24,13 @@ import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.compon
 import { LayoutHomeComponent } from './home/layouthome.component';
 import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
 import { ErrorComponent } from './home/404/404.component';
+
 import { authGuard } from './guard/auth.guard';
 import { Admin } from './services/checkAdmin.service';
+
+import { _CreateRequestComponent } from './admin/request/createRequest.component';
+import { CreateRequestComponent } from './admin/request/create/createrequest.component';
+
 
 const routes: Routes = [
   {path: 'error', component:ErrorComponent},
@@ -54,7 +58,7 @@ const routes: Routes = [
       {path: '', component:IndexDepartmentComponent},
     ]},
     {path:'request',children: [
-      {path: 'create', component:CreateRequestComponent},
+      {path: 'create', component: _CreateRequestComponent},
       {path: 'detail/:id', component:DetailRequestComponent},
       {path: 'update/:id', component:UpdateRequestComponent},
       {path: 'index', component:IndexRequestComponent},

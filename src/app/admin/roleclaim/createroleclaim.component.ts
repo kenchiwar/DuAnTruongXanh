@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Department } from "src/app/models/department.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { RoleClaim } from "src/app/models/roleclaim.model";
+import { AccountService } from "src/app/services/account.service";
 import { DepartmentsServices } from "src/app/services/departments.service";
 import { RoleClaimsServices } from "src/app/services/roleclaims.service";
 @Component({
@@ -19,7 +20,8 @@ export class CreateRoleClaimComponent implements OnInit {
     constructor(
         private router :Router,
         private roleClaimSerVice : RoleClaimsServices,
-        private departmentService : DepartmentsServices
+        private departmentService : DepartmentsServices,
+        private accountService : AccountService
     ){}
     ngOnInit(): void {
         this.formRoleClaim = this.roleClaimSerVice.getFormGroup();

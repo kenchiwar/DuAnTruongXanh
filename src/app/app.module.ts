@@ -22,7 +22,6 @@ import { UpdateDepartmentComponent } from './admin/department/updatedepartment.c
 import { DetailDepartmentComponent } from './admin/department/detaildepartment.component';
 import { UpdateRequestComponent } from './admin/request/updaterequest.component';
 import { IndexRequestComponent } from './admin/request/indexrequest.component';
-import { CreateRequestComponent } from './admin/request/createrequest.component';
 import { DetailRequestComponent } from './admin/request/detailrequest.component';
 import { CreateRoleComponent } from './admin/role/createrole.component';
 import { UpdateRoleComponent } from './admin/role/updaterole.component';
@@ -41,6 +40,13 @@ import { ValidatorData } from './services/validatorData.service';
 import { ErrorComponent } from './home/404/404.component';
 import { loginAccount } from './admin/account/login/loginAccount.component';
 import { DetailAccountInformationComponent } from './admin/account/account_detail/accountInformation.component';
+import { RequestFileService } from './services/requestFile.service';
+import { CreateRequestComponent } from './admin/request/create/createrequest.component';
+import { _CreateRequestComponent } from './admin/request/createRequest.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { IndexRequest_1Component } from './admin/request/index/indexRequest_1.component';
+import { IndexRequest_2Component } from './admin/request/index/indexRequest_2.component';
+import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
 
 
 
@@ -76,7 +82,12 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
     ErrorComponent,
     loginAccount,
     DetailAccountInformationComponent,
-    
+
+    _CreateRequestComponent,
+    IndexRequest_1Component,
+    IndexRequest_2Component,
+    IndexRequest_3Component,
+
   ],
   imports: [
     BrowserModule,
@@ -84,6 +95,7 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     UrlApi,
@@ -94,8 +106,8 @@ import { DetailAccountInformationComponent } from './admin/account/account_detai
     RoleClaimsServices,
     RoleServices,
     RegexApi,
-    ValidatorData
-
+    ValidatorData,
+    RequestFileService
   ],
   bootstrap: [AppComponent]
 })

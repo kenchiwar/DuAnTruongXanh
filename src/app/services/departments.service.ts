@@ -43,7 +43,7 @@ getFormGroupData(data :any):FormGroup{
 }
 
 async GetDepartment(){
-  return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/getDepartment"));
+  return await lastValueFrom(this.http.get(this.url.baseDepartments+"/getDepartment"));
 }
 
     async GetDepartmentById(id:string){
