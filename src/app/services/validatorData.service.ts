@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { FormGroup, ValidatorFn } from "@angular/forms";
-
+import { Router } from "@angular/router";
 @Injectable()
 export class ValidatorData{
+
 
     public readonly Required:string='required';
     public  readonly MinLength: string = 'minLength';
@@ -12,7 +13,9 @@ export class ValidatorData{
   public  readonly MatchPasswords: string = 'matchPasswords';
   public  readonly DateConvert:string ='dd/MM/yyyy';
   public  readonly DateConvertString:string ='';
+  constructor(private route: Router){
 
+  }
   //fieldName là tên data,fileReality là tên bên ngoài hiện ra của nó , stringPattern là trường hợp regex pattern có lỗi thì bắt
   getErrorText(fieldName: string,filedReality:string , formGroup: FormGroup,dictionary?:Record<string,number>){
     const field = formGroup.get(fieldName);
@@ -81,12 +84,23 @@ export class ValidatorData{
 
   }
   getErrorRouterChange(mess:string ,error?:any ,urlChange?:string ,urlNow?:string ){
+    // this.route.navigateByUrl('/error', { skipLocationChange: true });
+    // if(!(mess==null|| mess =='')){
+    //   setTimeout(() =>{
+    //     alert(mess);
+    //   },500);
+    // }
 
-    alert(mess);
+
 
   }
   getRouterChange(url:string,mess?:string){
-    alert(mess);
+      // try {
+      //   this.route.navigateByUrl(url, { skipLocationChange: true });
+
+      // } catch (error) {
+      //   this.route.navigateByUrl('/error', { skipLocationChange: true });
+      // }
   }
    matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (formGroup: FormGroup): { [key: string]: any } | null => {

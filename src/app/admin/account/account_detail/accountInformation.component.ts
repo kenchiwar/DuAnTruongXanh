@@ -31,6 +31,7 @@ export class DetailAccountInformationComponent implements OnInit {
 
     accountLogin : Account;
     dataAccount :Account;
+    fileData:File;
     //hiện ra html roleClaimStatus
      roleClaimStatus:boolean;
      formGroupClaimAdmin:FormGroup;
@@ -87,7 +88,22 @@ export class DetailAccountInformationComponent implements OnInit {
     }
 
 
-    handleFileSelect(event: any) {}
+    handleFileSelect(event: any) {
+      const fileList: FileList = event.target.files;
+      if (fileList.length > 0) {
+        this.fileData = fileList[0];
+        const fileReader: FileReader = new FileReader();
+
+        fileReader.addEventListener('load', () => {
+          this.selectedFileUrl = fileReader.result as string;
+        });
+
+        fileReader.readAsDataURL(this.fileData);
+        this.accountService.ChangImage(this.fileData);
+      } else {
+        this.selectedFileUrl = '';
+      }
+    }
 
     reload(){
       this.ngOnInit();
@@ -116,7 +132,7 @@ export class DetailAccountInformationComponent implements OnInit {
 
         this.accountChangPass=true;
 
-       
+
        try {
         setTimeout(()=>{
           this.loginAccountTag.viewChildPage(this.accountLogin.username);
