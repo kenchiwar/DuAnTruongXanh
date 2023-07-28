@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexHomeComponent } from './home/index/indexhome.component';
-import { IndexAdminComponent } from './admin/indeadmin.component';
+import { IndexAdminComponent } from './admin/indexadmin.component';
 import { CreateAccountComponent } from './admin/account/createaccount.component';
 import { DetailAccountComponent } from './admin/account/detailaccount.component';
 import { UpdateAccountComponent } from './admin/account/updateaccount.component';
@@ -29,10 +29,10 @@ import { authGuard } from './guard/auth.guard';
 import { Admin } from './services/checkAdmin.service';
 
 const routes: Routes = [
+  {path: 'error', component:ErrorComponent},
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
-    {path: '404', component:ErrorComponent},
   ]},
 
   {path:'error',component:ErrorComponent}

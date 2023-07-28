@@ -34,18 +34,21 @@ export class AccountService {
     // account.idRole=1;
 
     // return account;
+    // var data = localStorage.getItem('account');
+
+    // account = JSON.parse(data) as Account;
+
+    // return account??null;
     var data = localStorage.getItem('account');
     try {
       var account = JSON.parse(data) as Account;
       return account??null;
     } catch (error) {
 
+
     return null;
 
     }
-
-
-
   }
   //HttpHeaders
 

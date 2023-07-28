@@ -1,30 +1,32 @@
 <h3>Update</h3>
 <ng-container *ngIf="roleClaim != null">
     <form [formGroup]="formRoleClaim" (ngSubmit)="updateRoleClaim()" class="admin-form ">
-        <table>
-            <tr class="admin-form-item ">
-                <td>Name RoleClaim</td>
-                <td><input type="text" formControlName="name"></td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>Describe</td>
-                <td><input type="text" formControlName="describe"></td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>Claim</td>
-                <td>
-                    <select formControlName="claim">
+        <div class="admin-form-items">
+            <table>
+                <tr class="admin-form-item ">
+                    <td>Name RoleClaim</td>
+                    <td><input type="text" formControlName="name"></td>
+                </tr>
+                <tr class="admin-form-item ">
+                    <td>Describe</td>
+                    <td><input type="text" formControlName="describe"></td>
+                </tr>
+                <tr class="admin-form-item ">
+                    <td>Claim</td>
+                    <td>
+                        <select formControlName="claim">
                     <option *ngFor="let department of departments" value="{{department.id}}">{{department.tenDepartment}}</option>
                     </select>
-                </td>
-            </tr>
-            <tr class="admin-form-item ">
-                <div class="form-button">
-                    <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
-                    <!-- <td><input type="hidden" formControlName="id"></td> -->
-                </div>
-    
-            </tr>
-        </table>
+                    </td>
+                </tr>
+                <tr class="admin-form-item ">
+                    <div class="form-button">
+                        <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+                        <!-- <td><input type="hidden" formControlName="id"></td> -->
+                    </div>
+
+                </tr>
+            </table>
+        </div>
     </form>
 </ng-container>

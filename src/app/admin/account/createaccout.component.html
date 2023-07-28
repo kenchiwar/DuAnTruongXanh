@@ -1,16 +1,16 @@
-
 <section class="create-account">
     <h3 class="title">Create</h3>
     <ng-container *ngIf="formGroup!=null">
         <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="admin-form ">
-            <!-- <div class="admin-form-item ">
+            <div class="admin-form-items">
+                <!-- <div class="admin-form-item ">
       <label for="username">Username  :</label>
       <input type="text" id="username" formControlName="username" [ngClass]="{'invalid': validationService.getErrorAddClass('username', formGroup)}">
       <div class="form-create-mess" *ngIf="validationService.getErrorText('username', 'username', formGroup)">{{ validationService.getErrorText('username', 'username', formGroup) }}</div>
     </div> -->
 
 
-            <!-- <div class="admin-form-item ">
+                <!-- <div class="admin-form-item ">
       <label>Status:&nbsp; &nbsp; </label>
 
         <label for="active"> &nbsp; Active &nbsp; </label>
@@ -20,139 +20,139 @@
 
       <div class="form-create-mess" *ngIf="validationService.getErrorText('status', 'status', formGroup)">{{ validationService.getErrorText('status', 'status', formGroup) }}</div>
     </div> -->
-            <div class="admin-form-item ">
-                <label for="emailaddress">Email and Username :</label>
-                <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm}">
-                <div class="form-create-mess" *ngIf="(validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroup) }} &emsp; &emsp; &emsp; {{this.isEmailConfirm?'Username is exists ! ':''}} </div>
-            </div>
-            <div class="admin-form-item ">
-                <label for="password">Password:</label>
-                <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroup)}">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('password', 'password', formGroup)">
-                    {{ validationService.getErrorText('password', 'password', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item ">
+                <div class="admin-form-item ">
+                    <label for="emailaddress">Email and Username :</label>
+                    <input type="text" id="emailaddress" formControlName="emailaddress" [ngClass]="{'invalid': validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm}">
+                    <div class="form-create-mess" *ngIf="(validationService.getErrorAddClass('emailaddress', formGroup) || this.isEmailConfirm)">{{ validationService.getErrorText('emailaddress', 'emailaddress', formGroup) }} &emsp; &emsp; &emsp; {{this.isEmailConfirm?'Username is exists ! ':''}} </div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" formControlName="password" [ngClass]="{'invalid': validationService.getErrorAddClass('password', formGroup)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('password', 'password', formGroup)">
+                        {{ validationService.getErrorText('password', 'password', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item ">
 
-                <label for="idRole">Role Admin :</label>
-                <ng-container *ngIf="roles!=null">
+                    <label for="idRole">Role Admin :</label>
+                    <ng-container *ngIf="roles!=null">
 
-                    <select id="idRole" formControlName="idRole" [ngClass]="{'invalid': validationService.getErrorAddClass('idRole', formGroup)}">
+                        <select id="idRole" formControlName="idRole" [ngClass]="{'invalid': validationService.getErrorAddClass('idRole', formGroup)}">
                         <option *ngFor="let role of this.roles" value="{{role.id}}"> {{ role.name }}
                         </option>
 
                     </select>
-                    <div class="form-create-mess" *ngIf="validationService.getErrorText('idRole', 'Role Admin', formGroup)">{{ validationService.getErrorText('idRole', 'Role Admin', formGroup) }}</div>
-                </ng-container>
+                        <div class="form-create-mess" *ngIf="validationService.getErrorText('idRole', 'Role Admin', formGroup)">{{ validationService.getErrorText('idRole', 'Role Admin', formGroup) }}</div>
+                    </ng-container>
 
-            </div>
-            <div class="admin-form-item ">
+                </div>
+                <div class="admin-form-item ">
 
-                <label for="idDepartment">Department:</label>
-                <ng-container *ngIf="this.departments!=null">
-                    <select id="idDepartment" formControlName="idDepartment" [ngClass]="{'invalid': validationService.getErrorAddClass('idDepartment', formGroup)}">
+                    <label for="idDepartment">Department:</label>
+                    <ng-container *ngIf="this.departments!=null">
+                        <select id="idDepartment" formControlName="idDepartment" [ngClass]="{'invalid': validationService.getErrorAddClass('idDepartment', formGroup)}">
                         <option *ngFor="let department of this.departments" value="{{ department.id}}">
                             {{department.tenDepartment }}+123</option>
                     </select>
-                </ng-container>
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('idDepartment', 'idDepartment', formGroup)">{{ validationService.getErrorText('idDepartment', 'idDepartment', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item ">
-                <label for="fullname">Fullname:</label>
-                <input type="text" id="fullname" formControlName="fullname" [ngClass]="{'invalid': validationService.getErrorAddClass('fullname', formGroup)}">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('fullname', 'fullname', formGroup)">
-                    {{ validationService.getErrorText('fullname', 'fullname', formGroup) }}</div>
-            </div>
+                    </ng-container>
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('idDepartment', 'idDepartment', formGroup)">{{ validationService.getErrorText('idDepartment', 'idDepartment', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="fullname">Fullname:</label>
+                    <input type="text" id="fullname" formControlName="fullname" [ngClass]="{'invalid': validationService.getErrorAddClass('fullname', formGroup)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('fullname', 'fullname', formGroup)">
+                        {{ validationService.getErrorText('fullname', 'fullname', formGroup) }}</div>
+                </div>
 
-            <div class="admin-form-item ">
-                <label for="phonenumber">Phone Number:</label>
-                <input type="text" id="phonenumber" formControlName="phonenumber" [ngClass]="{'invalid': validationService.getErrorAddClass('phonenumber', formGroup)}">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('phonenumber', 'phonenumber', formGroup)">{{ validationService.getErrorText('phonenumber', 'phonenumber', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item ">
-                <label for="address">Address:</label>
-                <input type="text" id="address" formControlName="address" [ngClass]="{'invalid': validationService.getErrorAddClass('address', formGroup)}">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('address', 'address', formGroup)">{{ validationService.getErrorText('address', 'address', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item ">
-                <label for="fileInput">Image Account :</label>
-                <button type="button">
+                <div class="admin-form-item ">
+                    <label for="phonenumber">Phone Number:</label>
+                    <input type="text" id="phonenumber" formControlName="phonenumber" [ngClass]="{'invalid': validationService.getErrorAddClass('phonenumber', formGroup)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('phonenumber', 'phonenumber', formGroup)">{{ validationService.getErrorText('phonenumber', 'phonenumber', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" formControlName="address" [ngClass]="{'invalid': validationService.getErrorAddClass('address', formGroup)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('address', 'address', formGroup)">{{ validationService.getErrorText('address', 'address', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item ">
+                    <label for="fileInput">Image Account :</label>
+                    <button type="button">
                     <label for="citizenidentification">{{(this.selectedFileUrl=='')?'choose file 123':'Have
                         file'}}</label>
                     <input type="file" id="citizenidentification" accept=".jpg,.jpeg,.png,.gif" multiple="false"
                         (change)="handleFileSelect($event)" style="display:none">
                 </button>
-                <!--ảnh ở đây tự xử lý đi -->
-                <ng-container *ngIf="selectedFileUrl!=''">
-                    <img id="preview" [src]="selectedFileUrl" alt="Preview">
-                </ng-container>
+                    <!--ảnh ở đây tự xử lý đi -->
+                    <ng-container *ngIf="selectedFileUrl!=''">
+                        <img id="preview" [src]="selectedFileUrl" alt="Preview">
+                    </ng-container>
 
-            </div>
-            <div class="admin-form-item ">
-                <label for="dateofbirth">Date of Birth:</label>
-                <input type="date" id="dateofbirth" formControlName="dateofbirth" [ngClass]="{'invalid': validationService.getErrorAddClass('dateofbirth', formGroup)}">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup)">{{ validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item ">
-                <label>Sex:</label>
-                <div class="admin-form-item ">
-                    <label for="male">Male</label>
-                    <input type="radio" id="male" name="sex" value="false" formControlName="sex">
-                    <label for="female">Female</label>
-                    <input type="radio" id="female" name="sex" value="true" formControlName="sex">
                 </div>
-                <div class="form-create-mess" *ngIf="validationService.getErrorText('sex', 'sex', formGroup)">{{ validationService.getErrorText('sex', 'sex', formGroup) }}</div>
-            </div>
+                <div class="admin-form-item ">
+                    <label for="dateofbirth">Date of Birth:</label>
+                    <input type="date" id="dateofbirth" formControlName="dateofbirth" [ngClass]="{'invalid': validationService.getErrorAddClass('dateofbirth', formGroup)}">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup)">{{ validationService.getErrorText('dateofbirth', 'dateofbirth', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item ">
+                    <label>Sex:</label>
+                    <div class="admin-form-item ">
+                        <label for="male">Male</label>
+                        <input type="radio" id="male" name="sex" value="false" formControlName="sex">
+                        <label for="female">Female</label>
+                        <input type="radio" id="female" name="sex" value="true" formControlName="sex">
+                    </div>
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText('sex', 'sex', formGroup)">{{ validationService.getErrorText('sex', 'sex', formGroup) }}</div>
+                </div>
 
-            <div class="admin-form-item ">
-                <label for="role">Role Shool :</label>
-                <ng-container *ngIf="roles!=null">
-                    <div>
-                        <select id="role" formControlName="role" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'role', formGroup)} ">
+                <div class="admin-form-item ">
+                    <label for="role">Role Shool :</label>
+                    <ng-container *ngIf="roles!=null">
+                        <div>
+                            <select id="role" formControlName="role" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'role', formGroup)} ">
                             <option value="teacher">teacher</option>
                             <option value="student">student</option>
 
                         </select>
-                        <div class="form-create-mess " *ngIf="validationService.getErrorText( 'role', 'role', formGroup) ">{{ validationService.getErrorText('role', 'role', formGroup) }}</div>
-                    </div>
+                            <div class="form-create-mess " *ngIf="validationService.getErrorText( 'role', 'role', formGroup) ">{{ validationService.getErrorText('role', 'role', formGroup) }}</div>
+                        </div>
 
-                </ng-container>
+                    </ng-container>
 
-            </div>
-            <h2>Student </h2>
-            <div class="admin-form-item">
-                <label for="class">Class:</label>
-                <input type="text" id="class" formControlName="class" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'class', formGroup)} ">
-                <div class="form-create-mess" *ngIf="validationService.getErrorText( 'class', 'class', formGroup) ">{{ validationService.getErrorText('class', 'class', formGroup) }}</div>
-            </div>
+                </div>
+                <h2>Student </h2>
+                <div class="admin-form-item">
+                    <label for="class">Class:</label>
+                    <input type="text" id="class" formControlName="class" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'class', formGroup)} ">
+                    <div class="form-create-mess" *ngIf="validationService.getErrorText( 'class', 'class', formGroup) ">{{ validationService.getErrorText('class', 'class', formGroup) }}</div>
+                </div>
 
-            <div class="admin-form-item">
-                <label for="schoolyear">School Year:</label>
-                <input type="date" id="schoolyear " formControlName="schoolyear" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'schoolyear', formGroup)} ">
-                <div class="form-create-mess " *ngIf="validationService.getErrorText( 'schoolyear', 'schoolyear', formGroup) ">{{ validationService.getErrorText('schoolyear', 'schoolyear', formGroup) }}</div>
-            </div>
+                <div class="admin-form-item">
+                    <label for="schoolyear">School Year:</label>
+                    <input type="date" id="schoolyear " formControlName="schoolyear" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'schoolyear', formGroup)} ">
+                    <div class="form-create-mess " *ngIf="validationService.getErrorText( 'schoolyear', 'schoolyear', formGroup) ">{{ validationService.getErrorText('schoolyear', 'schoolyear', formGroup) }}</div>
+                </div>
 
-            <h2>Teacher</h2>
-            <div class="admin-form-item">
-                <label for="degree">Degree:</label>
-                <input required type="text" id="degree" formControlName="degree" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'degree', formGroup)} ">
-                <div class="form-create-mess " *ngIf="validationService.getErrorText( 'degree', 'degree', formGroup) ">
-                    {{ validationService.getErrorText('degree', 'degree', formGroup) }}</div>
-            </div>
-            <div class="admin-form-item">
-                <label for="academicrank">Academic Rank:</label>
-                <input type="text" id="academicrank" formControlName="academicrank" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'academicrank', formGroup)} ">
-                <div class="form-create-mess " *ngIf="validationService.getErrorText( 'academicrank', 'academicrank', formGroup) ">{{ validationService.getErrorText('academicrank', 'academicrank', formGroup) }}</div>
-            </div>
+                <h2>Teacher</h2>
+                <div class="admin-form-item">
+                    <label for="degree">Degree:</label>
+                    <input required type="text" id="degree" formControlName="degree" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'degree', formGroup)} ">
+                    <div class="form-create-mess " *ngIf="validationService.getErrorText( 'degree', 'degree', formGroup) ">
+                        {{ validationService.getErrorText('degree', 'degree', formGroup) }}</div>
+                </div>
+                <div class="admin-form-item">
+                    <label for="academicrank">Academic Rank:</label>
+                    <input type="text" id="academicrank" formControlName="academicrank" [ngClass]="{ 'invalid': validationService.getErrorAddClass( 'academicrank', formGroup)} ">
+                    <div class="form-create-mess " *ngIf="validationService.getErrorText( 'academicrank', 'academicrank', formGroup) ">{{ validationService.getErrorText('academicrank', 'academicrank', formGroup) }}</div>
+                </div>
 
-            <div class="form-button">
-                <button type="submit " class="btn btn-primary button-submit " [disabled]="isLoading ">Create
+                <div class="form-button">
+                    <button type="submit " class="btn btn-primary button-submit " [disabled]="isLoading ">Create
                     <span *ngIf="isLoading " class="spinner-border spinner-border-sm mr-2 "></span>
                     {{ isLoading ? 'Loading...' : 'Submit' }}
                 </button>
-                <button type="button " (click)="reload() " class="btn btn-primary button-submit " style="margin-left: 20px;">Reset</button>
+                    <button type="button " (click)="reload() " class="btn btn-primary button-submit ">Reset</button>
+                </div>
             </div>
         </form>
 
     </ng-container>
 </section>
-

@@ -13,6 +13,7 @@ import { AccountService } from "src/app/services/account.service";
 import { UrlApi } from "src/app/services/baseurl.services";
 import { ValidatorData } from "src/app/services/validatorData.service";
 import { loginAccount } from "../login/loginAccount.component";
+declare var $ : any;
 @Component({
        templateUrl : './accountInformation.conponent.html',
        selector:'<account_information></account_information>'
@@ -55,7 +56,39 @@ export class DetailAccountInformationComponent implements OnInit {
           this.requetIdHandleNavigations=[];
           this.accountLogin = this.accountService.GetAccountLogin() as Account;
           console.log(this.accountLogin);
-          //
+          setTimeout(()=>{
+            $('#account-detail-roleclaims').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#account-detail-request1').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#account-detail-request2').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          },1000);
+       
           this.changePass=false;
           this.password='';
           this.checkPassword=true;
