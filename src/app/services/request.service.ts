@@ -124,7 +124,6 @@ getFormGroupDetail(){
   return requestDetailForm;
 }
 
-
 getFormGroupData(data :any):FormGroup{
     return this.formBuilder.group({
       id: data.id,
@@ -137,56 +136,20 @@ getFormGroupData(data :any):FormGroup{
       sentDate: data.sentDate,
       endDate: data.endDate,
       priority: data.priority,
-    //   idComplainNavigation: this.formBuilder.group({
-    //     id : 0,
-    //     username :'',
-    //     password :'',
-    //     idRole :0,
-    //     idDepartment:0 ,
-    //     fullname:'',
-    //     emailaddress:'',
-    //     phonenumber : '',
-    //     address:'',
-    //     citizenidentification:'',
-    //     dateofbirth:'',
-    //     sex :false,
-    //     status : false,
-    //     role:'',
-    //     class:'',
-    //     schoolyear:'',
-    //     degree:'',
-    //     academicrank:'',
-    // }),
-    //   idDepartmentNavigation: this.formBuilder.group({
-    //     id:0,
-    //     tenDepartment:'',
-    //     describe : '',
-    //     address :'',
-    //     status : false,
-    // }),
-    //   idHandleNavigation:this.formBuilder.group({
-    //     id : 0,
-    //     username :'',
-    //     password :'',
-    //     idRole :0,
-    //     idDepartment:0 ,
-    //     fullname:'',
-    //     emailaddress:'',
-    //     phonenumber : '',
-    //     address:'',
-    //     citizenidentification:'',
-    //     dateofbirth:'',
-    //     sex :false,
-    //     status : false,
-    //     role:'',
-    //     class:'',
-    //     schoolyear:'',
-    //     degree:'',
-    //     academicrank:'',
-        
-    // }),
+      reason : data.reason,
     });
 }
+
+getFormGroupDetailData(data :any):FormGroup{
+  return this.formBuilder.group({
+    id: data.id,
+    sentdate: data.sentDate,
+    payday: data.payday,
+    reason: data.reason,
+    status: data.status,
+    reply: data.reply,
+    idRequest: data.idRequest,
+  })}
 
 async GetRequets(){
 
@@ -208,6 +171,11 @@ async GetRequetsIndex(){
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestDetail/"+id));
   }
 
+  async GetRequestFile(id:string){
+
+    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestFile/"+id));
+  }
+
   async PostRequest(formData: FormData){
     console.log(formData); 
     return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/createRequestWithFile", formData));
@@ -218,9 +186,9 @@ async GetRequetsIndex(){
   async DeleteRequet(id:string){
     return await lastValueFrom(this.http.delete(this.url.baseChuyenBayUrl+"/api/request/deleterequet/"+id));
   }
-  async PutRequet(id: string){
-    
-    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/",id));
+
+  async PutRequet(formData: FormData){
+    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/updateDetail",formData));
   }
 
   async PostAccount (formData : FormData){

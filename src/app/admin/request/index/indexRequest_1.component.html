@@ -4,7 +4,6 @@
           <tr>
             <th>Complainer</th>
             <th>Department</th>
-            <th>Handle</th>
             <th>Title</th>
             <th>Status</th>
             <th>SentDate</th>
@@ -14,9 +13,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let request of requests | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }">
-            <td>{{request.idComplain}}</td>
-            <td>{{request.idDepartment}}</td>
-            <td>{{request.idHandle}}</td>
+            <td>{{request.idComplainNavigation.fullname}}</td>
+            <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
             <td>{{request.title}}</td>
             <td>{{request.status}}</td>
             <td>{{request.sentDate}}</td>

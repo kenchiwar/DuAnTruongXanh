@@ -1,4 +1,5 @@
 <ng-container *ngIf="requests_ != null">
+  <input type="button" value="Reload" (click)="reload()">
     <table border="1">
         <thead>
           <tr>
@@ -14,9 +15,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let request of requests_ | paginate: { itemsPerPage: pageSize_, currentPage: currentPage_, totalItems: totalItems_ }">
-            <td>{{request.idComplain}}</td>
-            <td>{{request.idDepartment}}</td>
-            <td>{{request.idHandle}}</td>
+            <td>{{request.idComplainNavigation.fullname}}</td>
+            <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
+            <td>{{request.idHandleNavigation.fullname}}</td>
             <td>{{request.title}}</td>
             <td>{{request.status}}</td>
             <td>{{request.sentDate}}</td>

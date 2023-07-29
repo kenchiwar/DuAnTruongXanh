@@ -1,0 +1,67 @@
+<table border="1">
+    <tr>
+        <td>Complainer: {{request.idComplainNavigation.fullname}}</td>
+        <td>Department: {{request.idDepartmentNavigation.tenDepartment}}</td>
+        <td>Handle: {{request.idHandleNavigation.fullname}}</td>
+        <td>Status: {{request.status == 0 ? "Sending" : request.status == 1 ? "Solving" : request.status == 2 ?
+           "Add more information" : request.status == 3 ? "Untreated" : "Completed"}}</td>
+        <td>Title: {{request.title}}</td>
+        <td>SentDate: {{request.sentDate}}</td>
+        <td>Priority: {{request.priority ==1 ? "Low" : request.priority ==2 ? "Medium" : "Urgent"}}</td>
+    </tr>
+</table>
+<div class="form-container">
+    
+    <!-- Cột trái trên -->
+    <div class="top-left-column">
+     
+      <h5>Complainer: {{request.idComplainNavigation.fullname}}</h5>
+      <h5>Username: {{request.idComplainNavigation.username}}</h5>
+      <p>Sent Date: {{request.sentDate}}</p>
+    </div>
+  
+  
+    
+    <!-- Cột phải dưới -->
+    <div class="bottom-right-column">
+        <ng-container *ngIf="request.idHandle != null">
+            <h5>Handle: {{request.idHandleNavigation.fullname}}</h5>
+        </ng-container>
+        
+        <h5>Status: {{requestDetail.status == 0 ? "Sending" : request.status ==1 ? "Accepted" : "Completed"}}</h5>
+        <h5>Reply: {{requestDetail.reply}}</h5>
+        <p>Sent Date: {{requestDetail.sentDate}}</p>
+    </div>
+    
+  </div>
+  <div class="form-container">
+    
+    <!-- Cột trái trên -->
+    <div class="top-left-column">
+     
+        <h5>Title: {{request.title}}</h5>
+        <h5>Reason: {{requestDetail.reason}}</h5>
+      <ng-container *ngIf="requestFile != null">
+        <h5>File: </h5> 
+        <table>
+            <tr *ngFor="let file of requestFile">
+                
+                <td><a href="{{file.name}}" target="_blank">{{file.file}}</a></td>
+            </tr>
+        </table>
+      </ng-container>
+      <p>Sent Date: {{request.sentDate}}</p>
+    </div>
+  
+  
+    
+    <!-- Cột phải dưới -->
+    <div class="bottom-right-column">
+        <h5>Department: {{request.idDepartmentNavigation.tenDepartment}}</h5>
+        <h5>Describe: {{request.idDepartmentNavigation.describe}}</h5>
+        <h5>Address: {{request.idDepartmentNavigation.address}}</h5>
+      
+    </div>
+    
+  </div>
+  

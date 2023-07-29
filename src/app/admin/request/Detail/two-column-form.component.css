@@ -1,0 +1,30 @@
+.form-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* Chia layout thành 2 hàng bằng nhau */
+  grid-template-columns: 1fr 1fr; /* Chia layout thành 2 cột bằng nhau */
+  gap: 10px; /* Khoảng cách giữa các ô trong grid */
+}
+
+.form-container > div {
+  padding: 20px;
+}
+
+.top-left-column {
+  background-color: #f1f1f1;
+  grid-area: 1 / 1; /* Vị trí của ô trong grid (hàng 1, cột 1) */
+}
+
+.top-right-column {
+  background-color: #fff;
+  grid-area: 1 / 2; /* Vị trí của ô trong grid (hàng 1, cột 2) */
+}
+
+.bottom-left-column {
+  background-color: #f1f1f1;
+  grid-area: 2 / 1; /* Vị trí của ô trong grid (hàng 2, cột 1) */
+}
+
+.bottom-right-column {
+  background-color: #fff;
+  grid-area: 2 / 2; /* Vị trí của ô trong grid (hàng 2, cột 2) */
+}

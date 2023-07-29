@@ -34,9 +34,10 @@ export class IndexRequest_2Component implements OnInit {
             this.requests_ = data
             this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 1)
             this.totalItems_ = this.requests_.length
-           
-            
     });
     }
 
+    reload(){
+        this.ngOnInit()
+    }
 }
