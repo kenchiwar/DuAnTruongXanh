@@ -306,7 +306,7 @@ getFormGroupData(data :any):FormGroup{
       return await    lastValueFrom(this.http.get(this.url.baseRolesUrl,{headers}));
   }
   async GetAllDepartment(){
-    return await    lastValueFrom(this.http.get(this.url.baseDepartments));
+    return await    lastValueFrom(this.http.get(this.url.baseDepartments+'/getDepartment'));
   }
   async getAllRoleCliam(){
     return await    lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl));
@@ -367,6 +367,10 @@ getFormGroupData(data :any):FormGroup{
 
 
     return await this.SendApi('post',this.url.baseAccountLoginUrl+"/changeImage",formSubmit);
+  }
+   ChangAccountLoginNotUpdate( account:Account ){
+    localStorage.setItem('account',JSON.stringify(account));
+
   }
 
 
