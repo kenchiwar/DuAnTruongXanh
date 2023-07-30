@@ -7,6 +7,7 @@ import { RegexApi } from "./regex.service";
 import { Account } from "../models/account.model";
 import { ValidatorData } from "./validatorData.service";
 import { DatePipe } from "@angular/common";
+import { Router } from "@angular/router";
 
 
 
@@ -16,7 +17,8 @@ export class AccountService {
     [x: string]: any;
 
   constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi,
-  private validatorData:ValidatorData
+  private validatorData:ValidatorData,
+  private router:Router
     ) {
    // private convert:ConvertDate
   }
@@ -306,7 +308,7 @@ getFormGroupData(data :any):FormGroup{
       return await    lastValueFrom(this.http.get(this.url.baseRolesUrl,{headers}));
   }
   async GetAllDepartment(){
-    return await    lastValueFrom(this.http.get(this.url.baseDepartments));
+    return await    lastValueFrom(this.http.get(this.url.baseDepartments+'/getDepartment'));
   }
   async getAllRoleCliam(){
     return await    lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl));
@@ -348,8 +350,8 @@ getFormGroupData(data :any):FormGroup{
    Logout(){
     localStorage.removeItem('account');
     localStorage.removeItem('username_expiration');
-    // localStorage.setItem('account', JSON.stringify(account));
-
+    // localStorage.setItem('accthen(() => { this.router.navigate([this.router.url]); }); ount', JSON.stringify(account));
+    this.router.navigate(['/error'],{skipLocationChange:true}).then(() => { this.router.navigate([this.router.url]) });
     // localStorage.setItem('username_expiration',Date.now()+12 * 60 * 60 * 1000 +'');
   }
   async getCodeSecurity(username:string){
@@ -367,6 +369,10 @@ getFormGroupData(data :any):FormGroup{
 
 
     return await this.SendApi('post',this.url.baseAccountLoginUrl+"/changeImage",formSubmit);
+  }
+   ChangAccountLoginNotUpdate( account:Account ){
+    localStorage.setItem('account',JSON.stringify(account));
+
   }
 
 

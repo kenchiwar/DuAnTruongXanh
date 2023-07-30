@@ -1,9 +1,11 @@
 <h1 class="fz-30 text-center block">Account Detail</h1>
 <ng-container *ngIf="this.dataAccount!=null">
-    <div class="box-buttons">
-        <button type="button" class="btn btn-primary btn-return" [routerLink]="['/admin/account']"> return </button>
-        <button type="button" [routerLink]="['/admin/account/update/',dataAccount.id]" class="btn btn-primary btn-update">Update</button>
-    </div>
+    <ng-container *ngIf="isAdmin">
+        <div class="box-buttons">
+            <button type="button" class="btn btn-primary btn-return" [routerLink]="['/admin/account']"> return </button>
+            <button type="button" [routerLink]="['/admin/account/update/',dataAccount.id]" class="btn btn-primary btn-update">Update</button>
+        </div>
+    </ng-container>
     <div class="box-info">
 
         <p><strong>Id:</strong> {{ dataAccount.id }}</p>
@@ -83,20 +85,24 @@
     </ng-container>
 
     <div class="box-buttons">
-        <button (click)="changePassword()" class="btn btn-primary btn-update"> Chang Password</button>
+        <button (click)="changePassword()" class="btn btn-primary btn-update"> Change Password</button>
         <ng-container *ngIf="this.changePass">
-            <div class="admin-form">
-                <div class="admin-form-items">
-                    <div class="admin-form-item">
-                        <label for="password">Password:</label>
-                        <input type="password" [(ngModel)]="this.password" [ngClass]="{'invalid': !this.checkPassword}">
-                        <div *ngIf="!this.checkPassword"> password is not correct </div>
-                        <div class="form-button" style="margin-top:20px">
-                            <button (click)="checkPass()" class="btn btn-primary button-submit"> Submit </button>
+            <ng-container *ngIf="!this.accountChangPass">
+                <div class="admin-form">
+                    <div class="admin-form-items">
+                        <div class="admin-form-item">
+                            <label for="password">Password:</label>
+                            <input type="password" [(ngModel)]="this.password" [ngClass]="{'invalid': !this.checkPassword}">
+                            <div *ngIf="!this.checkPassword"> password is not correct </div>
+                            <div class="form-button" style="margin-top:20px">
+                                <button (click)="checkPass()" class="btn btn-primary button-submit"> Submit </button>
+
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
+            </ng-container>
             <ng-container *ngIf="this.accountChangPass">
                 <account-login #met></account-login>
             </ng-container>
@@ -144,7 +150,7 @@
 
 
         <div class="box-info">
-            <h1>Request</h1>
+            <h1>Request accomplished</h1>
 
             <table class="table table-striped table-hover" id="account-detail-request2">
                 <thead>
@@ -163,8 +169,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let request of this.requetIdHandleNavigations">
-
+                    <tr *ngFor="let request of this.requetIdHandleNavigations" [ngClass]="{'bg-new
+':request.status==0,'bg-processing':request.status>=1,'bg-accomplished':request.status>3} ">
                         <td>{{request.id}}</td>
                         <td>{{request.idComplain}}</td>
                         <td>{{request.idDepartment}}</td>
@@ -176,7 +182,6 @@
                         <td>{{request.endDate}}</td>
                         <td>{{request.priority}}</td>
                         <td> <button type="button" [routerLink]="['/admin/request/detail/',request.id]" class="btn btn-primary btn-detail">Detail</button></td>
-
                     </tr>
                 </tbody>
             </table>

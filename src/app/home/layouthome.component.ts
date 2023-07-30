@@ -2,6 +2,7 @@ import { CssSelector } from "@angular/compiler";
 import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 import { AccountService } from "../services/account.service";
+import { Account } from "../models/account.model";
 @Component({
 
        templateUrl : './layouthome.component.html',
@@ -15,7 +16,9 @@ export class LayoutHomeComponent implements OnInit,AfterViewInit {
         private router :Router,
         private accountService :AccountService,
     ){}
+    accountLogin?:Account;
     ngOnInit(): void {
+        this.accountLogin = this.accountService.GetAccountLogin();
 
     }
     ngAfterViewInit(): void {

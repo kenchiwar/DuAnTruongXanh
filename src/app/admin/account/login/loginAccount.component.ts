@@ -177,10 +177,22 @@ export class loginAccount implements OnInit {
 
         console.log(this.accountService.GetAccountLogin());
       //  alert('success');
+
+
+
         if(account.idRole<=2) {
-          this.validationService.getRouterChange("/admin","");
+          //this.validationService.getRouterChange("/admin","");
+          setTimeout(() =>{
+            location.reload();
+          },200)
+          this.router.navigate(['/admin'],{replaceUrl:true});
+         
         }else{
-          this.validationService.getRouterChange("/","");
+          setTimeout(() =>{
+            location.reload();
+          },200)
+          this.router.navigate(['/']);
+          //this.validationService.getRouterChange("/","");
         }
       }).catch(error => {
         console.log(error);

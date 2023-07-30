@@ -95,12 +95,12 @@ export class ValidatorData{
 
   }
   getRouterChange(url:string,mess?:string){
-      // try {
-      //   this.route.navigateByUrl(url, { skipLocationChange: true });
+       try {
+        this.route.navigateByUrl(url, { skipLocationChange: true });
 
-      // } catch (error) {
-      //   this.route.navigateByUrl('/error', { skipLocationChange: true });
-      // }
+      } catch (error) {
+        this.route.navigateByUrl('/error', { skipLocationChange: true });
+      }
   }
    matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (formGroup: FormGroup): { [key: string]: any } | null => {

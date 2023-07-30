@@ -88,7 +88,7 @@ export class DetailAccountInformationComponent implements OnInit {
               "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#account-detail-request2_wrapper .col-md-6:eq(0)');
           },1000);
-       
+         
           this.changePass=false;
           this.password='';
           this.checkPassword=true;
@@ -179,6 +179,9 @@ export class DetailAccountInformationComponent implements OnInit {
         this.checkPassword=false;
       }
 
+    }
+    isAdmin(): boolean {
+      return this.router.url.startsWith('/admin');
     }
 
 }

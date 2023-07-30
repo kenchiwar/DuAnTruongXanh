@@ -236,3 +236,13 @@
     });
 
 })()
+window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+    if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+        console.log(document.body.scrollTop);
+        document.getElementById("header").style.position = "fixed";
+    } else {
+        document.getElementById("header").style.position = "relative";
+    }
+}

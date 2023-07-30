@@ -1,4 +1,4 @@
-<header id="header" class="fixed-top d-flex align-items-center">
+<header id="header" class="fixed-top d-flex align-items-center" style="position:relative !important;">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="/assets/filehome/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,12 +25,14 @@
                 <li><a class="nav-link scrollto" href="#team">Team</a></li>
 
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <!-- <1-- <ng-container *ngIf="accountLogin != null"> -->
                 <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="#">Profile</a></li>
+                        <li><a [routerLink]="[ 'login/profile'] ">Profile</a></li>
                         <li><a href="#" (click)="logout()">Logout</a></li>
                     </ul>
                 </li>
+                <!-- </ng-container> -->
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
