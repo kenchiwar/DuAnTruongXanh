@@ -21,7 +21,7 @@ export class AccountService {
    // private convert:ConvertDate
   }
   async getAll(){
-    return await lastValueFrom(this.http.get(this.url.baseAccountsUrl));
+    return await this.SendApi('get',this.url.baseAccountsUrl);
   }
   async GetAccounts(){
 
@@ -34,20 +34,21 @@ export class AccountService {
     // account.idRole=1;
 
     // return account;
+    // var data = localStorage.getItem('account');
+
+    // account = JSON.parse(data) as Account;
+
+    // return account??null;
     var data = localStorage.getItem('account');
     try {
       var account = JSON.parse(data) as Account;
-      return account;
+      return account??null;
     } catch (error) {
-      account = {id:1,fullname:'fdsfsf',username:'met@gmail.com'};
-    account.idRole=1;
 
-    return account;
-   
+
+    return null;
+
     }
-
-
-
   }
   //HttpHeaders
 
@@ -305,7 +306,7 @@ getFormGroupData(data :any):FormGroup{
       return await    lastValueFrom(this.http.get(this.url.baseRolesUrl,{headers}));
   }
   async GetAllDepartment(){
-    return await    lastValueFrom(this.http.get(this.url.baseDepartments));
+    return await    lastValueFrom(this.http.get(this.url.baseDepartments+'/getDepartment'));
   }
   async getAllRoleCliam(){
     return await    lastValueFrom(this.http.get(this.url.baseRoleClaimsUrl));
@@ -344,6 +345,13 @@ getFormGroupData(data :any):FormGroup{
   async Login(username:string,password:string){
       return await this.SendApi('get',this.url.baseAccountLoginUrl+"/login/"+username+'/'+password);
   }
+   Logout(){
+    localStorage.removeItem('account');
+    localStorage.removeItem('username_expiration');
+    // localStorage.setItem('account', JSON.stringify(account));
+
+    // localStorage.setItem('username_expiration',Date.now()+12 * 60 * 60 * 1000 +'');
+  }
   async getCodeSecurity(username:string){
 
     return await lastValueFrom(this.http.get("https://localhost:7007/api/AccountLogin/sendChangPass/"+username));
@@ -353,6 +361,18 @@ getFormGroupData(data :any):FormGroup{
   {
     return await this.SendApi('get',this.url.baseAccountLoginUrl+"/changePass/"+username+'/'+password);
   }
+  async ChangImage(dataFile:File){
+    var formSubmit = new FormData();
+    formSubmit.append('file',dataFile);
+
+
+    return await this.SendApi('post',this.url.baseAccountLoginUrl+"/changeImage",formSubmit);
+  }
+   ChangAccountLoginNotUpdate( account:Account ){
+    localStorage.setItem('account',JSON.stringify(account));
+
+  }
+
 
 
 }

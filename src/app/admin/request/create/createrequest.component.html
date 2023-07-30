@@ -1,4 +1,24 @@
 <ng-container *ngIf="requests != null">
+    <style>
+        /* CSS cho textarea */
+        textarea {
+          width: 100%; /* Độ rộng */
+          height: 100px; /* Chiều cao */
+          font-family: Arial, sans-serif; /* Font chữ */
+          font-size: 16px; /* Cỡ chữ */
+          background-color: #f2f2f2; /* Màu nền */
+          color: #333; /* Màu chữ */
+          border: 2px solid #ccc; /* Viền */
+          border-radius: 8px; /* Góc bo tròn */
+          transition: border-color 0.3s; /* Hiệu ứng chuyển động 0.3s khi thay đổi viền */
+        }
+    
+        textarea:focus {
+          border-color: #000000; /* Màu viền khi focus */
+          outline: none; /* Loại bỏ viền focus mặc định của trình duyệt */
+          background-color: #fff; /* Màu nền khi focus */
+        }
+      </style>
     <form [formGroup]="formRequest" (ngSubmit)="createdRequest()" class="admin-form ">
         <table>            
             <tr class="admin-form-item ">
@@ -22,7 +42,7 @@
                 <tr class="admin-form-item">
                 <td>Reason</td>
                 <td>
-                    <textarea formControlName="reason" cols="30" rows="10"></textarea>
+                    <textarea formControlName="reason" cols="150"></textarea>
                 </td>
             </tr>            
                  <tr class="admin-form-item ">

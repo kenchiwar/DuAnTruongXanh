@@ -13,6 +13,7 @@ import { AccountService } from "src/app/services/account.service";
 import { UrlApi } from "src/app/services/baseurl.services";
 import { ValidatorData } from "src/app/services/validatorData.service";
 import { loginAccount } from "../login/loginAccount.component";
+declare var $ : any;
 @Component({
        templateUrl : './accountInformation.conponent.html',
        selector:'<account_information></account_information>'
@@ -31,6 +32,7 @@ export class DetailAccountInformationComponent implements OnInit {
 
     accountLogin : Account;
     dataAccount :Account;
+    fileData:File;
     //hiện ra html roleClaimStatus
      roleClaimStatus:boolean;
      formGroupClaimAdmin:FormGroup;
@@ -54,7 +56,39 @@ export class DetailAccountInformationComponent implements OnInit {
           this.requetIdHandleNavigations=[];
           this.accountLogin = this.accountService.GetAccountLogin() as Account;
           console.log(this.accountLogin);
-          //
+          setTimeout(()=>{
+            $('#account-detail-roleclaims').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#account-detail-request1').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#account-detail-request2').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          },1000);
+       
           this.changePass=false;
           this.password='';
           this.checkPassword=true;
@@ -87,7 +121,22 @@ export class DetailAccountInformationComponent implements OnInit {
     }
 
 
-    handleFileSelect(event: any) {}
+    handleFileSelect(event: any) {
+      const fileList: FileList = event.target.files;
+      if (fileList.length > 0) {
+        this.fileData = fileList[0];
+        const fileReader: FileReader = new FileReader();
+
+        fileReader.addEventListener('load', () => {
+          this.selectedFileUrl = fileReader.result as string;
+        });
+
+        fileReader.readAsDataURL(this.fileData);
+        this.accountService.ChangImage(this.fileData);
+      } else {
+        this.selectedFileUrl = '';
+      }
+    }
 
     reload(){
       this.ngOnInit();
@@ -116,7 +165,7 @@ export class DetailAccountInformationComponent implements OnInit {
 
         this.accountChangPass=true;
 
-       
+
        try {
         setTimeout(()=>{
           this.loginAccountTag.viewChildPage(this.accountLogin.username);

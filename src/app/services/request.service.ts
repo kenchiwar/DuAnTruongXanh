@@ -176,6 +176,11 @@ async GetRequetsIndex(){
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestFile/"+id));
   }
 
+  async GetRequestDetailFile(id:string){
+
+    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestDetailFile/"+id));
+  }
+
   async PostRequest(formData: FormData){
     console.log(formData); 
     return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/createRequestWithFile", formData));
@@ -189,6 +194,10 @@ async GetRequetsIndex(){
 
   async PutRequet(formData: FormData){
     return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/updateDetail",formData));
+  }
+  
+  async PutUserRequet(formData: FormData){
+    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/updateUserRequest",formData));
   }
 
   async PostAccount (formData : FormData){

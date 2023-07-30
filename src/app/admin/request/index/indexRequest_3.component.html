@@ -23,7 +23,8 @@
               <td>{{request.sentDate}}</td>
               <td>{{request.priority}}</td>
               <td>
-                <a [routerLink]="['/admin/request/update/',request.id]">Update</a>
+                <a [routerLink]="['/admin/request/detail/',request.id]">Detail</a> | 
+                <input type="button" (click)="reprocess(request.id)" value="Reprocess">
               </td>
             </tr>
           </tbody>

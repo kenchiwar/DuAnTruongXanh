@@ -6,13 +6,15 @@ import { Account } from "src/app/models/account.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { AccountService } from "src/app/services/account.service";
 import { ValidatorData } from "src/app/services/validatorData.service";
+declare var showSuccess: any;
+declare var showWarning: any;
 @Component({
        templateUrl : './loginAccount.component.html',
         selector:'<account-login></account-login>'
 
 })
 export class loginAccount implements OnInit {
-
+  
     constructor(
       private   accountService:AccountService,
       public  validationService: ValidatorData,
@@ -174,7 +176,7 @@ export class loginAccount implements OnInit {
         localStorage.setItem('username_expiration',Date.now()+12 * 60 * 60 * 1000 +'');
 
         console.log(this.accountService.GetAccountLogin());
-       alert('success');
+      //  alert('success');
         if(account.idRole<=2) {
           this.validationService.getRouterChange("/admin","");
         }else{
@@ -254,9 +256,11 @@ export class loginAccount implements OnInit {
         var result = success as ResultAPI;
         if(result.result){
           alert("ChangePass suucess fully");
+          showSuccess('ChangePass suucessfully');
           this.loginPage();
           }else{
             alert("ChangePass error");
+            showWarning('ChangePass error');
           }
 
       }).catch(error =>{
@@ -275,7 +279,7 @@ export class loginAccount implements OnInit {
       this.reSend();
 
     }
+  
 
-
-
+    
 }

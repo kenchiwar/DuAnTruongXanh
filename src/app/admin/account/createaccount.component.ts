@@ -9,6 +9,8 @@ import { Role } from "src/app/models/role.model";
 
 import { AccountService } from "src/app/services/account.service";
 import { ValidatorData } from "src/app/services/validatorData.service";
+
+
 @Component({
        templateUrl : './createaccout.component.html'
 
@@ -52,7 +54,7 @@ export class CreateAccountComponent implements OnInit {
             this.validationService.getErrorRouterChange("Can not load this page ");
         });
           })).catch(error=>{
-            this.validationService.getErrorRouterChange("Can not load this page ");
+            this.validationService.getErrorRouterChange("Can not load thí page ");
 
           });
 
@@ -86,8 +88,10 @@ export class CreateAccountComponent implements OnInit {
               if(result.result){
                 this.reload();
                 this.validationService.getNotification(result.result,"Add Account Successufully?");
+                
               }else{
                 this.validationService.getNotification(result.result,"Add Account Error?");
+                
               }
 
 

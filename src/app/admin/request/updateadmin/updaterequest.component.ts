@@ -50,7 +50,7 @@ export class UpdateAdminRequestComponent implements OnInit {
                 res => {
                     this.requestDetail = res as Requetsdetailed
                     this.requestDetailForm = this.requestService.getFormGroupDetailData(this.requestDetail);
-                    console.log(this.requestDetail)
+                    
                 },
                     
                 err => {console.log(err);}
@@ -59,8 +59,7 @@ export class UpdateAdminRequestComponent implements OnInit {
                 res => {this.requestFile = res as RequestFile[]},
                 err => {console.log(err);}
             )
-
-        })
+        }) 
     }
 
     updateRequest(){
@@ -72,10 +71,20 @@ export class UpdateAdminRequestComponent implements OnInit {
             res => {
                 var resultAPI : ResultAPI = res as ResultAPI;
                 if(resultAPI.result){
-                    this.ngOnInit();
+                    this.router.navigate(['/admin/requests/index']);
                 }
             },
             err => {console.log(err);}
         );
     }
+
+    
+    selectFile(evt : any){
+        this.file = evt.target.files[0];
+        this.files =evt.target.files;
+    }
+    // selectFile(evt : any){
+    //     this.file = evt.target.files[0];
+    //     this.files =evt.target.files;
+    // }
 }

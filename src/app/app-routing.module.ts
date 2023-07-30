@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexHomeComponent } from './home/index/indexhome.component';
-import { IndexAdminComponent } from './admin/indeadmin.component';
+import { IndexAdminComponent } from './admin/indexadmin.component';
 import { CreateAccountComponent } from './admin/account/createaccount.component';
 import { DetailAccountComponent } from './admin/account/detailaccount.component';
 import { UpdateAccountComponent } from './admin/account/updateaccount.component';
@@ -24,16 +24,24 @@ import { IndexRoleClaimComponent } from './admin/roleclaim/indexroleclaim.compon
 import { LayoutHomeComponent } from './home/layouthome.component';
 import { ForgotPasswordComponent } from './home/forgot/forgotpassword.component';
 import { ErrorComponent } from './home/404/404.component';
+
+import { authGuard } from './guard/auth.guard';
+import { Admin } from './services/checkAdmin.service';
+
 import { _CreateRequestComponent } from './admin/request/createRequest.component';
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
 
+
 const routes: Routes = [
+  {path: 'error', component:ErrorComponent},
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
-    {path: '404', component:ErrorComponent},
   ]},
-  {path: 'admin', component:IndexAdminComponent,children: [
+
+  {path:'error',component:ErrorComponent}
+  ,
+  {path: 'admin', component:IndexAdminComponent,canActivate:[authGuard],children: [
     {path:'',component:IndexAccountComponent},
     {path:'account',children: [
       {path: 'create', component:CreateAccountComponent},
@@ -69,6 +77,8 @@ const routes: Routes = [
       {path: 'update', component:UpdateRoleClaimComponent},
       {path: 'index', component:IndexRoleClaimComponent},
     ]},
+    { path: '**', pathMatch: 'full',
+    component: ErrorComponent },
 
 
 

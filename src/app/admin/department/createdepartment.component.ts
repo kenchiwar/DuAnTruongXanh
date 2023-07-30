@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Department } from "src/app/models/department.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { DepartmentsServices } from "src/app/services/departments.service";
+declare var $ : any;
 @Component({
        templateUrl : './createdepartment.component.html'
 
@@ -17,7 +18,6 @@ export class CreateDepartmentComponent implements OnInit {
         private router :Router,
         private departmentService : DepartmentsServices,
         private formBuilder: FormBuilder
-
     ){}
     ngOnInit(): void {
 
@@ -31,6 +31,7 @@ export class CreateDepartmentComponent implements OnInit {
         var department : Department = this.formDepartment.value as Department;
         var formData = new FormData();
         formData.append('strDepartment', JSON.stringify(department));
+
         this.departmentService.PostDepartment(formData).then(
             res => {
                 var resultApi : ResultAPI = res as ResultAPI;

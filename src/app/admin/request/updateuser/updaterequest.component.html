@@ -1,1 +1,41 @@
-<h3>Update</h3>
+<ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
+    <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form ">
+        <table>            
+            <tr class="admin-form-item ">
+                <td>Department</td>
+                <td>
+                    <input type="text" value="{{request.idDepartmentNavigation.tenDepartment}}" readonly>
+                </td>
+            </tr>
+                <tr class="admin-form-item ">
+                <td>Title</td>
+                <td>
+                    <input type="text" readonly value="{{request.title}}">
+                </td>
+            </tr>
+                 <tr class="admin-form-item" >
+                <td>Reason</td>
+                <td>
+                    <textarea cols="150" rows="4" formControlName="reason"></textarea>
+                </td>
+            </tr>      
+            <tr class="admin-form-item ">
+                <td>File</td>
+                <td>
+                    <input type="file" multiple="multiple" (change)="selectFile($event)">
+                    
+                </td>
+            </tr>          
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+                </div>
+    
+            </tr>
+        </table>
+        <!-- <input type="hidden" formControlName="senDate">
+        <input type="hidden" formControlName="payday"> -->
+        <input type="hidden" formControlName="idRequest">
+    </form>
+
+</ng-container>

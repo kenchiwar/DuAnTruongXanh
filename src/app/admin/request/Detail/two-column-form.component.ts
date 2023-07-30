@@ -1,3 +1,4 @@
+import { lastValueFrom } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Requet } from 'src/app/models/request.model';
@@ -11,9 +12,13 @@ import { RequestServices } from 'src/app/services/request.service';
   styleUrls: ['./two-column-form.component.css'] // Đường dẫn tới file CSS của component
 })
 export class TwoColumnFormComponent implements OnInit{
-  request : Requet;
-  requestDetail : Requetsdetailed;
+    request : Requet;
+    requestDetails : Requetsdetailed[];
     requestFile : RequestFile[]
+    requestFileDetail : RequestFile[]
+    ListFile : []
+
+    idDetailFile: any;
     constructor(
         private router :Router,
         private activatedRoute : ActivatedRoute,
@@ -30,14 +35,34 @@ export class TwoColumnFormComponent implements OnInit{
             )
             this.requestService.GetRequestFile(id).then(
                 res => {this.requestFile = res as RequestFile[]
+                    
+                    // this.requestFile.forEach(file => {
+                    //     this.idDetailFile = this.getIdFromFile(file.name);
+                    // })
                 },
                 err => {console.log(err);}
             )
-            this.requestService.GetRequestDetail(id).then(
-                res => {this.requestDetail = res as Requetsdetailed
+            this.requestService.GetRequestDetailFile(id).then(
+                res => {
+                    this.requestDetails = res as Requetsdetailed[]
+                    
+                    
                 },
                 err => {console.log(err);}
             )
         })
+        
     }
+
+      getIdFromFile(fileName: any){
+        // Giả sử tên file có định dạng "_id={số}.png"
+        var startIndex = fileName.lastIndexOf('_id=') + 4;
+        var endIndex = fileName.lastIndexOf('.png');
+        if (startIndex !== -1 && endIndex !== -1) {
+            var str = fileName.substring(startIndex, endIndex);
+            var intId = parseFloat(str);
+          return str;
+        }
+        return "Khong tim thay id"; // Hoặc trả về một giá trị mặc định nếu không tìm thấy
+      }
 }

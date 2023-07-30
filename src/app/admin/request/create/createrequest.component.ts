@@ -57,12 +57,10 @@ createdRequest(){
     var request : Request = this.formRequest.value as Request;
     var formData = new FormData();
     if(this.file != null){
-    
-   for (let index = 0; index < this.files.length; index++) {
-    this.file = this.files[index];
-    formData.append('files', this.file);
-   }
-
+        for (let index = 0; index < this.files.length; index++) {
+            this.file = this.files[index];
+            formData.append('files', this.file);
+        }
     }
     formData.append('strRequest', JSON.stringify(request));
    
@@ -71,7 +69,10 @@ createdRequest(){
         res => {
             var resultAPI :ResultAPI = res as ResultAPI;
             if (resultAPI.result){
-                this.ngOnInit()
+                this.router.navigateByUrl('/admin/request/create', { skipLocationChange: true }).then(() => {
+                    this.router.navigate([this.router.url]);
+                  });
+                  this.ngOnInit();
             }else{alert(`Created failed!`);}
         }, err => {console.log(err);}
     );
