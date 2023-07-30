@@ -32,6 +32,8 @@ import { _CreateRequestComponent } from './admin/request/createRequest.component
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
 import { RequestHomeComponent } from './home/request/request.component';
 import { ProfileHomeComponent } from './home/profile/profile.component';
+import { loginGuard } from './guard/login.guard';
+import { DetailAccountInformationComponent } from './admin/account/account_detail/accountInformation.component';
 
 
 
@@ -41,9 +43,11 @@ const routes: Routes = [
     {path: '', component:IndexHomeComponent},
     {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
-    {path:'login',children: [
+    {path:'login',canActivate:[loginGuard],children: [
+
       {path: 'request/:id', component:RequestHomeComponent},
       {path: 'profile', component:ProfileHomeComponent},
+      {path: '', component:ProfileHomeComponent},
     ]}
   ]},
 
@@ -54,6 +58,7 @@ const routes: Routes = [
     {path:'account',children: [
       {path: 'create', component:CreateAccountComponent},
       {path: 'detail/:id', component:DetailAccountComponent},
+      {path: 'detail', component:DetailAccountInformationComponent},
       {path: 'update/:id', component:UpdateAccountComponent},
       {path: 'index', component:IndexAccountComponent},
       {path:'',component:IndexAccountComponent},

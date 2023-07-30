@@ -38,7 +38,12 @@
     <div class="container text-center text-md-left" data-aos="fade-up">
         <h1>Welcome to TTTN-OHD</h1>
         <h2>Welcome to TTTN-OHD - Online Help Desk</h2>
-        <a href="#" onclick="document.getElementById('loginFrom').style.display='block'" class="btn-get-started scrollto">Login</a>
+        <ng-container *ngIf="accountLogin == null">
+            <a href="#" onclick="document.getElementById('loginFrom').style.display='block'" class="btn-get-started scrollto">Login</a>
+        </ng-container>
+        <ng-container *ngIf="accountLogin != null">
+            <a href="#" class="btn-get-started scrollto">Get started</a>
+        </ng-container>
     </div>
     <div id="loginFrom" class="modal">
 

@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Requet } from "src/app/models/request.model";
 import { AccountService } from "src/app/services/account.service";
 import { RequestServices } from "src/app/services/request.service";
-
+declare var $ : any;
 @Component({
     selector: 'app-indexRequest_1',
     templateUrl: './indexRequest_1.component.html'
@@ -36,6 +36,18 @@ export class IndexRequest_1Component implements OnInit {
             this.requests = this.requests.filter(request => request.idHandle == null)
             this.totalItems = this.requests.length
     })
+    setTimeout(()=>{
+        $('#index-request1').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
+      },1000);
     }
 
     async accept(id: any){

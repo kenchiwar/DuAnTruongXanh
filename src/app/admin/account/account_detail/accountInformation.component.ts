@@ -56,38 +56,7 @@ export class DetailAccountInformationComponent implements OnInit {
           this.requetIdHandleNavigations=[];
           this.accountLogin = this.accountService.GetAccountLogin() as Account;
       
-          setTimeout(()=>{
-            $('#account-detail-roleclaims').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#account-detail-roleclaims_wrapper .col-md-6:eq(0)');
-            $('#account-detail-request1').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#account-detail-request1_wrapper .col-md-6:eq(0)');
-            $('#account-detail-request2').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#account-detail-request2_wrapper .col-md-6:eq(0)');
-          },1000);
+       
          
           this.changePass=false;
           this.password='';
@@ -106,7 +75,38 @@ export class DetailAccountInformationComponent implements OnInit {
       this.requetIdComplainNavigations=this.dataAccount.requetIdComplainNavigations ;
       this.requetIdHandleNavigations=this.dataAccount.requetIdHandleNavigations;
 
-
+      setTimeout(()=>{
+        $('#account-detail-roleclaims').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-roleclaims_wrapper .col-md-6:eq(0)');
+        $('#account-detail-request1').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-request1_wrapper .col-md-6:eq(0)');
+        $('#account-detail-request2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-request2_wrapper .col-md-6:eq(0)');
+      },1000);
 
 
       }).catch(error=>{
@@ -157,7 +157,7 @@ export class DetailAccountInformationComponent implements OnInit {
     }
     checkPass(){
   
-      alert(this.password +'==='+this.accountLogin.password);
+     
 
       if(this.password == this.accountLogin.password) {
 

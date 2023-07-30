@@ -84,7 +84,7 @@ function showSuccess(message, title) {
         title: title,
         message: message,
         type: 'success',
-        duration: 3000,
+        duration: 2000,
 
     });
 };
@@ -100,7 +100,7 @@ function showWarning(message, title) {
         title: title,
         message: message,
         type: 'warning',
-        duration: 1000,
+        duration: 3000,
 
     });
 };

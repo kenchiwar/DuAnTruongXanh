@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { FormGroup, ValidatorFn } from "@angular/forms";
 import { Router } from "@angular/router";
+declare var showSuccess;
+declare var showWarning;
 @Injectable()
 export class ValidatorData{
 
@@ -75,10 +77,10 @@ export class ValidatorData{
 
   getNotification(status:boolean,mess:string ,id?:string ){
     if(status){
-      alert(mess);
+     showSuccess(mess);
     }else{
 
-      alert(mess);
+      showWarning(mess)
 
     }
 

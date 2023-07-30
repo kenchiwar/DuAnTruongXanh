@@ -69,8 +69,9 @@ input.form-control.form-control-sidebar {
 }
 
 .admin-form .admin-form-item img {
-    max-width: 100%;
-    width: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .admin-form table {
@@ -299,8 +300,9 @@ input.form-control.form-control-sidebar {
 }
 
 .box-info img {
-    max-width: 200px;
-    max-height: 200px
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .box-info h1 {

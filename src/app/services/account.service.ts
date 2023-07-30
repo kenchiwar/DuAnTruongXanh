@@ -57,7 +57,7 @@ export class AccountService {
     GetHttpHeaders():HttpHeaders{
         try {
           const account = this.GetAccountLogin();
-          console.log(account);
+         
           return   new HttpHeaders({
             'username':account?.username??'',
             'password':account?.password??''
@@ -325,7 +325,7 @@ getFormGroupData(data :any):FormGroup{
 }
 
   async PostAccount(dataAccout:Account,dataFile:File){
-    console.log(dataAccout);
+   
     var formSubmit = new FormData();
     formSubmit.append('file',dataFile);
     formSubmit.append('dataAccount',JSON.stringify(dataAccout));

@@ -25,14 +25,17 @@
                 <li><a class="nav-link scrollto" href="#team">Team</a></li>
 
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <!-- <1-- <ng-container *ngIf="accountLogin != null"> -->
-                <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a [routerLink]="[ 'login/profile'] ">Profile</a></li>
-                        <li><a href="#" (click)="logout()">Logout</a></li>
-                    </ul>
-                </li>
-                <!-- </ng-container> -->
+                <ng-container *ngIf="accountLogin == null">
+                    <li><a class="nav-link scrollto" href="#" onclick="document.getElementById('loginFrom').style.display='block'">Login</a></li>
+                </ng-container>
+                <ng-container *ngIf="accountLogin != null">
+                    <li class="dropdown"><a href="#"><span>{{accountLogin.username}}</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a [routerLink]="[ 'login/profile'] ">Profile</a></li>
+                            <li><a href="#" (click)="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ng-container>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

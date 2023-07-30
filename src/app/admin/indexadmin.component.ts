@@ -24,7 +24,7 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
     
   }
     ngOnInit(): void {
-
+      this.loadScript('assets/fileadmin/dist/js/main.js')
       // setInterval(function() {
       //   const expiration = localStorage.getItem('username_expiration');
       //   if (expiration && Date.now() > parseInt(expiration)) {

@@ -1,7 +1,7 @@
     /* You can add global styles to this file, and also import other style files */
     
      :root {
-        --color-new: #33CC33;
+        --color-new: #98EECC;
         --color-processing: #FFA500;
         --color-accomplished: #00FF00;
     }
@@ -71,13 +71,13 @@
     }
     
     .bg-new {
-        background: var(--color-new);
+        background: var(--color-new) !important;
     }
     
     .bg-processing {
-        background: var(--color-processing);
+        background: var(--color-processing) !important;
     }
     
     .bg-accomplished {
-        background: var(--color-accomplished);
+        background: var(--color-accomplished)!important;
     }
