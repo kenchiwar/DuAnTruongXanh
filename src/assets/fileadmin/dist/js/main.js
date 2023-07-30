@@ -1,24 +1,3 @@
-const verifyCodeInputs = document.querySelectorAll('.verify-code-input');
-
-console.log(verifyCodeInputs)
-
-// Event listener for the verify code inputs
-for (let i = 0; i < verifyCodeInputs.length; i++) {
-    verifyCodeInputs[i].addEventListener('input', function() {
-        console.log('3' +
-            verifyCodeInputs[i])
-
-        if (this.value.length === this.maxLength) {
-            if (i < verifyCodeInputs.length - 1) {
-                verifyCodeInputs[i + 1].focus();
-            } else {
-                // Last input reached, do something with the complete verify code here
-            }
-        }
-    });
-}
-
-
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
 

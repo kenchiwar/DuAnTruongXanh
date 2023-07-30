@@ -1,33 +1,36 @@
-<ng-container *ngIf="requests_ != null">
-    <table border="1">
-        <thead>
-          <tr>
-            <th>Complainer</th>
-            <th>Department</th>
-            <th>Handle</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>SentDate</th>
-            <th>Priority</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let request of requests_ | paginate: { itemsPerPage: pageSize_, currentPage: currentPage_, totalItems: totalItems_ }">
-            <td>{{request.idComplain}}</td>
-            <td>{{request.idDepartment}}</td>
-            <td>{{request.idHandle}}</td>
-            <td>{{request.title}}</td>
-            <td>{{request.status}}</td>
-            <td>{{request.sentDate}}</td>
-            <td>{{request.priority}}</td>
-            <td>
-              <a [routerLink]="['/admin/request/update/',request.id]">Update</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pagination">
-        <pagination-controls (pageChange)="currentPage_ = $event"></pagination-controls>
-      </div>
-</ng-container>
+<div class="box-info">
+    <ng-container *ngIf="requests_ != null">
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Complainer</th>
+                    <th>Department</th>
+                    <th>Handle</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>SentDate</th>
+                    <th>Priority</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of requests_ | paginate: { itemsPerPage: pageSize_, currentPage: currentPage_, totalItems: totalItems_ }">
+                    <td>{{request.idComplain}}</td>
+                    <td>{{request.idDepartment}}</td>
+                    <td>{{request.idHandle}}</td>
+                    <td>{{request.title}}</td>
+                    <td>{{request.status}}</td>
+                    <td>{{request.sentDate}}</td>
+                    <td>{{request.priority}}</td>
+                    <td>
+                        <a [routerLink]="['/admin/request/update/',request.id]">Update</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <pagination-controls (pageChange)="currentPage_ = $event"></pagination-controls>
+        </div>
+    </ng-container>
+</div>

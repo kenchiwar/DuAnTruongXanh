@@ -138,10 +138,14 @@
             </tbody>
         </table>
     </div>
-    <ng-container *ngif="this.dataAccount.idRole <=2">
+
+
+    <ng-container *ngIf="this.accountLogin.idRole < 3">
+
+
         <div class="box-info">
-            <h1>requetIdHandlainNavigations</h1>
-            <input type="text" (keyup)="seracrrequetIdHandleNavigations($event)" class="input-search" placeholder="Search">
+            <h1>Request</h1>
+
             <table class="table table-striped table-hover" id="account-detail-request2">
                 <thead>
                     <tr>

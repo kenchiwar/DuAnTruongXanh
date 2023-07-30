@@ -55,7 +55,7 @@ export class DetailAccountInformationComponent implements OnInit {
           this.requetIdComplainNavigations=[];
           this.requetIdHandleNavigations=[];
           this.accountLogin = this.accountService.GetAccountLogin() as Account;
-          console.log(this.accountLogin);
+      
           setTimeout(()=>{
             $('#account-detail-roleclaims').DataTable({
               "paging": true,
@@ -66,7 +66,7 @@ export class DetailAccountInformationComponent implements OnInit {
               "autoWidth": true,
               "responsive": true,          
               "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#account-detail-roleclaims_wrapper .col-md-6:eq(0)');
             $('#account-detail-request1').DataTable({
               "paging": true,
               "lengthChange": false,
@@ -76,7 +76,7 @@ export class DetailAccountInformationComponent implements OnInit {
               "autoWidth": true,
               "responsive": true,          
               "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#account-detail-request1_wrapper .col-md-6:eq(0)');
             $('#account-detail-request2').DataTable({
               "paging": true,
               "lengthChange": false,
@@ -86,7 +86,7 @@ export class DetailAccountInformationComponent implements OnInit {
               "autoWidth": true,
               "responsive": true,          
               "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#account-detail-request2_wrapper .col-md-6:eq(0)');
           },1000);
        
           this.changePass=false;
@@ -156,7 +156,7 @@ export class DetailAccountInformationComponent implements OnInit {
 
     }
     checkPass(){
-
+  
       alert(this.password +'==='+this.accountLogin.password);
 
       if(this.password == this.accountLogin.password) {

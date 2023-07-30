@@ -18,39 +18,9 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
         private accountService : AccountService
     ){}
   ngAfterViewInit(): void {
-    
     const scriptUrls = [
-    // 'assets/fileadmin/plugins/jquery-ui/jquery-ui.min.js',
-    // 'assets/fileadmin/plugins/bootstrap/js/bootstrap.bundle.min.js',
-    // 'assets/fileadmin/plugins/chart.js/Chart.min.js',
-    // 'assets/fileadmin/plugins/sparklines/sparkline.js',
-    // 'assets/fileadmin/plugins/jqvmap/jquery.vmap.min.js',
-    // 'assets/fileadmin/plugins/jqvmap/maps/jquery.vmap.usa.js',
-    // 'assets/fileadmin/plugins/jquery-knob/jquery.knob.min.js',
-    // 'assets/fileadmin/plugins/moment/moment.min.js',
-    // 'assets/fileadmin/plugins/daterangepicker/daterangepicker.js',
-    // 'assets/fileadmin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
-    // 'assets/fileadmin/plugins/summernote/summernote-bs4.min.js',
-    // 'assets/fileadmin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js',
-    // 'assets/fileadmin/dist/js/adminlte.js',
-    // 'assets/fileadmin/dist/js/demo.js',
-    // 'assets/fileadmin/dist/js/pages/dashboard.js',
-    // 'assets/fileadmin/plugins/datatables/jquery.dataTables.min.js',
-    // 'assets/fileadmin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js',
-    // 'assets/fileadmin/plugins/datatables-responsive/js/dataTables.responsive.min.js',
-    // 'assets/fileadmin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js',
-    // 'assets/fileadmin/plugins/datatables-buttons/js/dataTables.buttons.min.js',
-    // 'assets/fileadmin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js',
-    // 'assets/fileadmin/plugins/jszip/jszip.min.js',
-    // 'assets/fileadmin/plugins/pdfmake/pdfmake.min.js',
-    // 'assets/fileadmin/plugins/pdfmake/vfs_fonts.js',
-    // 'assets/fileadmin/plugins/datatables-buttons/js/buttons.html5.min.js',
-    // 'assets/fileadmin/plugins/datatables-buttons/js/buttons.print.min.js',
-    // 'assets/fileadmin/plugins/datatables-buttons/js/buttons.colVis.min.js',
     'assets/fileadmin/dist/js/main.js',
     'assets/fileadmin/plugins/chart.js/Chart.min.js',
-    // 'https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0',
-     
     ];
     scriptUrls.forEach(url => {
       const script = document.createElement('script');

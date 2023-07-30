@@ -30,13 +30,21 @@ import { Admin } from './services/checkAdmin.service';
 
 import { _CreateRequestComponent } from './admin/request/createRequest.component';
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
+import { RequestHomeComponent } from './home/request/request.component';
+import { ProfileHomeComponent } from './home/profile/profile.component';
+
 
 
 const routes: Routes = [
   {path: 'error', component:ErrorComponent},
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
+    {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
+    {path:'login',children: [
+      {path: 'request/:id', component:RequestHomeComponent},
+      {path: 'profile', component:ProfileHomeComponent},
+    ]}
   ]},
 
   {path:'error',component:ErrorComponent}
