@@ -1,4 +1,4 @@
-<ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
+<ng-container *ngIf="request.status != 0">
     <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form ">
         <table>            
             <tr class="admin-form-item ">
@@ -23,15 +23,20 @@
                 <td>File</td>
                 <td>
                     <input type="file" multiple="multiple" (change)="selectFile($event)">
-                    
                 </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td>Unsolved<input type="checkbox" (change)="onCheckboxChange($event)">
+                    </td>
+                </div>
             </tr>          
             <tr class="admin-form-item ">
                 <div class="form-button">
                     <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
                 </div>
-    
             </tr>
+           
         </table>
         <!-- <input type="hidden" formControlName="senDate">
         <input type="hidden" formControlName="payday"> -->

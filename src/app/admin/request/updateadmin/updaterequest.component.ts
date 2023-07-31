@@ -74,7 +74,7 @@ export class UpdateAdminRequestComponent implements OnInit {
                     this.router.navigate(['/admin/requests/index']);
                 }
             },
-            err => {console.log(err);}
+            err => {alert(`This is your request!`)}
         );
     }
 

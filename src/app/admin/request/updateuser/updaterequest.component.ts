@@ -24,6 +24,7 @@ export class UpdateUserRequestComponent implements OnInit {
     requestDetailForm : FormGroup
     file : File 
     files : File[]
+    isChecked : boolean = false;
 
     constructor(
         private router :Router,
@@ -66,7 +67,6 @@ export class UpdateUserRequestComponent implements OnInit {
             //     res => {this.requestFile = res as RequestFile[]},
             //     err => {console.log(err);}
             // )
-
         })
     }
 
@@ -74,33 +74,81 @@ export class UpdateUserRequestComponent implements OnInit {
         var requestD : Requetsdetailed = this.requestDetailForm.value as Requetsdetailed;
         var formData = new FormData();
         requestD.idRequest = this.requestDetail.idRequest;
-        console.log(requestD);
-        if(requestD.status == 4){
-            alert(`Completed!`);
-        }
-        if(this.file != null){
-            for (let index = 0; index < this.files.length; index++) {
-                this.file = this.files[index];
-                formData.append('files', this.file);
+        switch (this.request.status){
+            case 5 : {
+                alert(`You can't send!`);
+                break;
             }
-        }
-        formData.append('requestDetail_', JSON.stringify(requestD));
-        this.requestService.PutUserRequet(formData).then(
-            res => {
-                console.log(res);
-                var resultAPI : ResultAPI = res as ResultAPI;
-                if(resultAPI.result){
-                        this.router.navigate(['/admin/request/index']);
+            case 4 : {
+                if(this.isChecked){
+                    if(this.file != null){
+                                for (let index = 0; index < this.files.length; index++) {
+                                    this.file = this.files[index];
+                                    formData.append('files', this.file);
+                                }
+                            }
+                            requestD.status = 5
+                            formData.append('requestDetail_', JSON.stringify(requestD));
+                            this.requestService.PutUserRequet(formData).then(
+                                res => {
+                                    console.log(res);
+                                    var resultAPI : ResultAPI = res as ResultAPI;
+                                    if(resultAPI.result){
+                                        this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+                                            this.router.navigate([this.router.url]);
+                                          });
+                                    }else {
+                                        alert(`Update Failed!`);
+                                    }
+                                },
+                                err => {console.log(err);}
+                            ); 
+                            break;
+                        }else {alert(`Request completed, you can't send. Please check!`); break;}
+            }
+            case 3 : {
+                alert(`Sorry for the problem, we can't solve this problem. Thank you!`); break;
+            }
+            default: {
+                if(this.isChecked){
+                    alert(`Don't checked, please!`);
                 }else {
-                    alert(`Update Failed!`);
+                    if(this.file != null){
+                                for (let index = 0; index < this.files.length; index++) {
+                                    this.file = this.files[index];
+                                    formData.append('files', this.file);
+                                }
+                            }
+                            formData.append('requestDetail_', JSON.stringify(requestD));
+                            this.requestService.PutUserRequet(formData).then(
+                                res => {
+                                    console.log(res);
+                                    var resultAPI : ResultAPI = res as ResultAPI;
+                                    if(resultAPI.result){
+                                        this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+                                            this.router.navigate([this.router.url]);
+                                          });
+                                    }else {
+                                        alert(`Update Failed!`);
+                                    }
+                                },
+                                err => {console.log(err);}
+                            ); 
                 }
-            },
-            err => {console.log(err);}
-        );
+            }
+            
+        }
+       
+        
     }
 
     selectFile(evt : any){
         this.file = evt.target.files[0];
         this.files =evt.target.files;
+    }
+
+    onCheckboxChange(evt : any){
+        this.isChecked = evt.target.checked;
+        console.log(this.isChecked);
     }
 }

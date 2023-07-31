@@ -1,0 +1,32 @@
+<ng-container *ngIf="requests != null">
+    <table border="1">
+        <thead>
+          <tr>
+            <th>Complainer</th>
+            <th>Department</th>
+            <th>Handle</th>
+            <th>Role</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>SentDate</th>
+            <th>Priority</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td>{{request.idComplainNavigation.fullname}}</td>
+            <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
+            <td>{{request.idHandleNavigation.fullname}}</td>
+            <td>{{request.idHandleNavigation.role}}</td>
+            <td>{{request.title}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.sentDate}}</td>
+            <td>{{request.priority}}</td>
+            <td>
+              <a [routerLink]="['/admin/request/detail/',request.id]">Detail</a> |
+              <a [routerLink]="['/admin/request/update/',request.id]">Update</a>
+          </tr>
+        </tbody>
+      </table>
+</ng-container>

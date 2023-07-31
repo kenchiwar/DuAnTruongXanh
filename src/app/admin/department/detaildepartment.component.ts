@@ -9,7 +9,7 @@ import { DepartmentsServices } from "src/app/services/departments.service";
        
 })
 export class DetailDepartmentComponent implements OnInit {
-   department : Department
+//    department : Department
     account : Account
     constructor(
         private router :Router,
@@ -19,10 +19,10 @@ export class DetailDepartmentComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe(params => {
             var id = params.get('id');
-            this.departmentService.GetDepartmentById(id).then(
-                res => {this.department = res as Department},
-                err => {console.log(err);}
-            )
+            // this.departmentService.GetDepartmentById(id).then(
+            //     res => {this.department = res as Department},
+            //     err => {console.log(err);}
+            // )
 
             this.departmentService.GetAccDepartmentById(id).then(
                 res => {this.account = res as Account

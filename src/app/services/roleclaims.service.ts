@@ -24,7 +24,7 @@ export class RoleClaimsServices {
       id: 0,
       name: '',
       describe: '',
-      claim: 0,
+      claim: 1,
     });
 }
 

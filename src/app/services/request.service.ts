@@ -25,7 +25,7 @@ export class RequestServices {
   getFormGroup(){
     var form = this.formBuilder.group({
       id: 0,
-      idComplain: this.accountService.GetAccountLogin().id,
+      idComplain: '',
       idDepartment: '2',
       idHandle: '',
       title: '',
@@ -156,11 +156,6 @@ async GetRequets(){
   return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequest"));
 }
 
-async GetRequetsIndex(){
-
-  return await lastValueFrom(this.http.get(this.url.baseRequetsUrl + "/getRequestIndex"));
-}
-
     async GetRequestById(id:string){
 
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestById/"+id));
@@ -195,6 +190,10 @@ async GetRequetsIndex(){
   async PutRequet(formData: FormData){
     return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/updateDetail",formData));
   }
+
+  async PutRequetAccept(id: string){
+    return await lastValueFrom(this.http.put(this.url.baseRequetsUrl+"/",id));
+  }
   
   async PutUserRequet(formData: FormData){
     return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/updateUserRequest",formData));
@@ -202,5 +201,9 @@ async GetRequetsIndex(){
 
   async PostAccount (formData : FormData){
     return await this.accountService.SendApi('post',this.url.baseRequetsUrl+"/createRequestWithFile",formData);
+  }
+
+  async PutAccount (id : string){
+    return await this.accountService.SendApi('put',this.url.baseRequetsUrl+"/"+id);
   }
 }   

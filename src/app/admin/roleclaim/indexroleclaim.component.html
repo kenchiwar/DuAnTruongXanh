@@ -17,8 +17,9 @@
                     <td>{{roleClaim.describe}}</td>
                     <td>{{roleClaim.claim}}</td>
                     <td>
+                        <a [routerLink]="['/admin/roleclaim/create']" class="button btn btn-primary btn-detail">Create</a>
                         <a [routerLink]="['/admin/roleclaim/update', {id: roleClaim.id}]" class="button btn btn-primary btn-update">Update</a>
-                        <a [routerLink]="['/admin/roleclaim/detail', {id: roleClaim.id}]" class="button btn btn-primary btn-detail">Detail</a>
+                        
                     </td>
                 </tr>
             </tbody>

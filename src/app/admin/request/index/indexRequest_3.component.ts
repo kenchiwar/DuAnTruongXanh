@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Requet } from "src/app/models/request.model";
+import { ResultAPI } from "src/app/models/resultapi";
 import { AccountService } from "src/app/services/account.service";
 import { RequestServices } from "src/app/services/request.service";
 
@@ -17,10 +18,6 @@ export class IndexRequest_3Component implements OnInit {
     filterRequest : string;
     formRequest : FormGroup
  
-    requestsPagin_: any[];
-    pageSize_ = 10; // số lượng mục trên mỗi trang
-    currentPage_ = 1; // trang hiện tại
-    totalItems_: number; // tổng số mục
      constructor(
          private router :Router,
          private requestService : RequestServices,
@@ -28,17 +25,22 @@ export class IndexRequest_3Component implements OnInit {
          private accountService : AccountService
      ){}
     ngOnInit(): void {
-        this.requestService.GetRequets().then((data: any) => {
-            this.requests_ = data
-            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 4 ||request.status == 5);
-            this.totalItems_ = this.requests_.length
+        this.requestService.GetRequets().then(res => {
+            this.requests_ = res as Requet[]
+            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 4 ||request.status == 5); 
     });
     }
 
 
     reprocess(id: any){
-        this.accountService.SendApi('put',`https://localhost:7007/api/Requets/reprocess/${id}`).then((mer) => {
-            this.ngOnInit()
-      });
-    }
+        this.accountService.SendApi('put',`https://localhost:7007/api/Requets/reprocess/${id}`).then(
+            res => {
+            var resultAPI : ResultAPI = res as ResultAPI;
+            if(resultAPI.result){
+                this.ngOnInit()
+            }else {
+                alert(`Reprocess Failed!`)
+            }}
+               ,err => {alert(`This is your request!`)}
+        )};
 }

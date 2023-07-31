@@ -1,1 +1,19 @@
 <h3>Detail</h3>
+<ng-container *ngIf="roleClaim != null">
+    <table>
+        <tr>
+            <th>Name</th>
+        <th>Describe</th>
+        <th>Department</th>
+        <th>Handle</th>
+        <th>Role</th>
+        </tr>
+        <tr>
+            <td>{{roleClaim.name}}</td>
+            <td>{{roleClaim.describe}}</td>
+            <td></td>
+            <td>{{roleClaim.name}}</td>
+            <td>{{roleClaim.name}}</td>
+        </tr>
+    </table>
+</ng-container>

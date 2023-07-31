@@ -1,5 +1,5 @@
 
-<ng-container *ngIf="department != null">
+<ng-container *ngIf="account != null">
     <div class="box-info">
         <h1>Detail Department</h1>
 
@@ -15,19 +15,20 @@
                     <th>Gender</th>
                     <th>Email address</th>
                     <th>Phone Number</th>
-                    
+                    <th>Role</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{department.tenDepartment}}</td>
-                    <td>{{department.describe}}</td>
-                    <td>{{department.address}}</td>
-                    <td>{{department.status}}</td>
+                    <td>{{account.idDepartmentNavigation.tenDepartment}}</td>
+                    <td>{{account.idDepartmentNavigation.describe}}</td>
+                    <td>{{account.idDepartmentNavigation.address}}</td>
+                    <td>{{account.idDepartmentNavigation.status}}</td>
                     <td>{{account.fullname}}</td>
                     <td>{{account.sex}}</td>
                     <td>{{account.emailaddress}}</td>
                     <td>{{account.phonenumber}}</td> 
+                    <td>{{account.role}}</td>
                 </tr>
             </tbody>
         </table>

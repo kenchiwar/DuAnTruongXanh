@@ -1,4 +1,4 @@
-    <ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
+    <ng-container *ngIf="request.status != 0">
         <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form ">
             <table>            
                 <tr class="admin-form-item ">

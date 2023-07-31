@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Requet } from "src/app/models/request.model";
+import { ResultAPI } from "src/app/models/resultapi";
 import { AccountService } from "src/app/services/account.service";
 import { RequestServices } from "src/app/services/request.service";
 
@@ -39,9 +40,19 @@ export class IndexRequest_1Component implements OnInit {
     }
 
     async accept(id: any){
-         this.accountService.SendApi('put',`https://localhost:7007/api/Requets/${id}`).then((mer) => {
-            this.ngOnInit()
-      });
+         this.requestService.PutAccount(id).then(
+            res => {
+                var resultAPI : ResultAPI = res as ResultAPI;
+                if(resultAPI.result){
+                    this.router.navigate(['/admin/request/index']);
+                    this.ngOnInit();
+                }else {
+                    alert(`Accept failed!`);
+                }
+            },err => {
+                alert(`This is your request!`);
+            }
+         )
       
     }
 }
