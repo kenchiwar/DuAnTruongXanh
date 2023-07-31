@@ -52,7 +52,8 @@ export class IndexRequest_1Component implements OnInit {
 
     async accept(id: any){
          this.accountService.SendApi('put',`https://localhost:7007/api/Requets/${id}`).then((mer) => {
+            this.ngOnInit()
       });
-      this.ngOnInit()
+      
     }
 }

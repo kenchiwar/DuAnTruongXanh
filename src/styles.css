@@ -81,3 +81,16 @@
     .bg-accomplished {
         background: var(--color-accomplished)!important;
     }
+    
+    .bg-mess {
+        background: #2474e1 !important;
+    }
+    
+    .bg-mess-to {
+        background: #3e4042 !important;
+    }
+    
+    .box-chatt {
+        border-radius: 18px;
+        padding: 20px;
+    }

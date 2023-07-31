@@ -18,7 +18,6 @@ export class CreateDepartmentComponent implements OnInit {
         private router :Router,
         private departmentService : DepartmentsServices,
         private formBuilder: FormBuilder
-
     ){}
     ngOnInit(): void {
 
@@ -32,6 +31,7 @@ export class CreateDepartmentComponent implements OnInit {
         var department : Department = this.formDepartment.value as Department;
         var formData = new FormData();
         formData.append('strDepartment', JSON.stringify(department));
+
         this.departmentService.PostDepartment(formData).then(
             res => {
                 var resultApi : ResultAPI = res as ResultAPI;

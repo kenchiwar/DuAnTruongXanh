@@ -1,0 +1,38 @@
+<div class="box-info">
+    <ng-container *ngIf="requests_ != null">
+        <input type="button" value="Reload" class="btn btn-primary btn-return mb-4">
+        <table border="1" class="table table-striped table-hover " id="index-request3">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Complainer</th>
+                    <th>Department</th>
+                    <th>Handle</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>SentDate</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let request of requests_ | paginate: { itemsPerPage: pageSize_, currentPage: currentPage_, totalItems: totalItems_ }">
+                    <td>
+                        <a [routerLink]="['/admin/request/detail/',request.id]" class="button btn btn-primary btn-detail">Detail</a>
+                        <input type="button" (click)="reprocess(request.id)" value="Reprocess" class="button btn btn-primary btn-update">
+                    </td>
+                    <td>{{request.idComplainNavigation.fullname}}</td>
+                    <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
+                    <td>{{request.idHandleNavigation.fullname}}</td>
+                    <td>{{request.title}}</td>
+                    <td>{{request.status}}</td>
+                    <td>{{request.sentDate}}</td>
+                    <td>{{request.priority}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <pagination-controls (pageChange)="currentPage_ = $event"></pagination-controls>
+        </div>
+    </ng-container>
+</div>

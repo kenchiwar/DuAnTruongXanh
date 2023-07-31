@@ -55,92 +55,32 @@ export class CreateRequestComponent implements OnInit {
 
 createdRequest(){
     var request : Request = this.formRequest.value as Request;
-    var requestDetail : Requetsdetailed = this.formRequestDetail.value as Requetsdetailed;
     var formData = new FormData();
-    var formData_ = new FormData();
     if(this.file != null){
-    
-   for (let index = 0; index < this.files.length; index++) {
-    this.file = this.files[index];
-    formData.append('files', this.file);
-   }
-
+        for (let index = 0; index < this.files.length; index++) {
+            this.file = this.files[index];
+            formData.append('files', this.file);
+        }
     }
     formData.append('strRequest', JSON.stringify(request));
-    // formData.append('strRequest', JSON.stringify(requestDetail));
-    this.requestService.PostAccount(formData);
-    // this.requestService.PostAccount(formData_);
-    // this.requestService.PostRequest(formData).then(
-    //     res => {
-    //         var resultAPI : ResultAPI = res as ResultAPI;
-    //         if(resultAPI.result){
-    //             this.router.navigate(['/admin/request/create']);
-    //             this.ngOnInit();
-    //         }else{
-    //             alert('Failed!');
-    //         }
-    //     }, err => {console.log(err);}
-    // )
+   
+    //nho .then()
+    this.requestService.PostAccount(formData).then(
+        res => {
+            var resultAPI :ResultAPI = res as ResultAPI;
+            if (resultAPI.result){
+                this.router.navigateByUrl('/admin/request/create', { skipLocationChange: true }).then(() => {
+                    this.router.navigate([this.router.url]);
+                  });
+                  this.ngOnInit();
+            }else{alert(`Created failed!`);}
+        }, err => {console.log(err);}
+    );
+   
 }
 
-    
-    // createdRequest(){
-    //     var request : Request = this.formRequest.value as Request;
-    //     var formData = new FormData();
-    //     formData.append('strRequest', JSON.stringify(request));
-    //     if(this.file != null){
-    //         this.requestService.PostRequest(formData).then(
-    //             res => {
-    //                 var resultAPI : ResultAPI = res as ResultAPI;
-    //                 var idRequest = null;
-    //                 if(resultAPI.result){
-    //                     // var id = formData.get('id', JSON.stringify(request));
-    //                     console.log("AKNOFANIOFNAI");
-    //                     console.log(formData.getAll('strRequest'));
-    //                     this.router.navigate(['/admin/request/create']);
-    //                 }else {
-    //                     alert(`Request failed!`);
-    //                 }
-    //             }, err => console.log(err)
-    //         );
-            
-    //         var requestFile : RequestFile = this.formRequestFile.value as RequestFile;
-    //         var formData_= new FormData();
-    //         formData_.append('name', this.file);
-    //         formData_.append('strRequestFile', JSON.stringify(requestFile));
-    //                     this.requestService.PostRequestFile(formData_).then(
-    //                         res => {
-    //                             var resultAPI : ResultAPI = res as ResultAPI;
-    //                           if(resultAPI.result){
-                                
-    //                               this.router.navigate(['/admin/request/create']);
-    //                           }else {alert(`Create file failed`);}
-    //                         }, err => {console.log(err);}
-    //                       );    
-            
-    //     }else {
-    //         this.requestService.PostRequest(formData).then(
-    //             res => {
-    //                 var resultAPI : ResultAPI = res as ResultAPI;
-    //                 if(resultAPI.result){
-                        
-    //                     this.router.navigate(['/admin/request/create']);
-    //                     this.ngOnInit();
-                        
-                        
-    //                 }else {
-    //                     alert(`Request failed!`);
-    //                 }
-    //             }, err => console.log(err)
-    //         );
-    //     }
-    // }
     selectFile(evt : any){
-        
         this.file = evt.target.files[0];
-     
         this.files =evt.target.files;
-      
-     
     }
 }

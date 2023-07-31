@@ -1,0 +1,69 @@
+<div class="box-info">
+    <ng-container *ngFor="let requestDetail of requestDetails">
+        <table border="1" class="table table-striped table-hover " id="detail-request1">
+            <thead>
+                <tr>
+                    <th>Complainer</th>
+                    <th>Department</th>
+                    <th>Handle</th>
+                    <th>Status</th>
+                    <th>SentDate</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{request.idComplainNavigation.fullname}}</td>
+                    <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
+                    <td>{{request.idHandleNavigation.fullname}}</td>
+                    <td>{{requestDetail.status == 0 ? "Sending" : requestDetail.status == 1 ? "Solving" : requestDetail.status == 2 ? "Add more information" : requestDetail.status == 3 ? "Untreated" : "Completed"}}</td>
+                    <td>{{request.sentDate}}</td>
+                    <td> {{request.priority ==1 ? "Low" : request.priority ==2 ? "Medium" : "Urgent"}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-container w-100">
+            <!-- Cột trái trên -->
+            <div class="top-left-column w-100 " style="background:unset !important">
+                <div class="text-light text-light box-chatt bg-mess-to">
+                    <h5>Title: {{request.title}}</h5>
+                    <h5>Id: {{requestDetail.id}}</h5>
+                    <h5>Complainer: {{request.idComplainNavigation.fullname}}</h5>
+                    <h5>Reason: {{requestDetail.reason}}</h5>
+                    <h5>File: </h5>
+                    <div *ngFor="let rf of requestFile">
+                        <p *ngIf="getIdFromFile(rf.name) == requestDetail.id">
+                            <a href="{{rf.name}}" target="_blank">
+                                <img src="{{rf.name}}" alt="">
+                            </a>
+                        </p>
+                    </div>
+                    <h5>Status: {{requestDetail.status == 0 ? "Sending" : requestDetail.status == 1 ? "Solving" : requestDetail.status == 2 ? "Add more information" : requestDetail.status == 3 ? "Untreated" : "Completed"}}
+                    </h5>
+                    <p>Sent Date: {{request.sentDate}}</p>
+                </div>
+            </div>
+            <!-- Cột phải dưới -->
+            <div class="bottom-right-column w-100">
+                <ng-container *ngIf="request.idHandle != null">
+                    <div class="bg-mess text-light box-chatt">
+                        <ng-container *ngIf="request.idHandle != null">
+                            <h5>Handle: {{request.idHandleNavigation.fullname}}</h5>
+                            <h5>Status: {{requestDetail.status == 0 ? "Sending" : requestDetail.status == 1 ? "Solving" : requestDetail.status == 2 ? "Add more information" : requestDetail.status == 3 ? "Untreated" : "Completed"}}
+                            </h5>
+                            <h5>Reply: {{requestDetail.reply}}</h5>
+                            <p>Sent Date: {{requestDetail.sentDate}}</p>
+                            <p *ngIf="requestDetail.payday != null">End Date:</p>
+                        </ng-container>
+
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+        <div class="form-container">
+        </div>
+
+    </ng-container>
+</div>

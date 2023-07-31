@@ -53,7 +53,7 @@ export class UpdateDepartmentComponent implements OnInit {
                     // this.router.navigateByUrl('/admin/department/update',{ skipLocationChange: true }).then(() => {
                     //     this.router.navigate([this.router.url]);
                     //   });
-                    this.router.navigate(['/admin/department/update', department.id]);
+                    this.router.navigate(['/admin/department/index']);
                       
                     //   this.ngOnInit();
                 }else {

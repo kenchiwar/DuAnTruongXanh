@@ -32,10 +32,8 @@ export class IndexRequest_2Component implements OnInit {
     ngOnInit(): void {
         this.requestService.GetRequets().then((data: any) => {
             this.requests_ = data
-            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 1)
+            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status != 0 && request.status != 4)
             this.totalItems_ = this.requests_.length
-           
-            
     });
     setTimeout(()=>{
         $('#index-request2').DataTable({
@@ -52,4 +50,7 @@ export class IndexRequest_2Component implements OnInit {
     }
     
 
+    reload(){
+        this.ngOnInit()
+    }
 }

@@ -11,7 +11,7 @@ import { Account } from "../models/account.model";
 
 export class LayoutHomeComponent implements OnInit,AfterViewInit {
 
-
+    idAccount : any;
     constructor(
         private router :Router,
         private accountService :AccountService,
@@ -19,7 +19,9 @@ export class LayoutHomeComponent implements OnInit,AfterViewInit {
     accountLogin?:Account;
     ngOnInit(): void {
         this.accountLogin = this.accountService.GetAccountLogin();
-
+        console.log(this.accountLogin)
+        this.idAccount = this.accountLogin.id;
+        console.log(this.idAccount)
     }
     ngAfterViewInit(): void {
         const scriptUrls = [

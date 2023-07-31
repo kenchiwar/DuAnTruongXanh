@@ -47,8 +47,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { IndexRequest_1Component } from './admin/request/index/indexRequest_1.component';
 import { IndexRequest_2Component } from './admin/request/index/indexRequest_2.component';
 import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
+
 import { ProfileHomeComponent } from './home/profile/profile.component';
 import { RequestHomeComponent } from './home/request/request.component';
+import { TwoColumnFormComponent } from './admin/request/Detail/two-column-form.component';
+import { UpdateAdminRequestComponent } from './admin/request/updateadmin/updaterequest.component';
+import { UpdateUserRequestComponent } from './admin/request/updateuser/updaterequest.component';
+import { CreateRequestHomeComponent } from './home/request/create.component';
+
 
 
 
@@ -91,7 +97,10 @@ import { RequestHomeComponent } from './home/request/request.component';
     IndexRequest_1Component,
     IndexRequest_2Component,
     IndexRequest_3Component,
-
+    TwoColumnFormComponent,
+    UpdateAdminRequestComponent,
+    UpdateUserRequestComponent,
+    CreateRequestHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +108,8 @@ import { RequestHomeComponent } from './home/request/request.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [
     UrlApi,

@@ -50,6 +50,9 @@ async GetDepartment(){
     return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/getDepartmentById/" +id));
   }
 
+  async GetAccDepartmentById(id:string){
+    return await lastValueFrom(this.http.get(this.url.baseDepartments+ "/getAccDepartmentById/" +id));
+  }
   async PostDepartment(formData:FormData){
     return await lastValueFrom(this.http.post(this.url.baseDepartments+ "/created", formData));
   }
