@@ -12,16 +12,19 @@ import { Account } from "../models/account.model";
 export class LayoutHomeComponent implements OnInit,AfterViewInit {
 
     idAccount : any;
+    roleAccount : any;
     constructor(
         private router :Router,
         private accountService :AccountService,
     ){}
     accountLogin?:Account;
+  
     ngOnInit(): void {
         this.accountLogin = this.accountService.GetAccountLogin();
         console.log(this.accountLogin)
         this.idAccount = this.accountLogin.id;
-        console.log(this.idAccount)
+        this.roleAccount = this.accountLogin.role;
+        console.log(this.roleAccount)
     }
     ngAfterViewInit(): void {
         const scriptUrls = [

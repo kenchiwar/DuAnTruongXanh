@@ -47,20 +47,21 @@ const routes: Routes = [
     {path: 'forgot', component:ForgotPasswordComponent},
     {path:'login',canActivate:[loginGuard],children: [
       {path: 'request/:id', component:RequestHomeComponent},
-      {path: 'request/create', component:CreateRequestHomeComponent},
+      {path: 'requestcreate', component:CreateRequestHomeComponent},
       {path: 'profile', component:ProfileHomeComponent},
       {path: '', component:ProfileHomeComponent},
+
     ]}
   ]},
+ 
 
-  {path:'error',component:ErrorComponent}
-  ,
+  
   {path: 'admin', component:IndexAdminComponent,canActivate:[authGuard],children: [
     {path:'',component:IndexAccountComponent},
     {path:'account',children: [
       {path: 'create', component:CreateAccountComponent},
       {path: 'detail/:id', component:DetailAccountComponent},
-      {path: 'detail', component:DetailAccountInformationComponent},
+      {path: 'profile', component:DetailAccountInformationComponent},
       {path: 'update/:id', component:UpdateAccountComponent},
       {path: 'index', component:IndexAccountComponent},
       {path:'',component:IndexAccountComponent},
@@ -92,13 +93,14 @@ const routes: Routes = [
       {path: 'update', component:UpdateRoleClaimComponent},
       {path: 'index', component:IndexRoleClaimComponent},
     ]},
-    { path: '**', pathMatch: 'full',
-    component: ErrorComponent },
+   
 
 
 
     // {path: '', component:DashboardComponent},
   ]} ,
+  { path: '**', pathMatch: 'full',
+  component: ErrorComponent },
 ];
 
 @NgModule({

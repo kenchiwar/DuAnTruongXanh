@@ -90,7 +90,7 @@ export class UpdateUserRequestComponent implements OnInit {
                 console.log(res);
                 var resultAPI : ResultAPI = res as ResultAPI;
                 if(resultAPI.result){
-                        this.router.navigate(['/admin/request/index']);
+                        this.router.navigate(['/login/profile']);
                 }else {
                     alert(`Update Failed!`);
                 }

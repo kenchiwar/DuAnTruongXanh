@@ -13,6 +13,7 @@ declare var $ : any;
 })
 export class TwoColumnFormComponent implements OnInit{
     request : Requet;
+    reqD : Requetsdetailed
     requestDetails : Requetsdetailed[];
     requestFile : RequestFile[]
     requestFileDetail : RequestFile[]
@@ -48,6 +49,11 @@ export class TwoColumnFormComponent implements OnInit{
                     
                     
                 },
+                err => {console.log(err);}
+            )
+
+            this.requestService.GetRequestDetail(id).then(
+                res => {this.reqD = res as Requetsdetailed},
                 err => {console.log(err);}
             )
         })

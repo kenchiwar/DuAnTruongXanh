@@ -6,7 +6,7 @@
 }
 
 .layout-fixed .main-sidebar {
-    background-color: var(--color-main)!important;
+    background-color: var(--blue)!important;
 }
 
 input.form-control.form-control-sidebar {
@@ -434,7 +434,8 @@ td {
     right: 20px;
     display: none;
     z-index: 99999;
-    background: var(--color-main) !important;
+    background: var(--blue) !important;
+    border: unset !important;
 }
 
 .alert {
@@ -551,4 +552,21 @@ a {
 
 .dataTables_wrapper {
     width: 100% !important;
+}
+
+.main-sidebar span.brand-text {
+    color: #fff !important;
+    font-size: 30px;
+    font-weight: 700 !important;
+}
+
+[class*=sidebar-dark-] .sidebar a,
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link {
+    color: #ffffff;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link,
+[class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link,
+[class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background-color: rgb(255 255 255 / 24%);
 }

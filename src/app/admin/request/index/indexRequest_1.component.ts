@@ -17,11 +17,7 @@ export class IndexRequest_1Component implements OnInit {
    idRequest : any;
    filterRequest : string;
    formRequest : FormGroup
-    requestsPagin: any[];
-    pageSize = 10; // số lượng mục trên mỗi trang
-    currentPage = 1; // trang hiện tại
-    totalItems: number; // tổng số mục
-
+   
      constructor(
          private router :Router,
          private requestService : RequestServices,
@@ -31,11 +27,10 @@ export class IndexRequest_1Component implements OnInit {
      ){}
 
     ngOnInit(): void {
-        this.requestService.GetRequets().then((data: any) => {
-            this.requests = data
+        this.requestService.GetRequets().then(res => {
+          this.requests = res as Requet[];
             this.requests = this.requests.filter(request => request.idHandle == null)
-            this.totalItems = this.requests.length
-    })
+    },err => {console.log(err)})
     setTimeout(()=>{
         $('#index-request1').DataTable({
           "paging": true,

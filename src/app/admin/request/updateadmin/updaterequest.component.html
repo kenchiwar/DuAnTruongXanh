@@ -33,7 +33,9 @@
                 <td>File</td>
                 <td>
                     <div *ngFor="let re of requestFile">
-                        <a href="{{re.name}}" target="_blank">{{re.file}}</a>
+                        <a href="{{re.name}}" target="_blank">
+                            <img src="https://localhost:7007/RequestFile/{{re.file}}" alt="">
+                        </a>
                     </div>
                 </td>
             </tr>

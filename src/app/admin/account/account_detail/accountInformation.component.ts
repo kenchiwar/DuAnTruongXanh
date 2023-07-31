@@ -65,7 +65,7 @@ export class DetailAccountInformationComponent implements OnInit {
               this.accountChangPass=false;
       this.accountService.GetAccountDetail(this.accountLogin.id+'').then(dataAccount=>{
 
-
+        
         this.dataAccount = dataAccount as Account;
         this.accountLogin=this.accountService.GetAccountLogin();
         //Kiểm tra account đủ quyền update ko
@@ -74,9 +74,10 @@ export class DetailAccountInformationComponent implements OnInit {
       this.selectedFileUrl=this.dataAccount.citizenidentification?this.urlApi.baseUrl+this.dataAccount.citizenidentification:null;
       this.requetIdComplainNavigations=this.dataAccount.requetIdComplainNavigations ;
       this.requetIdHandleNavigations=this.dataAccount.requetIdHandleNavigations;
-
+      console.log('ee'+this.dataAccount)
       setTimeout(()=>{
         $('#account-detail-roleclaims').DataTable({
+          "order" : [[ 1, 'desc' ]],
           "paging": true,
           "lengthChange": false,
           "searching": true,
@@ -87,6 +88,7 @@ export class DetailAccountInformationComponent implements OnInit {
           "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#account-detail-roleclaims_wrapper .col-md-6:eq(0)');
         $('#account-detail-request1').DataTable({
+          "order" : [[ 1, 'desc' ]],
           "paging": true,
           "lengthChange": false,
           "searching": true,
@@ -97,6 +99,7 @@ export class DetailAccountInformationComponent implements OnInit {
           "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         }).buttons().container().appendTo('#account-detail-request1_wrapper .col-md-6:eq(0)');
         $('#account-detail-request2').DataTable({
+          "order" : [[ 1, 'desc' ]],
           "paging": true,
           "lengthChange": false,
           "searching": true,

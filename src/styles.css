@@ -1,96 +1,102 @@
-    /* You can add global styles to this file, and also import other style files */
-    
-     :root {
-        --color-new: #98EECC;
-        --color-processing: #FFA500;
-        --color-accomplished: #00FF00;
-    }
-    
-    .page-404 .img {
-        width: 100%;
-        height: 100%;
-    }
-    
-    .page-404 .img img {
-        width: 100%;
-    }
-    
-    .page-404 {
-        height: 100%;
-    }
-    
-    .page-404 .row {
-        align-items: center;
-        padding: 100px 0;
-    }
-    
-    .page-404 h1 {
-        font-size: 100px;
-        font-weight: 900;
-        line-height: 200px;
-        color: #ff7462;
-    }
-    
-    .page-404 p {
-        font-size: 40px;
-        font-weight: 600;
-        line-height: 80px;
-    }
-    
-    .page-404 a {
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 80px;
-        padding: 20px 40px;
-        border-radius: 38px 174px 58px 155px;
-        background: #8254f7;
-        color: #fff;
-        transition: .2s;
-    }
-    
-    .page-404 a:hover {
-        color: #8254f7;
-        border: 2px solid #8254f7;
-        background: unset !important;
-    }
-    
-    .page-404 a {
-        text-decoration: none;
-    }
-    
-    @media (max-width: 768px) {
+        /* You can add global styles to this file, and also import other style files */
+        
+         :root {
+            --color-new: #98EECC;
+            --color-processing: #FFA500;
+            --color-accomplished: #00FF00;
+            --color-accomplished: #00FF00;
+        }
+        
+        .page-404 .img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .page-404 .img img {
+            width: 100%;
+        }
+        
+        .page-404 {
+            height: 100%;
+        }
+        
         .page-404 .row {
-            padding: 50px 0 !important;
+            align-items: center;
+            padding: 100px 0;
         }
-        .page-404 .row .content {
-            text-align: center;
+        
+        .page-404 h1 {
+            font-size: 100px;
+            font-weight: 900;
+            line-height: 200px;
+            color: #ff7462;
         }
-        .page-404 .row>div {
-            margin-bottom: 20px;
+        
+        .page-404 p {
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 80px;
         }
-    }
-    
-    .bg-new {
-        background: var(--color-new) !important;
-    }
-    
-    .bg-processing {
-        background: var(--color-processing) !important;
-    }
-    
-    .bg-accomplished {
-        background: var(--color-accomplished)!important;
-    }
-    
-    .bg-mess {
-        background: #2474e1 !important;
-    }
-    
-    .bg-mess-to {
-        background: #3e4042 !important;
-    }
-    
-    .box-chatt {
-        border-radius: 18px;
-        padding: 20px;
-    }
+        
+        .page-404 a {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 80px;
+            padding: 20px 40px;
+            border-radius: 38px 174px 58px 155px;
+            background: #8254f7;
+            color: #fff;
+            transition: .2s;
+        }
+        
+        .page-404 a:hover {
+            color: #8254f7;
+            border: 2px solid #8254f7;
+            background: unset !important;
+        }
+        
+        .page-404 a {
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .page-404 .row {
+                padding: 50px 0 !important;
+            }
+            .page-404 .row .content {
+                text-align: center;
+            }
+            .page-404 .row>div {
+                margin-bottom: 20px;
+            }
+        }
+        
+        .bg-new {
+            background: var(--color-new) !important;
+        }
+        
+        .bg-processing {
+            background: var(--color-processing) !important;
+        }
+        
+        .bg-accomplished {
+            background: var(--color-accomplished)!important;
+        }
+        
+        .bg-mess {
+            background: #2474e1 !important;
+        }
+        
+        .bg-mess-to {
+            background: #3e4042 !important;
+        }
+        
+        .box-chatt {
+            border-radius: 18px;
+            padding: 20px;
+        }
+        
+        table thead {
+            background: var(--blue);
+            color: #fff;
+        }

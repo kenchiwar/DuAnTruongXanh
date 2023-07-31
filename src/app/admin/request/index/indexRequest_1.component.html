@@ -15,13 +15,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let request of requests | paginate: { itemsPerPage: pageSize, currentPage: currentPage, totalItems: totalItems }">
+                <tr *ngFor="let request of requests">
                     <td>
                         <a [routerLink]="['/admin/request/detail/',request.id]" class="button btn-primary btn-detail btn">Detail</a>
                         <input type="button" (click)="accept(request.id)" value="Accept" class="button btn-primary btn-success btn">
                     </td>
-                    <td>{{request.idComplain}}</td>
-                    <td>{{request.idDepartment}}</td>
+                    <td>{{request.idComplainNavigation.fullname}}</td>
+                    <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
 
                     <td>{{request.title}}</td>
                     <td>{{request.status}}</td>
@@ -30,8 +30,5 @@
                 </tr>
             </tbody>
         </table>
-        <div class="pagination">
-            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
-        </div>
     </ng-container>
 </div>

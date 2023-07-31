@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let request of requests_ | paginate: { itemsPerPage: pageSize_, currentPage: currentPage_, totalItems: totalItems_ }">
+                <tr *ngFor="let request of requests_">
                     <td>
                         <a [routerLink]="['/admin/request/detail/',request.id]" class="button btn btn-primary btn-detail">Detail</a>
                         <input type="button" (click)="reprocess(request.id)" value="Reprocess" class="button btn btn-primary btn-update">
@@ -31,8 +31,5 @@
                 </tr>
             </tbody>
         </table>
-        <div class="pagination">
-            <pagination-controls (pageChange)="currentPage_ = $event"></pagination-controls>
-        </div>
     </ng-container>
 </div>

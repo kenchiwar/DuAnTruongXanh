@@ -8,6 +8,8 @@
     <link href="/assets/filehome/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="/assets/filehome/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/fileadmin/dist/css/style.css">
+    <link rel="stylesheet" href="/assets/fileadmin/dist/icon/fontawesome-free-6.4.0/css/all.min.css">
+
     <div class="container d-flex justify-content-between">
 
         <div class="logo">
@@ -31,11 +33,16 @@
                 <ng-container *ngIf="accountLogin != null">
                     <li class="dropdown"><a href="#"><span>{{accountLogin.username}}</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a [routerLink]="[ 'login/profile'] ">Profile</a></li>
-                            <li><a [routerLink]="[ 'login/request/',idAccount] ">Create Request</a></li>
-                            <li><a href="#" (click)="logout()">Logout</a></li>
+
+                            <li><a [routerLink]="[ 'login/profile']" class="justify-content-start"><i class="fa-solid fa-address-card"style="margin-right:10px"></i>Profile</a></li>
+                            <li><a [routerLink]="[ 'login/requestcreate']" class="justify-content-start"><i class="fa-solid fa-person-circle-question"style="margin-right:10px"></i>Create Request</a></li>
+                            <li><a href="#" (click)="logout()" class="justify-content-start"><i class="fa-solid fa-right-from-bracket" style="margin-right:10px"></i>Logout</a></li>
+
                         </ul>
                     </li>
+                </ng-container>
+                <ng-container *ngIf="roleAccount <= 1">
+                    <li><a class="nav-link scrollto" [routerLink]="['admin']">Admin</a></li>
                 </ng-container>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
