@@ -203,7 +203,7 @@
                         <td> <button type="button" [routerLink]="[(this.isAdmin()?'/admin/request/detail/':'/login/request/'),request.id]" class="btn btn-primary btn-detail">Detail</button></td>
                         <td>{{request.id}}</td>
                         <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
-                        <td>{{request.title}}</td>
+                        <td>{{request.status == 0 ? "Sending" : request.status == 1 ? "Solving" : request.status == 2 ? "Add more information" : request.status == 3 ? "Untreated" : "Completed"}}</td>
                         <td>{{request.status}}</td>
                         <td>{{request.level}}</td>
                         <td>{{request.sentDate}}</td>

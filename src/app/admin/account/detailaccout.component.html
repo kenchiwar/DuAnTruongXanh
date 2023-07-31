@@ -161,9 +161,9 @@
                     <td>{{request.id}}</td>
                     <td>{{request.idComplain}}</td>
                     <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
-
                     <td>{{request.title}}</td>
-                    <td>{{request.status}}</td>
+
+                    <td>{{request.status == 0 ? "Sending" : request.status == 1 ? "Solving" : request.status == 2 ? "Add more information" : request.status == 3 ? "Untreated" : "Completed"}}</td>
                     <td>{{request.level}}</td>
                     <td>{{request.sentDate}}</td>
                     <td>{{request.endDate}}</td>
