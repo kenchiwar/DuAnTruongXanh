@@ -75,10 +75,10 @@ function toasts({
 
 function showSuccess(message, title) {
     if (message === undefined || message.length < 1) {
-        message = 'warning';
+        message = 'success';
     }
     if (title === undefined || title.length < 1) {
-        title = 'Warning!';
+        title = 'Success!';
     }
     toasts({
         title: title,

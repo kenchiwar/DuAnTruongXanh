@@ -97,6 +97,6 @@
         }
         
         table thead {
-            background: var(--blue);
+            background: #007bff !important;
             color: #fff;
         }
