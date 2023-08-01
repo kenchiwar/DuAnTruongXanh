@@ -57,12 +57,7 @@ export class loginAccount implements OnInit {
       this.isViewChild=false;
 
       //Cái này để cho ông nghị nó text đi
-      this.isPageForgetPassword=true;
-
-
-      this.isPageLogin=true;
-      this.isComfirmPassPage=true;
-      this.isInputSecurityPage=true;
+    
 
 
 
