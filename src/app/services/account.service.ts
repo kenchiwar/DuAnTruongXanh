@@ -41,10 +41,11 @@ export class AccountService {
     // account = JSON.parse(data) as Account;
 
     // return account??null;
-    var data = localStorage.getItem('account');
     try {
-      var account = JSON.parse(data) as Account;
-      return account??null;
+    var data = localStorage.getItem('account');
+
+    var account = JSON.parse(data) as Account;
+      return account;
     } catch (error) {
 
 
@@ -59,12 +60,11 @@ export class AccountService {
           const account = this.GetAccountLogin();
          
           return   new HttpHeaders({
-            'username':account?.username??'',
-            'password':account?.password??''
+            'username':account.username,
+            'password':account.password,
           });
         } catch (error) {
           return   new HttpHeaders({
-
           });
         }
 
