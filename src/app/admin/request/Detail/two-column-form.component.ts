@@ -36,7 +36,7 @@ export class TwoColumnFormComponent implements OnInit{
     ngOnInit(): void {
         this.activatedRoute.paramMap.subscribe(params => {
             var id = params.get('id');
-            this.requestService.GetRequestDetailFile(id).then(
+            this.requestService.GetRequestById(id).then(
                 res => {this.request = res as Requet;
                   console.log(this.request.requestFiles);
                   this.requestFile = this.request.requestFiles;

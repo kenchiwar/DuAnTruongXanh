@@ -146,7 +146,7 @@ getFormGroupDetailData(data :any):FormGroup{
     sentdate: data.sentDate,
     payday: data.payday,
     reason: data.reason,
-    status: data.status,
+    status: data.status+'',
     reply: data.reply,
     idRequest: data.idRequest,
   })}

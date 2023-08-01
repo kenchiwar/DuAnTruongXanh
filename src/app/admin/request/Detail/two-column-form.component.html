@@ -27,7 +27,7 @@
             <!-- Cột trái trên -->
             <div class="top-left-column w-100 " style="background:unset !important">
                 <div class="text-light text-light box-chatt bg-mess-to">
-                    <h5>Avt:  <a href="{{request.idComplainNavigation.citizenidentification}}" target="_blank"><img src="{{request.idComplainNavigation.citizenidentification}}" style="width: 100px; height: 100px; object-fit: cover;"></a></h5> 
+                    <h5>Avt:  <a href="{{request.idComplainNavigation.citizenidentification}}" target="_blank"><img src="{{request.idComplainNavigation.citizenidentification}}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"></a></h5> 
                     <h5>Complainer: {{request.idComplainNavigation.fullname}}</h5>
                     <!-- <h5>AVT:
                         <img href="{{request.idComplainNavigation.citizenidentification}}">
@@ -36,6 +36,7 @@
                     <h5>File: </h5>
                     <div *ngFor="let rf of requestFile">
                         <div *ngIf="getIdFromFile(rf.name) == requestDetail.id">
+                            
                             <a href="{{rf.name}}" target="_blank">
                                 <img src="{{rf.name}}" style="width: 100px; height: 100px; object-fit: cover;">
                             </a>

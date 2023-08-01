@@ -4,51 +4,6 @@
 <ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
     <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form">
         <table>
-            <tr class="admin-form-item ">
-                <td>Complainer</td>
-                <td><input type="text" value="{{request.idComplainNavigation.fullname}}" readonly></td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>Department</td>
-                <td>
-                    <input type="text" value="{{request.idDepartmentNavigation.tenDepartment}}" readonly>
-                </td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>Handle</td>
-                <td>
-                    <input type="text" value="{{request.idHandleNavigation.fullname}}" readonly>
-                </td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>Title</td>
-                <td>
-                    <input type="text" readonly value="{{request.title}}">
-                </td>
-            </tr>
-            <tr class="admin-form-item">
-                <td>Reason</td>
-                <td>
-                    <textarea cols="150" rows="5" readonly>{{requestDetail.reason}}</textarea>
-                </td>
-            </tr>
-            <tr class="admin-form-item ">
-                <td>File</td>
-                <td>
-                    <div *ngFor="let re of requestFile">
-                        <a href="{{re.name}}" target="_blank">
-                            <img src="https://localhost:7007/RequestFile/{{re.file}}" alt="">
-                        </a>
-                    </div>
-                </td>
-            </tr>
-
-            <tr class="admin-form-item ">
-                <td>Sent Date:
-                    <p>{{request.sentDate}}</p>
-                </td>
-
-            </tr>
             <tr class="admin-form-item">
                 <td>Reply</td>
                 <td><textarea formControlName="reply" cols="150" rows="5"></textarea></td>
@@ -68,8 +23,8 @@
             </tr>
         </table>
         <!-- <input type="hidden" formControlName="senDate">
-            <input type="hidden" formControlName="payday">
-            <input type="hidden" formControlName="idRequest"> -->
+            <input type="hidden" formControlName="id"> -->
+            <input type="hidden" formControlName="idRequest">
     </form>
 
 </ng-container>

@@ -18,7 +18,6 @@ import { RequestServices } from "src/app/services/request.service";
 export class UpdateAdminRequestComponent implements OnInit {
     request : Requet
     requestDetail : Requetsdetailed
-    departments : Department[]
     requestFile : RequestFile[]
     requestForm : FormGroup
     requestDetailForm : FormGroup
@@ -34,31 +33,27 @@ export class UpdateAdminRequestComponent implements OnInit {
     ){}
     ngOnInit(){
         // this.requestDetailForm = this.requestService.getFormGroupDetail();
-        this.departmentService.GetDepartment().then(
-            res => {this.departments = res as Department[];},
-            err => {console.log(err);}
-        )
         this.activatedRoute.paramMap.subscribe(params => {
             var id = params.get('id');
             this.requestService.GetRequestById(id).then(
                 res => {
-                    this.request = res as Requet    
+                    this.request = res as Requet
+                    console.log(this.request.requestFiles)
+                    this.requestFile = this.request.requestFiles
                 },
                 err => {console.log(err);}
             )
             this.requestService.GetRequestDetail(id).then(
                 res => {
                     this.requestDetail = res as Requetsdetailed
+                    
                     this.requestDetailForm = this.requestService.getFormGroupDetailData(this.requestDetail);
                     
                 },
                     
                 err => {console.log(err);}
             )
-            this.requestService.GetRequestFile(id).then(
-                res => {this.requestFile = res as RequestFile[]},
-                err => {console.log(err);}
-            )
+           
         }) 
     }
 

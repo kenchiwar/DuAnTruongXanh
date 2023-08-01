@@ -79,8 +79,22 @@ export class AccountService {
           case 'get':
             return await lastValueFrom(this.http.get(url,{headers}));
           case 'post':
-            return await lastValueFrom(this.http.post(url,formData,{headers}));
-            case 'put':return await lastValueFrom(this.http.put(url,formData,{headers}));
+            if(formData != null){
+              return await lastValueFrom(this.http.post(url,formData,{headers}));
+            }else {
+              console.log("fdsdsfs");
+              console.log(headers);
+              return await lastValueFrom(this.http.post(url,{headers}));
+            }
+            
+            case 'put':if(formData != null){
+              console.log("fdsdsfs1");
+              console.log(headers);
+              return await lastValueFrom(this.http.put(url,formData,{headers}));
+            }else {
+              return await lastValueFrom(this.http.put(url,{headers}));
+            }
+              
             case 'delete':return await lastValueFrom(this.http.delete(url,{headers}));
         }
 
