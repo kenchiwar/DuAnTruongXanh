@@ -41,6 +41,7 @@ export class TwoColumnFormComponent implements OnInit{
                   console.log(this.request.requestFiles);
                   this.requestFile = this.request.requestFiles;
                   this.requestDetails = this.request.requestDetails ;
+                  console.log(this.request);
                   if ($.fn.DataTable.isDataTable($('#handleIndex'))) {
                     $('#handleIndex').DataTable().destroy();
                   }

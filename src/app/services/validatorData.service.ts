@@ -86,12 +86,12 @@ export class ValidatorData{
 
   }
   getErrorRouterChange(mess:string ,error?:any ,urlChange?:string ,urlNow?:string ){
-    // this.route.navigateByUrl('/error', { skipLocationChange: true });
-    // if(!(mess==null|| mess =='')){
-    //   setTimeout(() =>{
-    //     alert(mess);
-    //   },500);
-    // }
+    this.route.navigateByUrl('/error', { skipLocationChange: true });
+    if(!(mess==null|| mess =='')){
+      setTimeout(() =>{
+        alert(mess);
+      },500);
+    }
 
 
 

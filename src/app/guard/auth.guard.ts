@@ -8,20 +8,19 @@ export const authGuard: CanActivateFn = (route, state: RouterStateSnapshot) => {
   let router = inject(Router);
 
 
-  //  try {
-  //   var account= service.GetAccountLogin() as Account;
-  //   console.log(account);
-  //   if(account.idRole<=2){
-  //     return true;
-  //   }
-  //  } catch (error) {
+   try {
+    var account= service.GetAccountLogin() as Account;
+    console.log(account);
+    if(account.idRole<=2){
+      return true;
+    }
+   } catch (error) {
 
-  //  }
-  //  setTimeout(()=>{
-  //   router.navigateByUrl('/error', { skipLocationChange: true });
-  //  },300);
-  //  return false ;
-   return true ;
-
+   }
+   setTimeout(()=>{
+    router.navigateByUrl('/error', { skipLocationChange: true });
+   },300);
+   return false ;
+  
 
 };

@@ -19,4 +19,5 @@ export interface Requet {
   idHandleNavigation?: Account;
   requestFiles?: RequestFile[];
   requestDetails?: Requetsdetailed[];
+  requetsdetaileds?:Requetsdetailed[];
 }
