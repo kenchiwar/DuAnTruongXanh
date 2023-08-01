@@ -41,7 +41,7 @@
                         </ul>
                     </li>
                 </ng-container>
-                <ng-container *ngIf="accountLogin.idRole<= 2">
+                <ng-container *ngIf="this.roleAccount<= 2">
                     <li><a class="nav-link scrollto" (click)="changeAdmin()">Admin</a></li>
                 </ng-container>
             </ul>

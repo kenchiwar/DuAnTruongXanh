@@ -28,19 +28,23 @@ export class IndexRequest_3Component implements OnInit {
         this.requestService.GetRequets().then(res => {
             this.requests_ = res as Requet[]
             this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 4 || request.status == 5);
+            if ($.fn.DataTable.isDataTable($('#index-request3'))) {
+                $('#index-request3').DataTable().destroy();
+              }
+            setTimeout(()=>{
+                $('#index-request3').DataTable({
+                  "paging": true,
+                  "lengthChange": false,
+                  "searching": true,
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": true,
+                  "responsive": true,          
+                  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#index-request3_wrapper .col-md-6:eq(0)');;
+              },1000);
     },err => console.log(err));
-    setTimeout(()=>{
-        $('#index-request3').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true,
-          "responsive": true,          
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#index-request3_wrapper .col-md-6:eq(0)');;
-      },1000);
+    
     
     }
 

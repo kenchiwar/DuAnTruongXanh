@@ -1,5 +1,5 @@
 <app-two-column-form>
-    
+
 </app-two-column-form>
 <ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
     <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form">
@@ -34,7 +34,7 @@
             </tr>
             <tr class="admin-form-item ">
                 <td>File</td>
-                <td>
+                <td class="d-flex justify-content-around justify-content-start">
                     <div *ngFor="let re of requestFile">
                         <a href="{{re.name}}" target="_blank">
                             <img src="https://localhost:7007/RequestFile/{{re.file}}" alt="">

@@ -25,21 +25,25 @@ export class IndexDepartmentComponent implements OnInit {
        
        this.formDepartment = this.departmentService.getFormGroup();
         this.departmentService.GetDepartment().then(
-            res => {this.departments = res as Department[];},
+            res => {this.departments = res as Department[];
+                if ($.fn.DataTable.isDataTable($('#department-index-table'))) {
+                    $('#department-index-table').DataTable().destroy();
+                  }
+                setTimeout(()=>{
+                    $('#department-index-table').DataTable({
+                      "paging": true,
+                      "lengthChange": false,
+                      "searching": true,
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": true,
+                      "responsive": true,
+                      
+                      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#department-index-table_wrapper .col-md-6:eq(0)');;
+                  },1000);},
             err => {console.log(err);})
-            setTimeout(()=>{
-                $('#department-index-table').DataTable({
-                  "paging": true,
-                  "lengthChange": false,
-                  "searching": true,
-                  "ordering": true,
-                  "info": true,
-                  "autoWidth": true,
-                  "responsive": true,
-                  
-                  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#department-index-table_wrapper .col-md-6:eq(0)');;
-              },1000);
+
         
     }
 

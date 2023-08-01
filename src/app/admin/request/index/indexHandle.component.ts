@@ -25,21 +25,25 @@ export class HandleIndexComponent implements OnInit{
             res => {
                 this.requests = res as Requet[]
                 this.requests = this.requests.filter(req => req.idHandleNavigation.id == this.accountService.GetAccountLogin().id)
+                if ($.fn.DataTable.isDataTable($('#handleIndex'))) {
+                    $('#handleIndex').DataTable().destroy();
+                  }
+                setTimeout(()=>{
+                    $('#handleIndex').DataTable({
+                      "paging": true,
+                      "lengthChange": false,
+                      "searching": true,
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": true,
+                      "responsive": true,          
+                      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#handleIndex_wrapper .col-md-6:eq(0)');;
+                  },2000);
             },
             err => {console.log(err);}
             
         )
-        setTimeout(()=>{
-            $('#handleIndex').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#handleIndex_wrapper .col-md-6:eq(0)');;
-          },2000);
+        
     }
 }

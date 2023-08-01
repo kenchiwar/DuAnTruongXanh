@@ -41,6 +41,21 @@ export class TwoColumnFormComponent implements OnInit{
                   console.log(this.request.requestFiles);
                   this.requestFile = this.request.requestFiles;
                   this.requestDetails = this.request.requestDetails ;
+                  if ($.fn.DataTable.isDataTable($('#handleIndex'))) {
+                    $('#handleIndex').DataTable().destroy();
+                  }
+                  setTimeout(()=>{
+                    $('#index-request1').DataTable({
+                      "paging": true,
+                      "lengthChange": false,
+                      "searching": true,
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": true,
+                      "responsive": true,          
+                      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
+                  },1000);
                 }
             )
           
@@ -48,18 +63,7 @@ export class TwoColumnFormComponent implements OnInit{
 
             
            
-        setTimeout(()=>{
-            $('#index-request1').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
-          },1000);
+     
           
         })
   }

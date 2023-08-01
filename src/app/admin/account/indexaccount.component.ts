@@ -61,6 +61,9 @@ export class IndexAccountComponent implements OnInit ,AfterViewInit{
           this.dataAll = dataAccount as Account[];
           this.dataAccounts=this.dataAll;
           this.accountLogin=this.accountService.GetAccountLogin();
+          if ($.fn.DataTable.isDataTable($('#TableAccoun'))) {
+            $('#TableAccoun').DataTable().destroy();
+          }
           setTimeout(()=>{
             $('#TableAccount').DataTable({
               "paging": true,
