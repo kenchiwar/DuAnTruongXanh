@@ -42,20 +42,24 @@ export class CreateRequestComponent implements OnInit {
     ngOnInit(): void {
 
         this.requestService.GetRequets().then(
-            res => {this.requests = res as Requet[];},
+            res => {this.requests = res as Requet[];
+                if ($.fn.DataTable.isDataTable($('#index-allRequest'))) {
+                    $('#index-allRequest').DataTable().destroy();
+                  }
+                    setTimeout(()=>{
+                    $('#index-allRequest').DataTable({
+                      "paging": true,
+                      "lengthChange": false,
+                      "searching": true,
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": true,
+                      "responsive": true,          
+                      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#index-allRequest_wrapper .col-md-6:eq(0)');;
+                  },2000);},
             err => {console.log(err)}
         )
-        setTimeout(()=>{
-            $('#index-allRequest').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#index-allRequest_wrapper .col-md-6:eq(0)');;
-          },2000);
+       
     }
 }

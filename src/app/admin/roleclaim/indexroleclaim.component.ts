@@ -21,21 +21,26 @@ export class IndexRoleClaimComponent implements OnInit {
     ){}
     ngOnInit(): void {
         this.roleClaimService.GetRoleClaims().then(
-            res => {this.roleClaims = res as RoleClaim[];},
+            res => {this.roleClaims = res as RoleClaim[];
+                if ($.fn.DataTable.isDataTable($('#roleclaim-index-table'))) {
+                    $('#roleclaim-index-table').DataTable().destroy();
+                  }
+              
+                setTimeout(()=>{
+                    $('#roleclaim-index-table').DataTable({
+                      "paging": true,
+                      "lengthChange": false,
+                      "searching": true,
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": true,
+                      "responsive": true,          
+                      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    }).buttons().container().appendTo('#roleclaim-index-table_wrapper .col-md-6:eq(0)');;
+                  },1000);},
             err => console.log(err)
         )
-        setTimeout(()=>{
-            $('#roleclaim-index-table').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#roleclaim-index-table_wrapper .col-md-6:eq(0)');;
-          },1000);
+       
     
         
     }

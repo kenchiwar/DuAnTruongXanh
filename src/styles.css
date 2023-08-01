@@ -100,3 +100,12 @@
             background: #007bff !important;
             color: #fff;
         }
+        
+        @media (max-width: 768px) {
+            .modal {
+                padding: 10px !important;
+            }
+            .modal-content {
+                width: 100% !important;
+            }
+        }

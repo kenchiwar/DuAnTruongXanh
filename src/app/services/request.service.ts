@@ -27,7 +27,7 @@ export class RequestServices {
       id: 0,
       idComplain: this.accountService.GetAccountLogin().id,
       idDepartment: '2',
-      idHandle: '',
+      idHandle: this.accountService.GetAccountLogin().id,
       title: '',
       status: '0',
       level: '0',

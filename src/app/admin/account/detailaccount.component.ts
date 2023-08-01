@@ -52,38 +52,7 @@ export class DetailAccountComponent implements OnInit {
     this.requetIdHandleNavigations=[];
     //Lấy id
    this.id = this.router.snapshot.paramMap.get('id') ;
-   setTimeout(()=>{
-    $('#detail-account-role-claims').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,          
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#detail-account-role-claims_wrapper .col-md-6:eq(0)');
-    $('#detail-account-request1').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,          
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#detail-account-request1_wrapper .col-md-6:eq(0)');
-    $('#detail-account-request2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true,
-      "responsive": true,          
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#detail-account-request2_wrapper .col-md-6:eq(0)');
-  },1000);
+   
    //Kiểm tra id có đúng là int ko
    if(!this.regex.Interger.test(this.id)) this.validationService.getErrorRouterChange("Url can not  found");
 
@@ -100,10 +69,49 @@ export class DetailAccountComponent implements OnInit {
         this.requetIdComplainNavigations=this.dataAccount.requetIdComplainNavigations ;
         this.requetIdHandleNavigations=this.dataAccount.requetIdHandleNavigations;
 
+        if ($.fn.DataTable.isDataTable($('#detail-account-role-claims'))) {
+          $('#detail-account-role-claims').DataTable().destroy();
+        }
+        if ($.fn.DataTable.isDataTable($('#detail-account-request1'))) {
+          $('#detail-account-request1').DataTable().destroy();
+        }
+        if ($.fn.DataTable.isDataTable($('#detail-account-request2'))) {
+          $('#detail-account-request2').DataTable().destroy();
+        }
 
 
-
-
+        setTimeout(()=>{
+          $('#detail-account-role-claims').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,          
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#detail-account-role-claims_wrapper .col-md-6:eq(0)');
+          $('#detail-account-request1').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,          
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#detail-account-request1_wrapper .col-md-6:eq(0)');
+          $('#detail-account-request2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,          
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#detail-account-request2_wrapper .col-md-6:eq(0)');
+        },1000);
 
        // console.log(this.roleClaimResult);
 

@@ -75,6 +75,15 @@ export class DetailAccountInformationComponent implements OnInit {
       this.requetIdComplainNavigations=this.dataAccount.requetIdComplainNavigations ;
       this.requetIdHandleNavigations=this.dataAccount.requetIdHandleNavigations;
       console.log('ee'+this.dataAccount)
+      if ($.fn.DataTable.isDataTable($('#account-detail-roleclaims'))) {
+        $('#account-detail-roleclaims').DataTable().destroy();
+      }
+      if ($.fn.DataTable.isDataTable($('#account-detail-request1'))) {
+        $('#account-detail-request1').DataTable().destroy();
+      }
+      if ($.fn.DataTable.isDataTable($('#account-detail-request2'))) {
+        $('#account-detail-request2').DataTable().destroy();
+      }
       setTimeout(()=>{
         $('#account-detail-roleclaims').DataTable({
           "order" : [[ 1, 'desc' ]],

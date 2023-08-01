@@ -54,18 +54,7 @@ export class UpdateAccountComponent implements OnInit {
      this.id = this.router.snapshot.paramMap.get('id') ;
      //Kiểm tra id có đúng là int ko
      if(!this.regex.Interger.test(this.id)) this.validationService.getErrorRouterChange("Url can not  found");
-     setTimeout(()=>{
-      $('#account-update-roleclaim').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": true,
-        "responsive": true,          
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#account-update_wrapper .col-md-6:eq(0)');;
-    },1000);
+     
 
      this.accountService.GetAccount(this.id).then(dataAccount=>{
       this.accountService.GetAllDepartment().then((department=>{
@@ -110,7 +99,21 @@ export class UpdateAccountComponent implements OnInit {
             console.log('An error occurred:', error);
           }
          // console.log(this.roleClaimResult);
-
+         if ($.fn.DataTable.isDataTable($('#account-update-roleclaim'))) {
+          $('#account-update-roleclaim').DataTable().destroy();
+        }
+         setTimeout(()=>{
+          $('#account-update-roleclaim').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,          
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          }).buttons().container().appendTo('#account-update_wrapper .col-md-6:eq(0)');;
+        },1000);
           }).catch(error=>{
             this.validationService.getErrorRouterChange("Can not load roleClaim database ");
           });

@@ -73,7 +73,7 @@ export class AccountService {
     async SendApi(type:string ,url :string , formData?:FormData){
       const ab = this.GetHttpHeaders();
       const headers = ab;
-
+      console.log(headers);
       switch(type.toLowerCase()){
 
           case 'get':
@@ -98,7 +98,7 @@ export class AccountService {
             case 'delete':return await lastValueFrom(this.http.delete(url,{headers}));
         }
 
-        return await lastValueFrom(this.http.get(url));
+        throw new Error("dfsdf");
 
     }
   getFormGroup(data?:Account):FormGroup{

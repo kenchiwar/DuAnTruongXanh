@@ -31,19 +31,23 @@ export class IndexRequest_1Component implements OnInit {
         this.requestService.GetRequets().then(res => {
           this.requests = res as Requet[];
             this.requests = this.requests.filter(request => request.idHandle == null)
+            if ($.fn.DataTable.isDataTable($('#index-request1'))) {
+                $('#index-request1').DataTable().destroy();
+              }
+            setTimeout(()=>{
+                $('#index-request1').DataTable({
+                  "paging": true,
+                  "lengthChange": false,
+                  "searching": true,
+                  "ordering": true,
+                  "info": true,
+                  "autoWidth": true,
+                  "responsive": true,          
+                  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
+              },2000);
     },err => {console.log(err)})
-    setTimeout(()=>{
-        $('#index-request1').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true,
-          "responsive": true,          
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
-      },2000);
+    
     }
 
     async accept(id: any){
