@@ -62,7 +62,7 @@ export class DetailAccountComponent implements OnInit {
       "autoWidth": true,
       "responsive": true,          
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#detail-account-role-claims_wrapper .col-md-6:eq(0)');
     $('#detail-account-request1').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -72,7 +72,7 @@ export class DetailAccountComponent implements OnInit {
       "autoWidth": true,
       "responsive": true,          
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#detail-account-request1_wrapper .col-md-6:eq(0)');
     $('#detail-account-request2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -82,7 +82,7 @@ export class DetailAccountComponent implements OnInit {
       "autoWidth": true,
       "responsive": true,          
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#detail-account-request2_wrapper .col-md-6:eq(0)');
   },1000);
    //Kiểm tra id có đúng là int ko
    if(!this.regex.Interger.test(this.id)) this.validationService.getErrorRouterChange("Url can not  found");

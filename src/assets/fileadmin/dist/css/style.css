@@ -6,7 +6,7 @@
 }
 
 .layout-fixed .main-sidebar {
-    background-color: var(--color-main)!important;
+    background-color: var(--blue)!important;
 }
 
 input.form-control.form-control-sidebar {
@@ -69,8 +69,9 @@ input.form-control.form-control-sidebar {
 }
 
 .admin-form .admin-form-item img {
-    max-width: 100%;
-    width: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .admin-form table {
@@ -299,8 +300,9 @@ input.form-control.form-control-sidebar {
 }
 
 .box-info img {
-    max-width: 200px;
-    max-height: 200px
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .box-info h1 {
@@ -432,7 +434,8 @@ td {
     right: 20px;
     display: none;
     z-index: 99999;
-    background: var(--color-main) !important;
+    background: var(--blue) !important;
+    border: unset !important;
 }
 
 .alert {
@@ -497,23 +500,35 @@ td {
     font-size: 18px;
 }
 
-.admin-form.box-login {}
+.admin-form.box-login {
+    width: unset !important;
+    box-shadow: unset !important;
+    background: unset !important;
+    padding: 0px!important;
+    margin: 0 !important;
+}
 
 .admin-form.box-login .admin-form-items {
-    max-width: 400px;
     flex-direction: column;
     margin: 0 auto;
     background: var(--secondary);
     padding: 50px 20px;
-    background-color: #e0e0e0;
-    color: #666;
+    background-color: #fff;
+    color: #1bac91;
     padding: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     min-height: 400px;
+    border-radius: 20px;
+    box-shadow: 12px 12px 68px 12px rgba(0, 0, 0, 0.1);
 }
 
 .admin-form.box-login .admin-form-item {
     width: 100%;
+    margin-bottom: 50px;
+}
+
+.admin-form.box-login .form-button {
+    display: flex;
+    justify-content: center;
 }
 
 .vertifycode {
@@ -529,4 +544,29 @@ td {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.dataTables_wrapper {
+    width: 100% !important;
+}
+
+.main-sidebar span.brand-text {
+    color: #fff !important;
+    font-size: 30px;
+    font-weight: 700 !important;
+}
+
+[class*=sidebar-dark-] .sidebar a,
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link {
+    color: #ffffff;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link,
+[class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link,
+[class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background-color: rgb(255 255 255 / 24%);
 }

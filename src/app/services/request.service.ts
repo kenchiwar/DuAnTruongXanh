@@ -25,7 +25,7 @@ export class RequestServices {
   getFormGroup(){
     var form = this.formBuilder.group({
       id: 0,
-      idComplain: '',
+      idComplain: this.accountService.GetAccountLogin().id,
       idDepartment: '2',
       idHandle: '',
       title: '',
@@ -205,5 +205,9 @@ async GetRequets(){
 
   async PutAccount (id : string){
     return await this.accountService.SendApi('put',this.url.baseRequetsUrl+"/"+id);
+  }
+
+  async CreateRequestNoAcc(formData : FormData){
+    return await lastValueFrom(this.http.post(this.url.baseRequetsUrl+"/createRequestNoAcc", formData));
   }
 }   

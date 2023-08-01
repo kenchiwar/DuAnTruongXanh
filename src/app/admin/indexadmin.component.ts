@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+
 import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 import { AccountService } from "../services/account.service";
@@ -18,11 +18,13 @@ export class IndexAdminComponent implements OnInit,AfterViewInit {
         private accountService : AccountService
     ){}
   ngAfterViewInit(): void {
+  
+
 
     
   }
     ngOnInit(): void {
-
+      this.loadScript('assets/fileadmin/dist/js/main.js')
       // setInterval(function() {
       //   const expiration = localStorage.getItem('username_expiration');
       //   if (expiration && Date.now() > parseInt(expiration)) {

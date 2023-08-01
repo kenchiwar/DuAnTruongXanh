@@ -4,6 +4,7 @@ import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Account } from "src/app/models/account.model";
 import { Department } from "src/app/models/department.model";
+import { Requet } from "src/app/models/request.model";
 import { RequestFile } from "src/app/models/requestfile.model";
 import { Requetsdetailed } from "src/app/models/requetsdetailed.model";
 import { ResultAPI } from "src/app/models/resultapi";
@@ -11,6 +12,8 @@ import { AccountService } from "src/app/services/account.service";
 import { DepartmentsServices } from "src/app/services/departments.service";
 import { RequestServices } from "src/app/services/request.service";
 import { RequestFileService } from "src/app/services/requestFile.service";
+
+declare var $: any;
 @Component({
         selector: 'app-createdRequest',
        templateUrl : './createrequest.component.html'
@@ -21,7 +24,7 @@ export class CreateRequestComponent implements OnInit {
    formRequestFile : FormGroup;
    formRequestDetail: FormGroup;
 
-   requests : Request[]
+   requests : Requet[]
     account : Account
     departments : Department[]
     selectOption: string = '0'
@@ -39,48 +42,20 @@ export class CreateRequestComponent implements OnInit {
     ngOnInit(): void {
 
         this.requestService.GetRequets().then(
-            res => {this.requests = res as Request[];},
-            err => {console.log(err)}
-        ),
-        this.departmentService.GetDepartment().then(
-            res => {this.departments = res as Department[];},
+            res => {this.requests = res as Requet[];},
             err => {console.log(err)}
         )
-        this.formRequest = this.requestService.getFormGroup();
-        this.formRequestFile = this.requestService.getFormGroupFile();
-        this.formRequestDetail = this.requestService.getFormGroupDetail();
-       this.account = this.accountService.GetAccountLogin()
-    }
-
-
-createdRequest(){
-    var request : Request = this.formRequest.value as Request;
-    var formData = new FormData();
-    if(this.file != null){
-        for (let index = 0; index < this.files.length; index++) {
-            this.file = this.files[index];
-            formData.append('files', this.file);
-        }
-    }
-    formData.append('strRequest', JSON.stringify(request));
-   
-    //nho .then()
-    this.requestService.PostAccount(formData).then(
-        res => {
-            var resultAPI :ResultAPI = res as ResultAPI;
-            if (resultAPI.result){
-                this.router.navigateByUrl('/admin/request/create', { skipLocationChange: true }).then(() => {
-                    this.router.navigate([this.router.url]);
-                  });
-                  this.ngOnInit();
-            }else{alert(`Created failed!`);}
-        }, err => {console.log(err);}
-    );
-   
-}
-
-    selectFile(evt : any){
-        this.file = evt.target.files[0];
-        this.files =evt.target.files;
+        setTimeout(()=>{
+            $('#index-allRequest').DataTable({
+              "paging": true,
+              "lengthChange": false,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true,
+              "responsive": true,          
+              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#index-allRequest_wrapper .col-md-6:eq(0)');;
+          },2000);
     }
 }

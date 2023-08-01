@@ -64,7 +64,7 @@ export class UpdateAccountComponent implements OnInit {
         "autoWidth": true,
         "responsive": true,          
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');;
+      }).buttons().container().appendTo('#account-update_wrapper .col-md-6:eq(0)');;
     },1000);
 
      this.accountService.GetAccount(this.id).then(dataAccount=>{

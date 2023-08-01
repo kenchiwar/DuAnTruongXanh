@@ -1,0 +1,95 @@
+<ng-container *ngIf="requests != null">
+    <style>
+        /* CSS cho textarea */
+        
+        textarea {
+            width: 100%;
+            /* Độ rộng */
+            height: 100px;
+            /* Chiều cao */
+            font-family: Arial, sans-serif;
+            /* Font chữ */
+            font-size: 16px;
+            /* Cỡ chữ */
+            background-color: #f2f2f2;
+            /* Màu nền */
+            color: #333;
+            /* Màu chữ */
+            border: 2px solid #ccc;
+            /* Viền */
+            border-radius: 8px;
+            /* Góc bo tròn */
+            transition: border-color 0.3s;
+            /* Hiệu ứng chuyển động 0.3s khi thay đổi viền */
+        }
+        
+        textarea:focus {
+            border-color: #000000;
+            /* Màu viền khi focus */
+            outline: none;
+            /* Loại bỏ viền focus mặc định của trình duyệt */
+            background-color: #fff;
+            /* Màu nền khi focus */
+        }
+    </style>
+    <form [formGroup]="formRequest" (ngSubmit)="createdRequest()" class="admin-form ">
+        <table>
+            <tr class="admin-form-item ">
+                <td>Complainer</td>
+                <td><input type="text" value="{{account.fullname}}" readonly></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Department</td>
+                <td>
+                    <select formControlName="idDepartment">
+                        <option *ngFor="let dpm of departments" value="{{dpm.id}}">{{dpm.tenDepartment}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Title</td>
+                <td>
+                    <input formControlName="title" type="text">
+                </td>
+            </tr>
+            <tr class="admin-form-item">
+                <td>Reason</td>
+                <td>
+                    <textarea formControlName="reason" cols="150"></textarea>
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>File</td>
+                <td>
+                    <input type="file" multiple="multiple" (change)="selectFile($event)">
+
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td class="inline-block">Priority</td>
+                <td class="inline-block mg-0">
+                    <select formControlName="priority">
+                        <option value="1">Low</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Urgent</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+
+                </div>
+
+            </tr>
+        </table>
+        <input type="hidden" formControlName="idComplain" value="{{account.id}}">
+        <td><input type="hidden" formControlName="id"></td>
+        <!-- <input type="hidden" formControlName="status">
+        <input type="hidden" formControlName="endDate">
+        <input type="hidden" formControlName="idHandle">
+        
+        <input type="hidden" formControlName="level"> -->
+    </form>
+</ng-container>

@@ -1,7 +1,10 @@
-<ng-container *ngIf="requests != null">
-    <table border="1">
+
+<ng-container *ngIf="requests != null" >
+  <div class="box-info">
+ <table border="1" class="table table-striped table-hover " id="handleIndex">
         <thead>
           <tr>
+            <th>Action</th>
             <th>Complainer</th>
             <th>Department</th>
             <th>Handle</th>
@@ -10,11 +13,13 @@
             <th>Status</th>
             <th>SentDate</th>
             <th>Priority</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let request of requests">
+            <td>
+              <a [routerLink]="['/admin/request/detail/',request.id]" class="button btn btn-primary btn-detail" >Detail</a>
+              <a [routerLink]="['/admin/request/update/',request.id]" class="button btn btn-primary btn-update">Update</a> </td>
             <td>{{request.idComplainNavigation.fullname}}</td>
             <td>{{request.idDepartmentNavigation.tenDepartment}}</td>
             <td>{{request.idHandleNavigation.fullname}}</td>
@@ -23,10 +28,9 @@
             <td>{{request.status}}</td>
             <td>{{request.sentDate}}</td>
             <td>{{request.priority}}</td>
-            <td>
-              <a [routerLink]="['/admin/request/detail/',request.id]">Detail</a> |
-              <a [routerLink]="['/admin/request/update/',request.id]">Update</a>
           </tr>
         </tbody>
       </table>
+  </div>
+   
 </ng-container>

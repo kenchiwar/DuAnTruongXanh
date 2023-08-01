@@ -94,9 +94,7 @@ export class UpdateUserRequestComponent implements OnInit {
                                     console.log(res);
                                     var resultAPI : ResultAPI = res as ResultAPI;
                                     if(resultAPI.result){
-                                        this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-                                            this.router.navigate([this.router.url]);
-                                          });
+                                        this.router.navigate(['/login/profile']);
                                     }else {
                                         alert(`Update Failed!`);
                                     }
@@ -125,9 +123,7 @@ export class UpdateUserRequestComponent implements OnInit {
                                     console.log(res);
                                     var resultAPI : ResultAPI = res as ResultAPI;
                                     if(resultAPI.result){
-                                        this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
-                                            this.router.navigate([this.router.url]);
-                                          });
+                                        this.router.navigate(['/login/profile']);
                                     }else {
                                         alert(`Update Failed!`);
                                     }

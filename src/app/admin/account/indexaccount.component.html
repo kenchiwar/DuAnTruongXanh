@@ -1,9 +1,8 @@
-
-<button type="button" class="btn btn-primary" onclick="showSuccess('You should check in on some of those fields below.','Success!')">Show success</button>
-<button type="button" class="btn btn-primary" onclick="showWarning()">Show warning</button>
+<!-- <button type="button" class="btn btn-primary" onclick="showSuccess('You should check in on some of those fields below.','Success!')">Show success</button>
+<button type="button" class="btn btn-primary" onclick="showWarning()">Show warning</button> -->
 <div class="admin-form">
     <div class="admin-form-items">
-        <div class="card card-success">
+        <div class="card card-success" style="width: 100%;">
             <div class="card-header">
                 <h3 class="card-title">Stacked Bar Chart</h3>
                 <div class="card-tools">
@@ -26,7 +25,7 @@
                         </div>
                     </div>
                     <div class="chart-canvas">
-                        <canvas id="myChart1" style="max-width: 800px;"></canvas>
+                        <canvas id="myChart1" style="max-width: 100%; "></canvas>
                         <canvas id="myChart2" style="max-width: 400px; max-height: 400px; margin:50px auto;"></canvas>
                     </div>
                 </div>
@@ -35,10 +34,10 @@
         </div>
     </div>
 </div>
-<account-login>
+<!-- <account-login>
 
 
-</account-login>
+</account-login> -->
 <div class="box-info">
     <!-- <div class="box-search">
         Search:<input type="text" [(ngModel)]="this.textSearch" placeholder="if search date search dd/MM/yyyy" class="input-search"> Search Include Delete : <input type="checkbox" [(ngModel)]="this.statusSearch">
@@ -46,11 +45,20 @@
             Serach</button>
         <button type="button" (click)="reload()">Reload </button>
     </div> -->
+    <div class="d-flex" style="width: 100%;margin-bottom: 20px;">
+
+        <div class="col-2">
+            Inactive
+            <div class="bg-warning" style="width:40px; height:10px"></div>
+        </div>
+
+    </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover" id="TableAccount">
             <thead>
                 <tr>
                     <th>Action</th>
+                    <th></th>
                     <th>Id</th>
                     <th>Username</th>
                     <th>Role Admin</th>
@@ -59,7 +67,7 @@
                     <th>Emailaddress</th>
                     <th>Phonenumber</th>
                     <th>Address</th>
-                    <th>Img File</th>
+
                     <th>Dateofbirth</th>
                     <th>Sex</th>
                     <th>Status</th>
@@ -73,15 +81,18 @@
             </thead>
             <tbody>
                 <ng-container *ngIf="this.dataAccounts!=null">
-                    <tr *ngFor="let data of dataAccounts">
+                    <tr *ngFor="let data of dataAccounts" [ngClass]="{'
+                    ':data.status==true,'bg-warning':data.status==false} ">
                         <td>
 
-                            <button type="button" (click)="delete(data.id,data.username)" class="btn btn-primary button-submit btn-delete" [disabled]="isLoading ">
+                            <button type="button " (click)="delete(data.id,data.username) " class="btn btn-primary button-submit btn-delete " [disabled]="isLoading ">
                                 <span *ngIf="isLoading " class="spinner-border spinner-border-sm mr-2 "></span>
                                 {{ isLoading ? 'Loading...' : 'Delete' }}
                             </button>
-                            <button type="button " [routerLink]="['/admin/account/update/',data.id]" class="btn btn-primary button-submit btn-update">Update</button>
-                            <button type="button " [routerLink]="['/admin/account/detail/',data.id]" class="btn btn-primary button-submit btn-detail">Detail</button>
+                            <button type="button " [routerLink]="[ '/admin/account/update/',data.id] " class="btn btn-primary button-submit btn-update ">Update</button>
+                            <button type="button " [routerLink]="[ '/admin/account/detail/',data.id] " class="btn btn-primary button-submit btn-detail ">Detail</button>
+                        </td>
+                        <td><img src="{{(data.citizenidentification!=null&&data.citizenidentification!='' )?this.urlImg+data.citizenidentification: 'assets/fileadmin/dist/img/user2-160x160.jpg'}} ">
                         </td>
                         <td>{{data.id}}</td>
                         <td>{{data.username}}</td>
@@ -92,8 +103,7 @@
                         <td>{{data.emailaddress}}</td>
                         <td>{{data.phonenumber}}</td>
                         <td>{{data.address}}</td>
-                        <td><img src="{{(data.citizenidentification!=null&&data.citizenidentification!='')?this.urlImg+data.citizenidentification:'assets/fileadmin/dist/img/user2-160x160.jpg'}}">
-                        </td>
+
                         <td>{{data.dateofbirth | date: this.validatorService.DateConvert }}</td>
                         <td>{{data.sex ? 'Male' : 'Female'}}</td>
                         <td>{{data.status ? 'Active' : 'Inactive'}}</td>
@@ -111,5 +121,3 @@
         </table>
     </div>
 </div>
-
-<account_information></account_information>

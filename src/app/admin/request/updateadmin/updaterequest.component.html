@@ -1,71 +1,75 @@
-    <ng-container *ngIf="request.status != 0">
-        <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form ">
-            <table>            
-                <tr class="admin-form-item ">
-                    <td>Complainer</td>
-                    <td><input type="text" value="{{request.idComplainNavigation.fullname}}" readonly></td>
-                </tr>
-                <tr class="admin-form-item ">
-                    <td>Department</td>
-                    <td>
-                        <input type="text" value="{{request.idDepartmentNavigation.tenDepartment}}" readonly>
-                    </td>
-                </tr>
-                <tr class="admin-form-item ">
-                    <td>Handle</td>
-                    <td>
-                        <input type="text" value="{{request.idHandleNavigation.fullname}}" readonly>
-                    </td>
-                </tr>
-                    <tr class="admin-form-item ">
-                    <td>Title</td>
-                    <td>
-                        <input type="text" readonly value="{{request.title}}">
-                    </td>
-                </tr>
-                     <tr class="admin-form-item" >
-                    <td>Reason</td>
-                    <td>
-                        <textarea cols="150" rows="5" readonly>{{requestDetail.reason}}</textarea>
-                    </td>
-                </tr>      
-                     <tr class="admin-form-item ">
-                    <td>File</td>
-                    <td>
-                            <div *ngFor="let re of requestFile">
-                            <a href="{{re.name}}" target="_blank">{{re.file}}</a>
-                        </div>                     
-                    </td>
-                </tr>          
-                
-                <tr class="admin-form-item ">
-                    <td>Sent Date: <p>{{request.sentDate}}</p></td>
-                    
-                </tr>
-                <tr class="admin-form-item">
-                    <td>Reply</td>
-                    <td><textarea formControlName="reply" cols="150" rows="5"></textarea></td>
-                </tr>
-                <tr class="admin-form-item">
-                    <td>Status: </td>
-                    <td>
-                        Solving <input type="radio" formControlName="status" value="1">
-                        Add more information <input type="radio" formControlName="status"  value="2">
-                        Untreated <input type="radio" formControlName="status"  value="3">
-                        Completed <input type="radio" formControlName="status"  value="4">
-                    </td>
-                </tr>
-                <tr class="admin-form-item ">
-                    <div class="form-button">
-                        <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+<app-two-column-form>
+    
+</app-two-column-form>
+<ng-container *ngIf="request.status != 0 && requestDetail.status != 0">
+    <form [formGroup]="requestDetailForm" (ngSubmit)="updateRequest()" class="admin-form">
+        <table>
+            <tr class="admin-form-item ">
+                <td>Complainer</td>
+                <td><input type="text" value="{{request.idComplainNavigation.fullname}}" readonly></td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Department</td>
+                <td>
+                    <input type="text" value="{{request.idDepartmentNavigation.tenDepartment}}" readonly>
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Handle</td>
+                <td>
+                    <input type="text" value="{{request.idHandleNavigation.fullname}}" readonly>
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>Title</td>
+                <td>
+                    <input type="text" readonly value="{{request.title}}">
+                </td>
+            </tr>
+            <tr class="admin-form-item">
+                <td>Reason</td>
+                <td>
+                    <textarea cols="150" rows="5" readonly>{{requestDetail.reason}}</textarea>
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <td>File</td>
+                <td>
+                    <div *ngFor="let re of requestFile">
+                        <a href="{{re.name}}" target="_blank">
+                            <img src="https://localhost:7007/RequestFile/{{re.file}}" alt="">
+                        </a>
                     </div>
-        
-                </tr>
-            </table>
-            <!-- <input type="hidden" formControlName="senDate">
+                </td>
+            </tr>
+
+            <tr class="admin-form-item ">
+                <td>Sent Date:
+                    <p>{{request.sentDate}}</p>
+                </td>
+
+            </tr>
+            <tr class="admin-form-item">
+                <td>Reply</td>
+                <td><textarea formControlName="reply" cols="150" rows="5"></textarea></td>
+            </tr>
+            <tr class="admin-form-item">
+                <td>Status: </td>
+                <td>
+                    Solving <input type="radio" formControlName="status" value="1"> Add more information <input type="radio" formControlName="status" value="2"> Untreated <input type="radio" formControlName="status" value="3"> Completed <input type="radio"
+                        formControlName="status" value="4">
+                </td>
+            </tr>
+            <tr class="admin-form-item ">
+                <div class="form-button">
+                    <td><input type="submit" value="Save" class="btn btn-primary button-submit"></td>
+                </div>
+
+            </tr>
+        </table>
+        <!-- <input type="hidden" formControlName="senDate">
             <input type="hidden" formControlName="payday">
             <input type="hidden" formControlName="idRequest"> -->
-        </form>
-    
-    </ng-container>
-   
+    </form>
+
+</ng-container>

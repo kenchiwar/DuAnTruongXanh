@@ -7,6 +7,7 @@ import { RegexApi } from "./regex.service";
 import { Account } from "../models/account.model";
 import { ValidatorData } from "./validatorData.service";
 import { DatePipe } from "@angular/common";
+import { Router } from "@angular/router";
 
 
 
@@ -16,7 +17,8 @@ export class AccountService {
     [x: string]: any;
 
   constructor(private http:HttpClient,private url:UrlApi,private formBuilder:FormBuilder,private regex:RegexApi,
-  private validatorData:ValidatorData
+  private validatorData:ValidatorData,
+  private router:Router
     ) {
    // private convert:ConvertDate
   }
@@ -55,7 +57,7 @@ export class AccountService {
     GetHttpHeaders():HttpHeaders{
         try {
           const account = this.GetAccountLogin();
-          console.log(account);
+         
           return   new HttpHeaders({
             'username':account?.username??'',
             'password':account?.password??''
@@ -323,7 +325,7 @@ getFormGroupData(data :any):FormGroup{
 }
 
   async PostAccount(dataAccout:Account,dataFile:File){
-    console.log(dataAccout);
+   
     var formSubmit = new FormData();
     formSubmit.append('file',dataFile);
     formSubmit.append('dataAccount',JSON.stringify(dataAccout));
@@ -348,8 +350,8 @@ getFormGroupData(data :any):FormGroup{
    Logout(){
     localStorage.removeItem('account');
     localStorage.removeItem('username_expiration');
-    // localStorage.setItem('account', JSON.stringify(account));
-
+    // localStorage.setItem('accthen(() => { this.router.navigate([this.router.url]); }); ount', JSON.stringify(account));
+    this.router.navigate(['/error'],{skipLocationChange:true}).then(() => { this.router.navigate([this.router.url]) });
     // localStorage.setItem('username_expiration',Date.now()+12 * 60 * 60 * 1000 +'');
   }
   async getCodeSecurity(username:string){

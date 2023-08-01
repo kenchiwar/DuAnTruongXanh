@@ -1,10 +1,10 @@
 import { Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
 @Component({
-       
-       templateUrl : './404.component.html'
+        selector : 'layout-content',
+       templateUrl : './profile.component.html'
 })
-export class ErrorComponent implements OnInit {
+export class ProfileHomeComponent implements OnInit {
    
     constructor(
         private router :Router,

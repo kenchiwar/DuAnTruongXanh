@@ -1,6 +1,8 @@
 import { CssSelector } from "@angular/compiler";
 import { AfterViewInit, Component, OnInit, } from "@angular/core";
 import { Router } from "@angular/router";
+import { AccountService } from "../services/account.service";
+import { Account } from "../models/account.model";
 @Component({
 
        templateUrl : './layouthome.component.html',
@@ -9,12 +11,20 @@ import { Router } from "@angular/router";
 
 export class LayoutHomeComponent implements OnInit,AfterViewInit {
 
-
+    idAccount : any;
+    roleAccount : any;
     constructor(
         private router :Router,
+        private accountService :AccountService,
     ){}
+    accountLogin?:Account;
+  
     ngOnInit(): void {
-
+        this.accountLogin = this.accountService.GetAccountLogin();
+        console.log(this.accountLogin)
+        this.idAccount = this.accountLogin.id;
+        this.roleAccount = this.accountLogin.role;
+        console.log(this.roleAccount)
     }
     ngAfterViewInit(): void {
         const scriptUrls = [
@@ -36,9 +46,19 @@ export class LayoutHomeComponent implements OnInit,AfterViewInit {
 
     });
   }
+  changeAdmin(){
+    setTimeout(() => {
+      location.reload();
+    },300);
+    this.router.navigate(['/admin']);
+  }
     loadScript(url: string) {
         const script = document.createElement('script');
         script.src = url;
         document.body.appendChild(script);
       }
+      logout() {
+        this.accountService.Logout();
+      }
+      
 }

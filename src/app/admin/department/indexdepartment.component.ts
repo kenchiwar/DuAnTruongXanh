@@ -38,7 +38,7 @@ export class IndexDepartmentComponent implements OnInit {
                   "responsive": true,
                   
                   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');;
+                }).buttons().container().appendTo('#department-index-table_wrapper .col-md-6:eq(0)');;
               },1000);
         
     }

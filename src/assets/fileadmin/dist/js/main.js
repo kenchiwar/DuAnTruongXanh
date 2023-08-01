@@ -1,24 +1,3 @@
-const verifyCodeInputs = document.querySelectorAll('.verify-code-input');
-
-console.log(verifyCodeInputs)
-
-// Event listener for the verify code inputs
-for (let i = 0; i < verifyCodeInputs.length; i++) {
-    verifyCodeInputs[i].addEventListener('input', function() {
-        console.log('3' +
-            verifyCodeInputs[i])
-
-        if (this.value.length === this.maxLength) {
-            if (i < verifyCodeInputs.length - 1) {
-                verifyCodeInputs[i + 1].focus();
-            } else {
-                // Last input reached, do something with the complete verify code here
-            }
-        }
-    });
-}
-
-
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
 
@@ -96,16 +75,16 @@ function toasts({
 
 function showSuccess(message, title) {
     if (message === undefined || message.length < 1) {
-        message = 'warning';
+        message = 'success';
     }
     if (title === undefined || title.length < 1) {
-        title = 'Warning!';
+        title = 'Success!';
     }
     toasts({
         title: title,
         message: message,
         type: 'success',
-        duration: 3000,
+        duration: 2000,
 
     });
 };
@@ -121,7 +100,7 @@ function showWarning(message, title) {
         title: title,
         message: message,
         type: 'warning',
-        duration: 1000,
+        duration: 3000,
 
     });
 };

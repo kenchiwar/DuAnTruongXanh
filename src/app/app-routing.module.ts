@@ -30,22 +30,38 @@ import { Admin } from './services/checkAdmin.service';
 
 import { _CreateRequestComponent } from './admin/request/createRequest.component';
 import { CreateRequestComponent } from './admin/request/create/createrequest.component';
+import { RequestHomeComponent } from './home/request/request.component';
+import { ProfileHomeComponent } from './home/profile/profile.component';
+import { loginGuard } from './guard/login.guard';
+import { DetailAccountInformationComponent } from './admin/account/account_detail/accountInformation.component';
+import { CreateRequestHomeComponent } from './home/request/create.component';
+
+
 
 
 const routes: Routes = [
   {path: 'error', component:ErrorComponent},
   {path: '', component:LayoutHomeComponent,children: [
     {path: '', component:IndexHomeComponent},
+    {path: '', component:IndexHomeComponent},
     {path: 'forgot', component:ForgotPasswordComponent},
-  ]},
+    {path:'login',canActivate:[loginGuard],children: [
+      {path: 'request/:id', component:RequestHomeComponent},
+      {path: 'requestcreate', component:CreateRequestHomeComponent},
+      {path: 'profile', component:ProfileHomeComponent},
+      {path: '', component:ProfileHomeComponent},
 
-  {path:'error',component:ErrorComponent}
-  ,
+    ]}
+  ]},
+ 
+
+  
   {path: 'admin', component:IndexAdminComponent,canActivate:[authGuard],children: [
     {path:'',component:IndexAccountComponent},
     {path:'account',children: [
       {path: 'create', component:CreateAccountComponent},
       {path: 'detail/:id', component:DetailAccountComponent},
+      {path: 'profile', component:DetailAccountInformationComponent},
       {path: 'update/:id', component:UpdateAccountComponent},
       {path: 'index', component:IndexAccountComponent},
       {path:'',component:IndexAccountComponent},
@@ -58,7 +74,7 @@ const routes: Routes = [
       {path: '', component:IndexDepartmentComponent},
     ]},
     {path:'request',children: [
-      {path: 'create', component: _CreateRequestComponent},
+      {path: 'all-request', component: _CreateRequestComponent},
       {path: 'detail/:id', component:DetailRequestComponent},
       {path: 'update/:id', component:UpdateRequestComponent},
       {path: 'index', component:IndexRequestComponent},
@@ -77,13 +93,14 @@ const routes: Routes = [
       {path: 'update', component:UpdateRoleClaimComponent},
       {path: 'index', component:IndexRoleClaimComponent},
     ]},
-    { path: '**', pathMatch: 'full',
-    component: ErrorComponent },
+   
 
 
 
     // {path: '', component:DashboardComponent},
   ]} ,
+  { path: '**', pathMatch: 'full',
+  component: ErrorComponent },
 ];
 
 @NgModule({

@@ -71,7 +71,7 @@ export class UpdateAdminRequestComponent implements OnInit {
             res => {
                 var resultAPI : ResultAPI = res as ResultAPI;
                 if(resultAPI.result){
-                    this.router.navigate(['/admin/requests/index']);
+                    this.router.navigate(['/admin/request/index']);
                 }
             },
             err => {alert(`This is your request!`)}

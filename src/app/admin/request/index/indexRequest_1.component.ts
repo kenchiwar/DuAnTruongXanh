@@ -6,7 +6,7 @@ import { Requet } from "src/app/models/request.model";
 import { ResultAPI } from "src/app/models/resultapi";
 import { AccountService } from "src/app/services/account.service";
 import { RequestServices } from "src/app/services/request.service";
-
+declare var $ : any;
 @Component({
     selector: 'app-indexRequest_1',
     templateUrl: './indexRequest_1.component.html'
@@ -18,11 +18,7 @@ export class IndexRequest_1Component implements OnInit {
    idRequest : any;
    filterRequest : string;
    formRequest : FormGroup
-    requestsPagin: any[];
-    pageSize = 10; // số lượng mục trên mỗi trang
-    currentPage = 1; // trang hiện tại
-    totalItems: number; // tổng số mục
-
+   
      constructor(
          private router :Router,
          private requestService : RequestServices,
@@ -32,11 +28,22 @@ export class IndexRequest_1Component implements OnInit {
      ){}
 
     ngOnInit(): void {
-        this.requestService.GetRequets().then((data: any) => {
-            this.requests = data
+        this.requestService.GetRequets().then(res => {
+          this.requests = res as Requet[];
             this.requests = this.requests.filter(request => request.idHandle == null)
-            this.totalItems = this.requests.length
-    })
+    },err => {console.log(err)})
+    setTimeout(()=>{
+        $('#index-request1').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#index-request1_wrapper .col-md-6:eq(0)');;
+      },2000);
     }
 
     async accept(id: any){
@@ -46,11 +53,13 @@ export class IndexRequest_1Component implements OnInit {
                 if(resultAPI.result){
                     this.router.navigate(['/admin/request/index']);
                     this.ngOnInit();
+                    
                 }else {
                     alert(`Accept failed!`);
                 }
             },err => {
                 alert(`This is your request!`);
+                console.log(err);
             }
          )
       

@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { FormGroup, ValidatorFn } from "@angular/forms";
 import { Router } from "@angular/router";
+declare var showSuccess;
+declare var showWarning;
 @Injectable()
 export class ValidatorData{
 
@@ -75,10 +77,10 @@ export class ValidatorData{
 
   getNotification(status:boolean,mess:string ,id?:string ){
     if(status){
-      alert(mess);
+     showSuccess(mess);
     }else{
 
-      alert(mess);
+      showWarning(mess)
 
     }
 
@@ -95,12 +97,12 @@ export class ValidatorData{
 
   }
   getRouterChange(url:string,mess?:string){
-      // try {
-      //   this.route.navigateByUrl(url, { skipLocationChange: true });
+       try {
+        this.route.navigateByUrl(url, { skipLocationChange: true });
 
-      // } catch (error) {
-      //   this.route.navigateByUrl('/error', { skipLocationChange: true });
-      // }
+      } catch (error) {
+        this.route.navigateByUrl('/error', { skipLocationChange: true });
+      }
   }
    matchPasswordsValidator(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (formGroup: FormGroup): { [key: string]: any } | null => {

@@ -55,40 +55,9 @@ export class DetailAccountInformationComponent implements OnInit {
           this.requetIdComplainNavigations=[];
           this.requetIdHandleNavigations=[];
           this.accountLogin = this.accountService.GetAccountLogin() as Account;
-          console.log(this.accountLogin);
-          setTimeout(()=>{
-            $('#account-detail-roleclaims').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#account-detail-request1').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#account-detail-request2').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": true,
-              "autoWidth": true,
-              "responsive": true,          
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-          },1000);
+      
        
+         
           this.changePass=false;
           this.password='';
           this.checkPassword=true;
@@ -96,7 +65,7 @@ export class DetailAccountInformationComponent implements OnInit {
               this.accountChangPass=false;
       this.accountService.GetAccountDetail(this.accountLogin.id+'').then(dataAccount=>{
 
-
+        
         this.dataAccount = dataAccount as Account;
         this.accountLogin=this.accountService.GetAccountLogin();
         //Kiểm tra account đủ quyền update ko
@@ -105,8 +74,42 @@ export class DetailAccountInformationComponent implements OnInit {
       this.selectedFileUrl=this.dataAccount.citizenidentification?this.urlApi.baseUrl+this.dataAccount.citizenidentification:null;
       this.requetIdComplainNavigations=this.dataAccount.requetIdComplainNavigations ;
       this.requetIdHandleNavigations=this.dataAccount.requetIdHandleNavigations;
-
-
+      console.log('ee'+this.dataAccount)
+      setTimeout(()=>{
+        $('#account-detail-roleclaims').DataTable({
+          "order" : [[ 1, 'desc' ]],
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-roleclaims_wrapper .col-md-6:eq(0)');
+        $('#account-detail-request1').DataTable({
+          "order" : [[ 1, 'desc' ]],
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-request1_wrapper .col-md-6:eq(0)');
+        $('#account-detail-request2').DataTable({
+          "order" : [[ 1, 'desc' ]],
+          "paging": true,
+          "lengthChange": false,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "responsive": true,          
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#account-detail-request2_wrapper .col-md-6:eq(0)');
+      },1000);
 
 
       }).catch(error=>{
@@ -156,8 +159,8 @@ export class DetailAccountInformationComponent implements OnInit {
 
     }
     checkPass(){
-
-      alert(this.password +'==='+this.accountLogin.password);
+  
+     
 
       if(this.password == this.accountLogin.password) {
 
@@ -179,6 +182,9 @@ export class DetailAccountInformationComponent implements OnInit {
         this.checkPassword=false;
       }
 
+    }
+    isAdmin(): boolean {
+      return this.router.url.startsWith('/admin');
     }
 
 }

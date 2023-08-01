@@ -46,12 +46,17 @@ import { _CreateRequestComponent } from './admin/request/createRequest.component
 import { NgxPaginationModule } from 'ngx-pagination';
 import { IndexRequest_1Component } from './admin/request/index/indexRequest_1.component';
 import { IndexRequest_2Component } from './admin/request/index/indexRequest_2.component';
-// import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
+import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
+
+import { ProfileHomeComponent } from './home/profile/profile.component';
+import { RequestHomeComponent } from './home/request/request.component';
 import { TwoColumnFormComponent } from './admin/request/Detail/two-column-form.component';
 import { UpdateAdminRequestComponent } from './admin/request/updateadmin/updaterequest.component';
 import { UpdateUserRequestComponent } from './admin/request/updateuser/updaterequest.component';
-import { IndexRequest_3Component } from './admin/request/index/indexRequest_3.component';
+import { CreateRequestHomeComponent } from './home/request/create.component';
 import { HandleIndexComponent } from './admin/request/index/indexHandle.component';
+
+
 
 
 
@@ -87,7 +92,8 @@ import { HandleIndexComponent } from './admin/request/index/indexHandle.componen
     ErrorComponent,
     loginAccount,
     DetailAccountInformationComponent,
-
+    ProfileHomeComponent,
+    RequestHomeComponent,
     _CreateRequestComponent,
     IndexRequest_1Component,
     IndexRequest_2Component,
@@ -95,6 +101,7 @@ import { HandleIndexComponent } from './admin/request/index/indexHandle.componen
     TwoColumnFormComponent,
     UpdateAdminRequestComponent,
     UpdateUserRequestComponent,
+    CreateRequestHomeComponent,
     HandleIndexComponent
   ],
   imports: [
