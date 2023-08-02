@@ -21,7 +21,6 @@ export const authGuard: CanActivateFn = (route, state: RouterStateSnapshot) => {
     router.navigateByUrl('/error', { skipLocationChange: true });
    },300);
    return false ;
-   
-
+  
 
 };

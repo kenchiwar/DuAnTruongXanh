@@ -44,11 +44,12 @@ export class UpdateUserRequestComponent implements OnInit {
             var id = params.get('id');
             this.requestService.GetRequestById(id).then(
                 res => {
-                    this.request = res as Requet    
+                    this.request = res as Requet
+                    this.requestFile = this.request.requestFiles
                 },
                 err => {console.log(err);}
             )
-            this.requestService.GetRequestDetail(id).then(
+            this.requestService.GetRequestDetailById(id).then(
                 res => {
                     this.requestDetail = res as Requetsdetailed
                     this.requestDetailForm = this.formBuilder.group({
@@ -63,10 +64,6 @@ export class UpdateUserRequestComponent implements OnInit {
                     
                 err => {console.log(err);}
             )
-            // this.requestService.GetRequestFile(id).then(
-            //     res => {this.requestFile = res as RequestFile[]},
-            //     err => {console.log(err);}
-            // )
         })
     }
 

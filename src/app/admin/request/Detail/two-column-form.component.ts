@@ -16,7 +16,7 @@ declare var $ : any;
 })
 export class TwoColumnFormComponent implements OnInit{
     request : Requet;
-    reqD : Requetsdetailed
+    // reqD : Requetsdetailed
     requestDetails : Requetsdetailed[];
     requestFile : RequestFile[]
     requestFileDetail : RequestFile[]
@@ -40,7 +40,7 @@ export class TwoColumnFormComponent implements OnInit{
                 res => {this.request = res as Requet;
                   console.log(this.request.requestFiles);
                   this.requestFile = this.request.requestFiles;
-                  this.requestDetails = this.request.requetsdetaileds ;
+                  this.requestDetails = this.request.requestDetails ;
                   if ($.fn.DataTable.isDataTable($('#handleIndex'))) {
                     $('#handleIndex').DataTable().destroy();
                   }

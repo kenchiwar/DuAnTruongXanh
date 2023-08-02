@@ -27,7 +27,7 @@ export class IndexRequest_3Component implements OnInit {
     ngOnInit(): void {
         this.requestService.GetRequets().then(res => {
             this.requests_ = res as Requet[]
-            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 4 || request.status == 5);
+            this.requests_ = this.requests_.filter(request => request.idHandle != null && request.status == 4 || request.status == 5 || request.status == 3);
             if ($.fn.DataTable.isDataTable($('#index-request3'))) {
                 $('#index-request3').DataTable().destroy();
               }

@@ -7,7 +7,8 @@
                 <th>Department</th>
                 <th>Handle</th>
                 <th>Status</th>
-                <th>SentDate</th>
+                <th *ngIf="request.endDate != null">Sent Date</th>
+                <th>End Date</th>
                 <th>Priority</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td>{{request.idHandleNavigation.fullname}}</td>
                 <td>{{request.status == 0 ? "Sending" : request.status == 1 ? "Solving" : request.status == 2 ? "Add more information" : request.status == 3 ? "Untreated" : "Completed"}}</td>
                 <td>{{request.sentDate}}</td>
+                <td *ngIf="request.endDate != null">{{request.endDate}}</td>
                 <td> {{request.priority ==1 ? "Low" : request.priority ==2 ? "Medium" : "Urgent"}}</td>
             </tr>
         </tbody>
@@ -30,23 +32,24 @@
                     <h5 style="margin-bottom: 20px;">
                         <a href="{{request.idComplainNavigation.citizenidentification}}" target="_blank"><img src="{{request.idComplainNavigation.citizenidentification}}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 20px; border-radius: 100px;"></a> {{request.idComplainNavigation.fullname}}
                     </h5>
-                    <!-- <h5>Complainer: {{request.idComplainNavigation.fullname}}</h5> -->
-                    <!-- <h5>AVT:
-                        <img href="{{request.idComplainNavigation.citizenidentification}}">
-                    </h5> -->
+                    <h5>Title: {{request.title}}</h5>
                     <h5>Reason: {{requestDetail.reason}}</h5>
                     <h5>File: </h5>
-                    <div *ngFor="let rf of requestFile">
+                    <div class="d-flex justify-content-start">
+                        <div *ngFor="let rf of requestFile" >
                         <div *ngIf="getIdFromFile(rf.name) == requestDetail.id">
                             
                             <a href="{{rf.name}}" target="_blank">
-                                <img src="{{rf.name}}" style="width: 100px; height: 100px; object-fit: cover; ">
+                                <img src="{{rf.name}}" style="width: 100px; height: 100px; object-fit: cover; margin: 2px;" >
                             </a>
                         </div>
                     </div>
+                    </div>
+                    
                     <h5>Status: {{requestDetail.status == 0 ? "Sending" : requestDetail.status == 1 ? "Solving" : requestDetail.status == 2 ? "Add more information" : requestDetail.status == 3 ? "Untreated" : "Completed"}}
                     </h5>
                     <p>Sent Date: {{request.sentDate}}</p>
+                    <p *ngIf="requestDetail.payday != null">End Date: {{requestDetail.payday}}</p>
                 </div>
             </div>
             <!-- Cột phải dưới -->
@@ -61,7 +64,7 @@
                             </h5>
                             <h5>Reply: {{requestDetail.reply}}</h5>
                             <p>Sent Date: {{requestDetail.sentDate}}</p>
-                            <p *ngIf="requestDetail.payday != null">End Date:</p>
+                            <p *ngIf="requestDetail.payday != null">End Date: {{requestDetail.payday}}</p>
                         </ng-container>
 
                     </div>

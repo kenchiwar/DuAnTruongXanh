@@ -38,15 +38,15 @@ export class UpdateAdminRequestComponent implements OnInit {
             this.requestService.GetRequestById(id).then(
                 res => {
                     this.request = res as Requet
-                    console.log(this.request.requestFiles)
+                    // console.log(this.request.requestFiles)
                     this.requestFile = this.request.requestFiles
+                    // this.requestDetailForm = this.requestService.getFormGroupDetailData(this.request);
                 },
                 err => {console.log(err);}
             )
-            this.requestService.GetRequestDetail(id).then(
+            this.requestService.GetRequestDetailById(id).then(
                 res => {
                     this.requestDetail = res as Requetsdetailed
-                    
                     this.requestDetailForm = this.requestService.getFormGroupDetailData(this.requestDetail);
                     
                 },
@@ -62,11 +62,13 @@ export class UpdateAdminRequestComponent implements OnInit {
         var formData = new FormData();
         requestD.idRequest = this.requestDetail.idRequest;
         formData.append('requestDetail_', JSON.stringify(requestD));
+        console.log(requestD);
         this.requestService.PutRequet(formData).then(
             res => {
                 var resultAPI : ResultAPI = res as ResultAPI;
                 if(resultAPI.result){
-                    this.router.navigate(['/admin/request/index']);
+                    this.router.navigate(['/admin/request/update/', requestD.idRequest]);
+                    this.ngOnInit();
                 }
             },
             err => {alert(`This is your request!`)}

@@ -41,10 +41,11 @@ export class AccountService {
     // account = JSON.parse(data) as Account;
 
     // return account??null;
-    var data = localStorage.getItem('account');
     try {
-      var account = JSON.parse(data) as Account;
-      return account??null;
+    var data = localStorage.getItem('account');
+
+    var account = JSON.parse(data) as Account;
+      return account;
     } catch (error) {
 
 
@@ -59,12 +60,11 @@ export class AccountService {
           const account = this.GetAccountLogin();
          
           return   new HttpHeaders({
-            'username':account?.username??'',
-            'password':account?.password??''
+            'username':account.username,
+            'password':account.password,
           });
         } catch (error) {
           return   new HttpHeaders({
-
           });
         }
 
@@ -79,21 +79,22 @@ export class AccountService {
           case 'get':
             return await lastValueFrom(this.http.get(url,{headers}));
           case 'post':
-            if(formData != null){
+            // if(formData != null){
               return await lastValueFrom(this.http.post(url,formData,{headers}));
-            }else {
-              console.log("fdsdsfs");
-              console.log(headers);
-              return await lastValueFrom(this.http.post(url,{headers}));
-            }
+            // }else {
+            //   console.log("fdsdsfs");
+            //   console.log(headers);
+            //   return await lastValueFrom(this.http.post(url,{headers}));
+            // }
             
-            case 'put':if(formData != null){
-              console.log("fdsdsfs1");
-              console.log(headers);
+            case 'put':
+              // if(formData != null){
+              // console.log("fdsdsfs1");
+              // console.log(headers);
               return await lastValueFrom(this.http.put(url,formData,{headers}));
-            }else {
-              return await lastValueFrom(this.http.put(url,{headers}));
-            }
+            // }else {
+            //   return await lastValueFrom(this.http.put(url,{headers}));
+            // }
               
             case 'delete':return await lastValueFrom(this.http.delete(url,{headers}));
         }

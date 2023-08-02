@@ -25,9 +25,9 @@ export class RequestServices {
   getFormGroup(){
     var form = this.formBuilder.group({
       id: 0,
-      idComplain: this.accountService.GetAccountLogin().id,
+      idComplain: 0,
       idDepartment: '2',
-      idHandle: this.accountService.GetAccountLogin().id,
+      idHandle: '',
       title: '',
       status: '0',
       level: '0',
@@ -129,7 +129,7 @@ getFormGroupData(data :any):FormGroup{
       id: data.id,
       idComplain: data.idComplain,
       idDepartment: data.idDepartment,
-      idHandle: this.accountService.GetAccountLogin().id,
+      idHandle: data.idHandle,
       title: data.title,
       status: data.status,
       level: data.level,
@@ -142,13 +142,25 @@ getFormGroupData(data :any):FormGroup{
 
 getFormGroupDetailData(data :any):FormGroup{
   return this.formBuilder.group({
-    id: data.id,
-    sentdate: data.sentDate,
-    payday: data.payday,
-    reason: data.reason,
-    status: data.status+'',
-    reply: data.reply,
-    idRequest: data.idRequest,
+    // id: data.id,
+    // idComplain: data.idComplain,
+    // idDepartment: data.idDepartment,
+    // idHandle: '',
+    // title: data.title,
+    // status: data.status,
+    // level: data.level,
+    // sentDate: data.sentDate,
+    // endDate: data.endDate,
+    // priority: data.priority,  
+    // requestDetails: this.formBuilder.group({
+        id: data.id,
+        sentdate: data.sentDate,
+        payday: data.payday,
+        reason: data.reason,
+        status: data.status+'',
+        reply: data.reply,
+        idRequest: data.idRequest,
+      // }),   
   })}
 
 async GetRequets(){
@@ -166,15 +178,15 @@ async GetRequets(){
     return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestDetail/"+id));
   }
 
-  async GetRequestFile(id:string){
+  async GetRequestDetailById(id:string){
 
-    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/requestFile/"+id));
+    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestDetailById/"+id));
   }
 
-  async GetRequestDetailFile(id:string){
+  // async GetRequestDetailFile(id:string){
 
-    return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestDetailFile/"+id));
-  }
+  //   return await lastValueFrom(this.http.get(this.url.baseRequetsUrl+"/getRequestDetailFile/"+id));
+  // }
 
   async PostRequest(formData: FormData){
     console.log(formData); 

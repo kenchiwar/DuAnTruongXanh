@@ -154,11 +154,11 @@
                     <td>{{handle.id}}</td>
                     <td>{{handle.idDepartmentNavigation.tenDepartment}}</td>
                     <td>{{handle.title}}</td>
-                    <td>{{handle.status}}</td>
+                    <td>{{handle.status == 0 ? "Sending" : handle.status == 1 ? "Solving" : handle.status == 2 ? "Add more information" : handle.status == 3 ? "Untreated" : "Completed"}}</td>
                     <td>{{handle.level}}</td>
                     <td>{{handle.sentDate}}</td>
                     <td>{{handle.endDate}}</td>
-                    <td>{{handle.priority}}</td>
+                    <td>{{handle.priority ==1 ? "Low" : handle.priority ==2 ? "Medium" : "Urgent"}}</td>
 
                 </tr>
             </tbody>
@@ -208,7 +208,7 @@
                         <td>{{request.level}}</td>
                         <td>{{request.sentDate}}</td>
                         <td>{{request.endDate}}</td>
-                        <td>{{request.priority}}</td>
+                        <td>{{request.priority ==1 ? "Low" : request.priority ==2 ? "Medium" : "Urgent"}}</td>
                     </tr>
                 </tbody>
             </table>
